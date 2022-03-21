@@ -1,0 +1,30 @@
+.header {
+  height: 100px;
+  background-color: #f6f8ff;
+  box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-header-container {
+  display: flex;
+  width: 25%;
+  justify-content: space-between;
+}
+.logo {
+  height: 80px;
+  padding-left: 50px;
+}
+.platformName {
+  font-family: "Manrope";
+  font-size: 28px;
+}
+.navigation-container {
+  display: flex;
+  width: 40%;
+  justify-content: space-evenly;
+}
+.navigation-content {
+  font-family: "Manrope";
+  cursor: pointer;
+}
