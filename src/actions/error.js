@@ -12,7 +12,9 @@ const clearError = (dispatch) => {
     });
 };
 
-export default {
+const error = {
     returnError,
     clearError,
 };
+
+export default error

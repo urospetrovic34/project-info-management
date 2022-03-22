@@ -1,6 +1,4 @@
 import React, { useContext, useReducer, createContext } from "react";
-import AuthAPI from '../actions/auth'
-import { returnError } from "./ErrorProvider";
 
 const AuthContext = createContext();
 
