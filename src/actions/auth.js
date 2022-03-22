@@ -44,8 +44,10 @@ const logout = (dispatch) => {
     return dispatch({ type: "LOGOUT_SUCCESS" });
 };
 
-export default {
+const auth = {
     login,
     register,
     logout,
 };
+
+export default auth
