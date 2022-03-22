@@ -1,6 +1,6 @@
 .input{
     width: 215px;
-    height: 25px;
+    height: 30px;
     font-family: "Manrope" ;
     border: 1px solid lightgrey;
     border-radius: 5px;
@@ -10,13 +10,13 @@
   cursor: pointer;
   border: 1px solid rgb(0,0,0, 0.4);
 }
-.react-icon{
+.react_icon{
    opacity: 60% ;
    position: absolute;
-   top: 4px;
+   top: 9px;
    left: 9px;
 }
-.input-container{
+.input_container{
     display: inline;
     position: relative;
 }
