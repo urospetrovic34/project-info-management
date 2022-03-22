@@ -1,6 +1,5 @@
 import React from "react";
 import HeaderCSS from "../Header/Header.module.css";
-// import hamburgerIcon from "../../../assets/icon-hamburger.svg";
 import closeIcon from "../../../assets/icon-close-modal.svg";
 
 const NavigationMob = ({ showMobileNav }) => {

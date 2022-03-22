@@ -4,7 +4,6 @@ import logo from "../../../assets/q-logo.png";
 import HeaderCSS from "./Header.module.css";
 import hamburgerIcon from "../../../assets/icon-hamburger.svg";
 import NavigationMob from "./NavigationMob";
-// import closeIcon from "../../../assets/icon-close-modal.svg";
 
 const Header = () => {
   const [ShowMobileNavigation, setMobileNavigation] = useState(false);
