@@ -1,12 +1,12 @@
 .header {
-  height: 100px;
   background-color: #f6f8ff;
   box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 15px 0px;
 }
-.logo-header-container {
+.logoHeaderContainer {
   display: flex;
   width: 25%;
   justify-content: space-between;
@@ -19,12 +19,12 @@
   font-family: "Manrope";
   font-size: 28px;
 }
-.navigation-container {
+.navigationContainer {
   display: flex;
   width: 40%;
   justify-content: space-evenly;
 }
-.navigation-content {
+.navigationContent {
   font-family: "Manrope";
   cursor: pointer;
 }
