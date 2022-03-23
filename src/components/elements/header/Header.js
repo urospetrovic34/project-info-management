@@ -7,6 +7,7 @@ import NavigationMob from "./NavigationMob";
 
 const Header = () => {
   const [ShowMobileNavigation, setMobileNavigation] = useState(false);
+
   return (
     <div className={HeaderCSS.header}>
       <div className={HeaderCSS.logoHeaderContainer}>
