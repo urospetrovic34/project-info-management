@@ -23,7 +23,7 @@ const AuthReducer = (state, action) => {
             return state;
     }
 };
-
+//comment
 export const useAuth = () => {
     const { state, dispatch } = useContext(AuthContext);
     return [state, dispatch];
