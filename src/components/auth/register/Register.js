@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useAuth } from "../../../contexts/AuthProvider";
-import AuthAPI from "../../../actions/auth";
+import React, {/* useState */} from "react";
+// import { useAuth } from "../../../contexts/AuthProvider";
+// import AuthAPI from "../../../actions/auth";
 import RegisterCSS from "./Register.module.css";
 import Input from "../../elements/input/Input";
 import logo from "../../../assets/q-logo.png";
 
 export const Register = () => {
-    const [authState, authDispatch] = useAuth();
-    const { user } = authState;
+    // const [authState, authDispatch] = useAuth();
+    // const { user } = authState;
 
-    const [credentials, setCredentials] = useState({
-        identifier: "",
-        password: "",
-    });
+    // const [credentials, setCredentials] = useState({
+    //     identifier: "",
+    //     password: "",
+    // });
 
     return (
         <div className={RegisterCSS.wrapper}>
