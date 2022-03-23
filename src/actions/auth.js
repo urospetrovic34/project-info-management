@@ -18,7 +18,7 @@ const register = async (dispatch, {username, email, password}) => {
             dispatch({ type: "REGISTER_FAIL" });
         });
 };
-
+//comment
 const login = async (dispatch, {identifier, password}) => {
     const body = { identifier, password };
     await axios
