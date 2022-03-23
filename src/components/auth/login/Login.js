@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
-// import AuthAPI from "../../../actions/auth";
+import AuthAPI from "../../../actions/auth";
 import LoginCSS from "./Login.module.css";
 import Input from "../../elements/input/Input";
 import logo from "../../../assets/q-logo.png";
@@ -8,7 +8,7 @@ import logo from "../../../assets/q-logo.png";
 export const Login = () => {
     const [authState, authDispatch] = useAuth();
     const { user } = authState;
-    console.log(authDispatch, user);
+    console.log(user)
 
     const [credentials, setCredentials] = useState({
         identifier: "",
@@ -20,12 +20,11 @@ export const Login = () => {
             ...credentials,
             [event.target.name]: event.target.value,
         });
-        console.log(credentials);
     };
 
     const handleCredentialsClick = (event) => {
         event.preventDefault();
-        console.log(credentials);
+        AuthAPI.login(authDispatch,credentials)
     };
 
     return (

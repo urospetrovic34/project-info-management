@@ -6,17 +6,19 @@ const AuthReducer = (state, action) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
         case "REGISTER_SUCCESS":
+            localStorage.setItem("user", JSON.stringify(action.payload.user));
+            localStorage.setItem("token", action.payload.jwt);
             return {
                 ...state,
-                user: "BETMEN",
+                user: localStorage.getItem("user"),
+                token: localStorage.getItem("token"),
             };
         case "LOGIN_FAIL":
         case "REGISTER_FAIL":
         case "LOGOUT_SUCCESS":
-            console.log("OPCIJA 2");
-            return {
-                ...state,
-            };
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            return state;
         default:
             return state;
     }
@@ -29,9 +31,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const initialState = {
-        user: null,
-        token: null,
-        isAuthenticated: false
+        user: localStorage.getItem("user"),
+        token: localStorage.getItem("token"),
     };
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -42,4 +43,3 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-

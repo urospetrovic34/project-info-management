@@ -1,7 +1,7 @@
 import axios from "../config/axiosConfig";
-import ErrorAPI from './error'
+import ErrorAPI from "./error";
 
-const register = async (dispatch, username, email, password) => {
+const register = async (dispatch, {username, email, password}) => {
     const body = { username, email, password };
     await axios
         .post("/api/auth/local/register", body)
@@ -9,18 +9,17 @@ const register = async (dispatch, username, email, password) => {
             dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
         })
         .catch((err) => {
-            dispatch(
-                ErrorAPI.returnError(
-                    err.response.data,
-                    err.response.status,
-                    "REGISTER_FAIL"
-                )
+            ErrorAPI.returnError(
+                dispatch,
+                err.response.data,
+                err.response.status,
+                "REGISTER_FAIL"
             );
             dispatch({ type: "REGISTER_FAIL" });
         });
 };
 
-const login = async (dispatch, identifier, password) => {
+const login = async (dispatch, {identifier, password}) => {
     const body = { identifier, password };
     await axios
         .post("/api/auth/local", body)
@@ -29,12 +28,11 @@ const login = async (dispatch, identifier, password) => {
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         })
         .catch((err) => {
-            dispatch(
-                ErrorAPI.returnError(
-                    err.response.data,
-                    err.response.status,
-                    "LOGIN_FAIL"
-                )
+            ErrorAPI.returnError(
+                dispatch,
+                err.response.data,
+                err.response.status,
+                "LOGIN_FAIL"
             );
             dispatch({ type: "LOGIN_FAIL" });
         });
@@ -50,4 +48,4 @@ const auth = {
     logout,
 };
 
-export default auth
+export default auth;
