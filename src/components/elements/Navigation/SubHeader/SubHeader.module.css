@@ -11,13 +11,11 @@
  align-items: center;
 }
 .title{
-    font-family: "Manrope";
     font-size: 22px;
     margin-bottom: -10px;
 }
 .paragraph{
     opacity: 50%;
-    font-family: "Manrope";
     font-size: 14px;
 }
 .logo {

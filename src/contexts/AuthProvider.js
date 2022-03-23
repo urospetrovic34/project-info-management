@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
     const initialState = {
         user: null,
         token: null,
+        isAuthenticated: false
     };
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);

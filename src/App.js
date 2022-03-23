@@ -1,14 +1,19 @@
 import React from "react";
-import Header from "./components/elements/Header/Header";
-import SubHeader from "./components/elements/SubHeader/SubHeader";
+import { Login } from "./components/Auth/Login/Login";
+import Header from "./components/elements/Navigation/Header/Header";
+import SubHeader from "./components/elements/Navigation/SubHeader/SubHeader";
+import { useAuth } from "./contexts/AuthProvider";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <SubHeader></SubHeader>
-    </div>
-  );
+    const [authState, authDispatch] = useAuth();
+    const { isAuthenticated } = authState;
+    return (
+        <div className="wrapper">
+            {isAuthenticated && <Header />}
+            {isAuthenticated && <SubHeader />}
+            <Login />
+        </div>
+    );
 }
 
 export default App;
