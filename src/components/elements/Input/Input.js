@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
 import InputCSS from "../Input/Input.module.css";
 
-
-const Input = () => {
+const Input = (props) => {
     return (
-        <input type="text" placeholder="Search projects" className={InputCSS.input} />
-    )
-}
+        <input
+            type={props.type}
+            name={props.name}
+            placeholder={props.placeholder}
+            className={InputCSS.input}
+            onChange={props.onChange}
+        />
+    );
+};
 
 export default Input;

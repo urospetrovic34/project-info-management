@@ -1,9 +1,9 @@
 import React from 'react';
 import SubHeaderCSS from '../SubHeader/SubHeader.module.css'
-import logo from "../../../assets/q-logo.png";
-import InputCSS from "../Input/Input.module.css";
+import logo from "../../../../assets/q-logo.png";
+import InputCSS from "../../Input/Input.module.css";
 import { FaReact } from 'react-icons/fa';
-import Input from '../Input/Input';
+import Input from '../../Input/Input';
 
 const ProjectBar = () => {
     return (

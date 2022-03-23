@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import logo from "../../../assets/q-logo.png";
+import logo from "../../../../assets/q-logo.png";
 import HeaderCSS from "./Header.module.css";
-import hamburgerIcon from "../../../assets/icon-hamburger.svg";
+import hamburgerIcon from "../../../../assets/icon-hamburger.svg";
 import NavigationMob from "./NavigationMob";
 
 const Header = () => {
