@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderCSS from "../Header/Header.module.css";
+import HeaderCSS from "../header/Header.module.css";
 import closeIcon from "../../../../assets/icon-close-modal.svg";
 
 const NavigationMob = ({ showMobileNav }) => {
