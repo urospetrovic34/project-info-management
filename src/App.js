@@ -6,6 +6,7 @@ import { useAuth } from "./contexts/AuthProvider";
 
 function App() {
   const [authState, authDispatch] = useAuth();
+  console.log(authDispatch);
   const { isAuthenticated } = authState;
   return (
     <div className="wrapper">
