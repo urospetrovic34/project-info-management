@@ -20,3 +20,23 @@
     display: inline;
     position: relative;
 }
+
+
+@media only screen and (max-width: 820px) {
+
+  .input{
+    width: 160px;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .input{
+    height: 26px;
+  }
+  .react_icon{
+    position: absolute;
+    top: 7px;
+ }
+  .input_container{
+  margin: -10px 0 10px 197px;
+  }
+}

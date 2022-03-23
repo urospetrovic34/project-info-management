@@ -4,6 +4,7 @@ import AuthAPI from "../../../actions/auth";
 import LoginCSS from "./Login.module.css";
 import Input from "../../elements/input/Input";
 import logo from "../../../assets/q-logo.png";
+import Button from "../../elements/button/Button";
 
 export const Login = () => {
     const [authState, authDispatch] = useAuth();
@@ -24,7 +25,7 @@ export const Login = () => {
 
     const handleCredentialsClick = (event) => {
         event.preventDefault();
-        AuthAPI.login(authDispatch,credentials)
+        AuthAPI.login(authDispatch, credentials)
     };
 
     return (
@@ -50,7 +51,7 @@ export const Login = () => {
                         />
                     </div>
                     <div className={LoginCSS.row}>
-                        <button onClick={handleCredentialsClick}>ASD</button>
+                        <Button onClick={handleCredentialsClick} />
                     </div>
                 </form>
             </div>

@@ -1,0 +1,15 @@
+.btn{
+    width: 100px;
+    height: 30px;
+    background-color: #4987f2;
+    border: 1 px solid transparent;
+    border-radius: 5px;
+    color: #fff;
+}
+.btn:hover{
+    cursor: pointer;
+    filter: brightness(120%);
+    transform: translateY(-2px);
+}.btn:active{
+    transform: translateY(0);
+}
