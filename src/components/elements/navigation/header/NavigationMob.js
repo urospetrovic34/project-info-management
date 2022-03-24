@@ -5,7 +5,7 @@ import closeIcon from "../../../../assets/icon-close-modal.svg";
 const NavigationMob = ({ showMobileNav }) => {
   return (
     <div id="myNav" className={HeaderCSS.overlay}>
-      <span className={HeaderCSS.closebtn} onClick="closeNav()">
+      <span className={HeaderCSS.closebtn}>
         <img src={closeIcon} alt="close-icon" className={HeaderCSS.closeIcon} onClick={() => showMobileNav(false)} />
       </span>
       <div className={HeaderCSS.overlayContent}>
