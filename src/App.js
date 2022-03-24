@@ -13,8 +13,8 @@ function App() {
     <div className="wrapper">
       {token && <Header />}
       {token && <SubHeader />}
+      {token && <CardProjectInfo />}
       <Login />
-      <CardProjectInfo />
     </div>
   );
 }
