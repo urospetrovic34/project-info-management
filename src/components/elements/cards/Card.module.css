@@ -41,9 +41,13 @@
 }
 .PMAvatar {
   width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 1px solid black;
   margin-right: 5px;
+}
+.PMName {
+  font-size: 16px;
 }
 .cardHeader {
   font-size: 20px;
@@ -56,4 +60,45 @@
 }
 .EmployeeInfo {
   padding-top: 22px;
+}
+@media only screen and (max-width: 1080px) {
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .btnEmployeeInfoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .avatarPMContainer {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 780px) {
+  .cardAvatar {
+    width: 50px;
+    height: 50px;
+  }
+  .cardHeader {
+    font-size: 14px;
+  }
+  .PMAvatar {
+    width: 15px;
+    height: 15px;
+  }
+  .PMName {
+    font-size: 12px;
+  }
+  .EmployeeInfo {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .avatarPMContainer {
+    display: flex;
+    flex-direction: column;
+  }
 }
