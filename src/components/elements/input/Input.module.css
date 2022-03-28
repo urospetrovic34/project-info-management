@@ -1,42 +1,43 @@
-.input{
-    width: 215px;
-    height: 30px;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    outline:none;
-    text-indent: 15px;
+.input {
+  width: 215px;
+  height: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  text-indent: 15px;
 }
-.input:hover{
-  cursor: pointer;
-  border: 1px solid rgb(0,0,0, 0.4);
+.input:hover {
+  /* border: 1px solid rgb(0, 0, 0, 0.4); */
 }
-.react_icon{
-   opacity: 60% ;
-   position: absolute;
-   top: 9px;
-   left: 9px;
+.react_icon {
+  opacity: 60%;
+  position: absolute;
+  top: 9px;
+  left: 9px;
 }
-.input_container{
-    display: inline;
-    position: relative;
+.input_container {
+  display: inline;
+  position: relative;
 }
 
+.error {
+  border: 1px solid red;
+}
 
 @media only screen and (max-width: 820px) {
-
-  .input{
-    width: 160px;
+  .input {
+      width: 160px;
   }
 }
 @media only screen and (max-width: 630px) {
-  .input{
-    height: 26px;
+  .input {
+      height: 26px;
   }
-  .react_icon{
-    position: absolute;
-    top: 7px;
- }
-  .input_container{
-  margin: -10px 0 10px 197px;
+  .react_icon {
+      position: absolute;
+      top: 7px;
+  }
+  .input_container {
+      margin: -10px 0 10px 197px;
   }
 }

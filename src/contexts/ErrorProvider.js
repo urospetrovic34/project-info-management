@@ -4,7 +4,7 @@ export const ErrorContext = createContext();
 
 export const ErrorReducer = (state, action) => {
     switch (action.type) {
-        case "GET_ERROR":
+        case "RETURN_ERROR":
             return {
                 message: action.payload.message,
                 status: action.payload.status,

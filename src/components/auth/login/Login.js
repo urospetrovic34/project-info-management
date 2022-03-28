@@ -17,7 +17,6 @@ export const Login = () => {
     const [authState, authDispatch] = useAuth();
     const [errorState, errorDispatch] = useError();
     const { user, token } = authState; 
-    console.log(user)
     const { message } = errorState;
 
     const [errors, setErrors] = useState({

@@ -18,14 +18,16 @@ export const Test = () => {
     };
 
     const handleTestDeleteClick = () => {
-        mutation.mutate(test.data.data[test.data.data.length-1].id);
+        mutation.mutate(test.data.data[test.data.data.length - 1].id);
     };
 
     return (
         <div>
             <button onClick={handleTestCreateClick}>DODAJ</button>
             <button onClick={handleTestDeleteClick}>BRISI</button>
-            {test.status==='success' && test.data.data[test.data.data.length-1].attributes.name}
+            {test.status === "success" &&
+                test.data.data.length > 0 &&
+                test.data.data[test.data.data.length - 1].attributes.name}
         </div>
     );
 };

@@ -9,7 +9,7 @@ import { useAuth } from "../../../../contexts/AuthProvider";
 const Header = () => {
     const [ShowMobileNavigation, setMobileNavigation] = useState(false);
     const [authState, authDispatch] = useAuth();
-    console.log(authState)
+    console.log(authState);
 
     const handleLogoutClick = (event) => {
         event.preventDefault();
