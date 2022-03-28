@@ -6,11 +6,12 @@ import Header from "./components/elements/navigation/header/Header";
 import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import { Test } from "./components/test/Test";
 import { useAuth } from "./contexts/AuthProvider";
-import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { PrivateRoute } from "./routes/privateRoute";
+import { PublicRoute } from "./routes/publicRoute";
 
 function App() {
     const [authState, authDispatch] = useAuth();
-    console.log(authDispatch)
+    console.log(authDispatch);
     const { user, token } = authState;
 
     window.addEventListener("beforeunload", () => {
@@ -22,30 +23,43 @@ function App() {
     return (
         <Router>
             <div className="wrapper">
-                {user && token && <Header />}
-                {user && token && <SubHeader />}
+                {token && <Header />}
+                {token && <SubHeader />}
                 <Routes>
                     <Route
                         exact
                         path="/"
                         element={
-                            <ProtectedRoute redirect="/login">
+                            <PrivateRoute redirect="/login">
                                 <Test />
-                            </ProtectedRoute>
+                            </PrivateRoute>
                         }
                     />
                     <Route
                         exact
                         path="/login"
                         element={
-                            <Login />
+                            <PublicRoute redirect="/">
+                                <Login />
+                            </PublicRoute>
                         }
                     />
                     <Route
                         exact
                         path="/register"
                         element={
-                            <Register />
+                            <PublicRoute redirect="/">
+                                <Register />
+                            </PublicRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="*"
+                        element={
+                            <PublicRoute redirect="/">
+                                <Login />
+                            </PublicRoute>
                         }
                     />
                 </Routes>
