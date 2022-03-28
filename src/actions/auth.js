@@ -1,7 +1,10 @@
 import axios from "../config/axiosConfig";
 import ErrorAPI from "./error";
 
-const register = async (dispatch, {username, email, password}) => {
+//Registration action to be used with context
+//Add an errorDispatch to register
+
+const register = async (dispatch, { username, email, password }) => {
     const body = { username, email, password };
     await axios
         .post("/api/auth/local/register", body)
@@ -18,8 +21,8 @@ const register = async (dispatch, {username, email, password}) => {
             dispatch({ type: "REGISTER_FAIL" });
         });
 };
-//comment
-const login = async (dispatch, {identifier, password}) => {
+
+const login = async (dispatch, errorDispatch, { identifier, password }) => {
     const body = { identifier, password };
     await axios
         .post("/api/auth/local", body)
@@ -28,8 +31,9 @@ const login = async (dispatch, {identifier, password}) => {
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         })
         .catch((err) => {
+            console.log(err.response);
             ErrorAPI.returnError(
-                dispatch,
+                errorDispatch,
                 err.response.data,
                 err.response.status,
                 "LOGIN_FAIL"

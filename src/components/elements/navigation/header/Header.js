@@ -3,12 +3,18 @@ import logo from "../../../../assets/q-logo.png";
 import HeaderCSS from "./Header.module.css";
 import hamburgerIcon from "../../../../assets/icon-hamburger.svg";
 import NavigationMob from "./NavigationMob";
-// import AuthAPI from "../../../../actions/auth";
-// import { useAuth } from "../../../../contexts/AuthProvider";
+import AuthAPI from "../../../../actions/auth";
+import { useAuth } from "../../../../contexts/AuthProvider";
 
 const Header = () => {
-
     const [ShowMobileNavigation, setMobileNavigation] = useState(false);
+    const [authState, authDispatch] = useAuth();
+    console.log(authState)
+
+    const handleLogoutClick = (event) => {
+        event.preventDefault();
+        AuthAPI.logout(authDispatch);
+    };
 
     return (
         <div className={HeaderCSS.header}>
@@ -20,7 +26,12 @@ const Header = () => {
             <div className={HeaderCSS.navigationContainer}>
                 <span className={HeaderCSS.navigationContent}>My Projects</span>
                 <span className={HeaderCSS.navigationContent}>Account</span>
-                <span className={HeaderCSS.navigationContent}>Logout</span>
+                <span
+                    className={HeaderCSS.navigationContent}
+                    onClick={handleLogoutClick}
+                >
+                    Logout
+                </span>
             </div>
 
             <img

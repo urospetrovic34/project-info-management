@@ -7,7 +7,7 @@ import { AuthProvider } from "./contexts/AuthProvider";
 import { ErrorProvider } from "./contexts/ErrorProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 ReactDOM.render(
     <>

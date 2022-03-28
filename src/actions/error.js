@@ -1,7 +1,8 @@
 const returnError = (dispatch, message, status, id) => {
     const body = { message, status, id };
+    console.log(body)
     return dispatch({
-        type: "GET_ERROR",
+        type: "RETURN_ERROR",
         payload: body,
     });
 };
@@ -17,4 +18,4 @@ const error = {
     clearError,
 };
 
-export default error
+export default error;

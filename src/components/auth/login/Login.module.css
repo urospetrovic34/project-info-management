@@ -1,37 +1,98 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
-    background-color:green;
+    min-height: 100vh;
+    background-color: green;
 }
 
-.container{
-    margin-top:50px;
+.container {
+    margin-top: 60px;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding:10px;
+    padding: 50px;
+    border-radius: 5px;
     width: calc(100% - 40px);
     max-width: 600px;
-    background-color:red;
+    background-color: lightcyan;
 }
 
-.form{
-    width:100%;
+.form {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.form input{
-    width:100%;
+.form input,
+.form button {
+    width: 100%;
+    height: 40px;
 }
 
-.row{
-    display:flex;
-    gap:10px;
-    width:100%;
+.form input{
+    margin-top: 5px;
+}
+
+.button_row {
+    margin-top: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.centre_row{
+    display: flex;
+    justify-content:center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.forget_row{
+    display: flex;
+    justify-content:center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.centre_row input{
+    width: auto;
+    height: auto;
+}
+
+.logo {
+    object-fit: contain;
+    height: 100px;
+    width: 100px;
+}
+
+.header{
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.input_label{
+    font-weight: 600;
+}
+
+.input_label span{
+    color:red;
+    font-size:13px;
+}
+
+.credentials{
+    color:red;
+    font-weight:400;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
