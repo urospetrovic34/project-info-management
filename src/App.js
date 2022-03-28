@@ -1,5 +1,6 @@
 import React from "react";
 import { Login } from "./components/auth/login/Login";
+import CardMembers from "./components/elements/cards/CardMembers";
 import CardProjectInfo from "./components/elements/cards/CardProjectInfo";
 import CardProjectManagement from "./components/elements/cards/CardProjectManagement";
 import Header from "./components/elements/navigation/header/Header";
@@ -15,8 +16,10 @@ function App() {
       {token && <Header />}
       {token && <SubHeader />}
       {token && <CardProjectInfo />}
+
       <Login />
       <CardProjectManagement />
+      <CardMembers />
     </div>
   );
 }
