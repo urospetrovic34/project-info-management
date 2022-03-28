@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from "react-query";
+import { queryClient } from "../..";
 import UserAPI from "../../actions/user";
 
 const useUsers = () => {
@@ -17,15 +18,29 @@ const useCountUsers = () => {
 };
 
 const useEditUserMutation = (id, data) => {
-    return useMutation(() => {
-        return UserAPI.edit(id, data);
-    });
+    return useMutation(
+        () => {
+            return UserAPI.edit(id, data);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("users");
+            },
+        }
+    );
 };
 
 const useDeleteUserMutation = (id) => {
-    return useMutation(() => {
-        return UserAPI.remove(id);
-    });
+    return useMutation(
+        () => {
+            return UserAPI.remove(id);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("users");
+            },
+        }
+    );
 };
 
 const user = {

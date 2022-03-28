@@ -23,9 +23,8 @@ const getOne = async (id, filters, populate, sort, pagination) => {
 };
 
 const create = async (data) => {
-    const body = { data: { data } };
     await axios
-        .post("/api/notes", body)
+        .post("/api/notes", data)
         .then((res) => {
             return res;
         })
@@ -35,9 +34,8 @@ const create = async (data) => {
 };
 
 const edit = async (id, data) => {
-    const body = { data: { data } };
     await axios
-        .put(`/api/notes/${id}`, body)
+        .put(`/api/notes/${id}`, data)
         .then((res) => {
             return res;
         })

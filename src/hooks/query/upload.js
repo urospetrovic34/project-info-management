@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from "react-query";
+import { queryClient } from "../..";
 import UploadAPI from "../../actions/upload";
 
 const useUploads = () => {
@@ -10,9 +11,16 @@ const useSingleUpload = (id) => {
 };
 
 const useCreateUploadMutation = (formData) => {
-    return useMutation(() => {
-        return UploadAPI.create(formData);
-    });
+    return useMutation(
+        () => {
+            return UploadAPI.create(formData);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("uploads");
+            },
+        }
+    );
 };
 
 const upload = {

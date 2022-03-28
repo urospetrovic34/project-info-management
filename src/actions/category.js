@@ -39,9 +39,8 @@ const create = async (data) => {
 };
 
 const edit = async (id, data) => {
-    const body = { data: { data } };
     await axios
-        .put(`/api/categories/${id}`, body)
+        .put(`/api/categories/${id}`, data)
         .then((res) => {
             return res;
         })

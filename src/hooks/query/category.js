@@ -24,20 +24,29 @@ const useCreateCategoryMutation = () => {
 };
 
 const useEditCategoryMutation = () => {
-    return useMutation((id, data) => {
-        return CategoryAPI.edit(id, data);
-    });
+    return useMutation(
+        (id, data) => {
+            return CategoryAPI.edit(id, data);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("categories");
+            },
+        }
+    );
 };
 
 const useDeleteCategoryMutation = () => {
-    return useMutation((id) => {
-        return CategoryAPI.remove(id);
-    },
-    {
-        onSettled: () => {
-            queryClient.invalidateQueries("categories");
+    return useMutation(
+        (id) => {
+            return CategoryAPI.remove(id);
         },
-    });
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("categories");
+            },
+        }
+    );
 };
 
 const category = {

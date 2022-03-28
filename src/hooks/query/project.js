@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from "react-query";
+import { queryClient } from "../..";
 import ProjectAPI from "../../actions/project";
 
 const useProjects = () => {
@@ -10,21 +11,42 @@ const useSingleProject = (id) => {
 };
 
 const useCreateProjectMutation = (data) => {
-    return useMutation(() => {
-        return ProjectAPI.create(data);
-    });
+    return useMutation(
+        () => {
+            return ProjectAPI.create(data);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("projects");
+            },
+        }
+    );
 };
 
 const useEditProjectMutation = (id, data) => {
-    return useMutation(() => {
-        return ProjectAPI.edit(id, data);
-    });
+    return useMutation(
+        () => {
+            return ProjectAPI.edit(id, data);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("projects");
+            },
+        }
+    );
 };
 
 const useDeleteProjectMutation = (id) => {
-    return useMutation(() => {
-        return ProjectAPI.remove(id);
-    });
+    return useMutation(
+        () => {
+            return ProjectAPI.remove(id);
+        },
+        {
+            onSettled: () => {
+                queryClient.invalidateQueries("projects");
+            },
+        }
+    );
 };
 
 const project = {
