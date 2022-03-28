@@ -1,6 +1,7 @@
 import React from "react";
 import { Login } from "./components/auth/login/Login";
 import CardProjectInfo from "./components/elements/cards/CardProjectInfo";
+import CardProjectManagement from "./components/elements/cards/CardProjectManagement";
 import Header from "./components/elements/navigation/header/Header";
 import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import { useAuth } from "./contexts/AuthProvider";
@@ -15,6 +16,7 @@ function App() {
       {token && <SubHeader />}
       {token && <CardProjectInfo />}
       <Login />
+      <CardProjectManagement />
     </div>
   );
 }
