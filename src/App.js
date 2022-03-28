@@ -6,6 +6,7 @@ import Header from "./components/elements/navigation/header/Header";
 import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import { Test } from "./components/test/Test";
 import { useAuth } from "./contexts/AuthProvider";
+import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
 import { PublicRoute } from "./routes/publicRoute";
 
@@ -57,9 +58,7 @@ function App() {
                         exact
                         path="*"
                         element={
-                            <PublicRoute redirect="/">
-                                <Login />
-                            </PublicRoute>
+                            <DefaultRoute></DefaultRoute>
                         }
                     />
                 </Routes>
