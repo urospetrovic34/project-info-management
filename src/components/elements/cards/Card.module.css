@@ -12,6 +12,7 @@
   max-width: 33vw;
   align-items: center;
   justify-content: space-between;
+  margin: 5px;
 }
 .avatarPMContainer {
   display: flex;
@@ -49,6 +50,7 @@
 }
 .PMName {
   font-size: 16px;
+  opacity: 0.6;
 }
 .PMNameAdditional {
   font-size: 16px;
@@ -65,6 +67,7 @@
 }
 .EmployeeInfo {
   padding-top: 22px;
+  opacity: 0.6;
 }
 .cardContainerSecond {
   display: flex;
@@ -75,6 +78,7 @@
   max-width: 33vw;
   align-items: center;
   justify-content: space-between;
+  margin: 5px;
 }
 .iconPmInfoContainer {
   display: flex;
