@@ -5,11 +5,12 @@ import hamburgerIcon from "../../../../assets/icon-hamburger.svg";
 import NavigationMob from "./NavigationMob";
 import AuthAPI from "../../../../actions/auth";
 import { useAuth } from "../../../../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [ShowMobileNavigation, setMobileNavigation] = useState(false);
     const [authState, authDispatch] = useAuth();
-    console.log(authState)
+    const { user } = authState;
 
     return (
         <div className={HeaderCSS.header}>
@@ -19,6 +20,14 @@ const Header = () => {
             </div>
 
             <div className={HeaderCSS.navigationContainer}>
+                {/* {user.role.name === "System Administrator" && <span className={HeaderCSS.navigationContent}>Dashboard</span>} */}
+                {user.role.name === "Authenticated" && (
+                    <Link to="/admin">
+                        <span className={HeaderCSS.navigationContent}>
+                            Dashboard
+                        </span>
+                    </Link>
+                )}
                 <span className={HeaderCSS.navigationContent}>My Projects</span>
                 <span className={HeaderCSS.navigationContent}>Account</span>
                 <span
