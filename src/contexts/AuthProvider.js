@@ -12,7 +12,7 @@ const AuthReducer = (state, action) => {
                 token: localStorage.getItem("token"),
             };
         case "USER_LOADED":
-            console.log(action.payload)
+            console.log(action.payload);
             localStorage.setItem("user", JSON.stringify(action.payload));
             return {
                 ...state,
@@ -36,7 +36,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const initialState = {
-        user: localStorage.getItem("user"),
+        user: JSON.parse(localStorage.getItem("user")),
         token: localStorage.getItem("token"),
     };
 
