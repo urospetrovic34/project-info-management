@@ -5,5 +5,9 @@ export const DefaultRoute = () => {
     const [authState, authDispatch] = useAuth();
     const { user, token } = authState;
 
-    return user && token ? <Navigate to="/" /> : <Navigate to="/login" />;
+    if (user && token) {
+        return <Navigate to="/" replace />;
+    } else {
+        return <Navigate to="/login" replace />;
+    }
 };

@@ -13,7 +13,7 @@ const count = async () => {
 
 //Strapi plugin for users uses Entity Service API for some reason,
 //so this makes pagination quite a challenge to pull off properly,
-//because there is no meta object, we have to use start and limit 
+//because there is no meta object, we have to use start and limit
 //params to somehow make it work, we can't use pagination parameter
 
 const get = async (filters, populate, sort, start, limit) => {
@@ -30,6 +30,17 @@ const get = async (filters, populate, sort, start, limit) => {
 const getOne = async (id, filters, populate, sort, start, limit) => {
     await axios
         .get(`/api/users/${id}`)
+        .then((res) => {
+            return res;
+        })
+        .catch((err) => {
+            return err;
+        });
+};
+
+const getCurrent = async () => {
+    await axios
+        .get("/api/users/me")
         .then((res) => {
             return res;
         })
@@ -68,6 +79,7 @@ const user = {
     count,
     get,
     getOne,
+    getCurrent,
     edit,
     remove,
 };

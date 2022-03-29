@@ -1,5 +1,6 @@
 import axios from "../config/axiosConfig";
 import ErrorAPI from "./error";
+import UserAPI from "./user";
 
 //Registration action to be used with context
 //Add an errorDispatch to register
@@ -27,8 +28,14 @@ const login = async (dispatch, errorDispatch, { identifier, password }) => {
     await axios
         .post("/api/auth/local", body)
         .then((res) => {
-            console.log(res);
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+        })
+        .then(() => {
+            return axios.get("/api/users/me");
+        })
+        .then((res) => {
+            console.log(res.data)
+            dispatch({ type: "USER_LOADED", payload: res.data });
         })
         .catch((err) => {
             console.log(err.response);

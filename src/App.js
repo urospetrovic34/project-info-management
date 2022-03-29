@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Dashboard } from "./components/admin/dashboard/Dashboard";
 import { Login } from "./components/auth/login/Login";
 import { Register } from "./components/auth/register/Register";
 import Header from "./components/elements/navigation/header/Header";
@@ -12,7 +13,6 @@ import { PublicRoute } from "./routes/publicRoute";
 
 function App() {
     const [authState, authDispatch] = useAuth();
-    console.log(authDispatch);
     const { user, token } = authState;
 
     window.addEventListener("beforeunload", () => {
@@ -24,8 +24,8 @@ function App() {
     return (
         <Router>
             <div className="wrapper">
-                {token && <Header />}
-                {token && <SubHeader />}
+                {user && token && <Header />}
+                {/* {token && <SubHeader />} */}
                 <Routes>
                     <Route
                         exact
@@ -33,6 +33,15 @@ function App() {
                         element={
                             <PrivateRoute redirect="/login">
                                 <Test />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/admin"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <Dashboard />
                             </PrivateRoute>
                         }
                     />
@@ -57,9 +66,7 @@ function App() {
                     <Route
                         exact
                         path="*"
-                        element={
-                            <DefaultRoute></DefaultRoute>
-                        }
+                        element={<DefaultRoute></DefaultRoute>}
                     />
                 </Routes>
             </div>

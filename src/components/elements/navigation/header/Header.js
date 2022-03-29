@@ -8,13 +8,6 @@ import { useAuth } from "../../../../contexts/AuthProvider";
 
 const Header = () => {
     const [ShowMobileNavigation, setMobileNavigation] = useState(false);
-    const [authState, authDispatch] = useAuth();
-    console.log(authState);
-
-    const handleLogoutClick = (event) => {
-        event.preventDefault();
-        AuthAPI.logout(authDispatch);
-    };
 
     return (
         <div className={HeaderCSS.header}>
@@ -28,7 +21,6 @@ const Header = () => {
                 <span className={HeaderCSS.navigationContent}>Account</span>
                 <span
                     className={HeaderCSS.navigationContent}
-                    onClick={handleLogoutClick}
                 >
                     Logout
                 </span>

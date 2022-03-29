@@ -10,6 +10,10 @@ const useSingleUser = (id) => {
     return useQuery(["user", id], () => UserAPI.getOne(id));
 };
 
+const useCurrentUser = (id) => {
+    return useQuery("userCurrent", UserAPI.getCurrent);
+};
+
 //I don't think it was necessary to make this one into a hook function,
 //but whatever
 
@@ -46,6 +50,7 @@ const useDeleteUserMutation = (id) => {
 const user = {
     useUsers,
     useSingleUser,
+    useCurrentUser,
     useCountUsers,
     useEditUserMutation,
     useDeleteUserMutation,

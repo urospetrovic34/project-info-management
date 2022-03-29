@@ -6,12 +6,17 @@ const AuthReducer = (state, action) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
         case "REGISTER_SUCCESS":
-            localStorage.setItem("user", JSON.stringify(action.payload.user));
             localStorage.setItem("token", action.payload.jwt);
             return {
                 ...state,
-                user: localStorage.getItem("user"),
                 token: localStorage.getItem("token"),
+            };
+        case "USER_LOADED":
+            console.log(action.payload)
+            localStorage.setItem("user", JSON.stringify(action.payload));
+            return {
+                ...state,
+                user: JSON.parse(localStorage.getItem("user")),
             };
         case "LOGIN_FAIL":
         case "REGISTER_FAIL":
