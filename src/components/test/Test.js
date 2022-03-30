@@ -23,6 +23,7 @@ export const Test = () => {
                             }
                             username={user.username}
                             role={user.role.name}
+                            key={user.id}
                         />
                     ))}
             </div>
