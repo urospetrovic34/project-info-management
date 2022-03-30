@@ -26,7 +26,7 @@ function App() {
     <Router>
       <div className="wrapper">
         {user && token && <Header />}
-        {user && token && <Tabs />}
+        {/* {user && token && <Tabs />} */}
 
         {/* {token && <SubHeader />} */}
         <Routes>

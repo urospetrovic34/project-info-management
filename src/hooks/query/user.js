@@ -3,7 +3,7 @@ import { queryClient } from "../..";
 import UserAPI from "../../actions/user";
 
 const useUsers = () => {
-    return useQuery("users", UserAPI.get);
+    return useQuery("users", () => UserAPI.get());
 };
 
 const useSingleUser = (id) => {

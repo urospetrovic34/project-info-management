@@ -1,45 +1,31 @@
 import React from "react";
-import { useAuth } from "../../contexts/AuthProvider";
-import categoryHooks from "../../hooks/query/category";
+import userHooks from "../../hooks/query/user";
+import { CardUserPanel } from "../elements/cards/cardUserPanel/CardUserPanel";
+import TestCSS from "./Test.module.css";
+import userAvatarPlaceholder from "../../assets/avatar-placeholder.png";
 import { Select } from "../elements/select/Select";
+import { AdminHeader } from "../elements/navigation/adminHeader/AdminHeader";
 
 export const Test = () => {
-    // const [authState, authDispatch] = useAuth();
-    // const test = categoryHooks.useCategories();
-    // const { user } = authState; 
-    // console.log(user)
-    // const data = {
-    //     data: {
-    //         name: "ABCDEFG",
-    //     },
-    // };
-    // const mutation2 = categoryHooks.useCreateCategoryMutation();
-    // const mutation = categoryHooks.useDeleteCategoryMutation();
-    // const arrayOfOptions = [
-    //     { value: "betmen", label: "BATMAN" },
-    //     { value: "riddler", label: "RIDDLER" },
-    //     { value: "catwoman", label: "CATWOMAN" },
-    //     { value: "penguin", label: "PENGUIN" },
-    //     { value: "carmine falcone", label: "CARMINE FALCONE" },
-    // ];
-
-    // console.log(test);
-
-    // const handleTestCreateClick = () => {
-    //     mutation2.mutate(data);
-    // };
-
-    // const handleTestDeleteClick = () => {
-    //     mutation.mutate(test.data.data[test.data.data.length - 1].id);
-    // };
-
+    let users = userHooks.useUsers();
     return (
-        <div>
-            {/* <button onClick={handleTestCreateClick}>DODAJ</button>
-            <button onClick={handleTestDeleteClick}>BRISI</button> */}
-            {/* {test?.status === "success" &&
-                test?.data.data[test.data.data.length - 1].attributes.name}
-            <Select options={arrayOfOptions} /> */}
+        <div className={TestCSS.wrapper}>
+            <div className={TestCSS.container}>
+                {users.status !== "success" && <p>ANSAKSESFUL</p>}
+                <AdminHeader/>
+                {users.status === "success" &&
+                    users.data.map((user) => (
+                        <CardUserPanel
+                            avatar={
+                                user.avatar
+                                    ? user.avatar.url
+                                    : userAvatarPlaceholder
+                            }
+                            username={user.username}
+                            role={user.role.name}
+                        />
+                    ))}
+            </div>
         </div>
     );
 };

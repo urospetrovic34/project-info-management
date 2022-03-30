@@ -5,14 +5,12 @@ import SelectCSS from "./Select.module.css";
 
 export const Select = (props) => {
     return (
-        <div>
-            <DefaultSelect
-                defaultValue={props.options[0]}
-                className={SelectCSS.custom_select}
-                styles={customStyles}
-                options={props.options}
-                onChange={props.handleSelectChange}
-            />
-        </div>
+        <DefaultSelect
+            defaultValue={props.options[0]}
+            className={SelectCSS.custom_select}
+            styles={customStyles}
+            options={props.options}
+            onChange={props.handleSelectChange}
+        />
     );
 };

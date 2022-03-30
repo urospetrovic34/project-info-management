@@ -16,15 +16,17 @@ const count = async () => {
 //because there is no meta object, we have to use start and limit
 //params to somehow make it work, we can't use pagination parameter
 
-const get = async (filters, populate, sort, start, limit) => {
+const get = async (/*filters, populate, sort, start, limit */) => {
+    let data;
     await axios
-        .get("/api/users")
+        .get("/api/users?populate=*&limit=8")
         .then((res) => {
-            return res;
+            data = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return data;
 };
 
 const getOne = async (id, filters, populate, sort, start, limit) => {

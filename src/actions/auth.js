@@ -1,6 +1,5 @@
 import axios from "../config/axiosConfig";
 import ErrorAPI from "./error";
-import UserAPI from "./user";
 
 //Registration action to be used with context
 //Add an errorDispatch to register

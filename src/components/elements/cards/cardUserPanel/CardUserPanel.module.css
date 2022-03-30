@@ -1,0 +1,23 @@
+.container{
+    display:flex;
+    align-items:center;
+    width: 100%;
+    background-color:red;
+    height:72px;
+    margin-bottom:16px;
+    padding:25px;
+}
+
+.container div{
+    display:flex;
+    text-align:center;
+    width: 20%;
+}
+
+.avatar{
+    object-fit: contain;
+    height:40px;
+    width:40px;
+    border-radius:100%;
+    background-color:white;
+}
