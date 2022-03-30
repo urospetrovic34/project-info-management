@@ -1,0 +1,52 @@
+.container{
+    height: 120px;
+    background-color: rgb(211, 211, 211, 0.3);
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+    justify-content: center;
+    align-items: center;
+}
+.logo_container{
+ display: flex;
+ align-items: center;
+ margin-left: 60px;
+}
+.title{
+    font-size: 22px;
+}
+.paragraph{
+    opacity: 50%;
+    font-size: 14px;
+}
+.logo {
+    height: 60px;
+    padding-left: 90px;
+    padding-right: 20px;
+  }
+  
+.profile_picture {
+    height: 40px;
+    margin-right: -28px;
+  }
+  .project_manager{
+      margin-top: -20px;
+  }
+  .info{
+      display: flex;
+      justify-content: space-evenly;
+      margin-right: 90px;
+  }
+  .more{
+      opacity: 50%;
+      position: relative;
+      left: 30px;
+      bottom: 15px;
+  }
+
+  .employees{
+      margin-top: -20px;
+  }
+  .profile_pictures{
+      margin-left: -10px;
+     
+  }
