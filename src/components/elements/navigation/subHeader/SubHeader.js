@@ -5,7 +5,7 @@ import InputCSS from "../../input/Input.module.css";
 import { FaReact } from "react-icons/fa";
 import Input from "../../input/Input";
 
-const ProjectBar = () => {
+const SubHeader = () => {
   return (
     <div className={SubHeaderCSS.container}>
       <div className={SubHeaderCSS.logo_container}>
@@ -23,4 +23,4 @@ const ProjectBar = () => {
   );
 };
 
-export default ProjectBar;
+export default SubHeader;
