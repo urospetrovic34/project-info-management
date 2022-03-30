@@ -71,7 +71,6 @@ function App() {
           />
           <Route exact path="*" element={<DefaultRoute></DefaultRoute>} />
         </Routes>
-        <EmployeeHome />
       </div>
     </Router>
   );

@@ -9,10 +9,10 @@
   border-radius: 10px;
   background-color: #f6f8ff;
   padding: 15px;
-  max-width: 33vw;
+  width: 33vw;
   align-items: center;
   justify-content: space-between;
-  margin: 5px;
+  margin: 10px;
 }
 .avatarPMContainer {
   display: flex;
