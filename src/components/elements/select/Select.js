@@ -4,15 +4,15 @@ import { customStyles } from "./customStyles";
 import SelectCSS from "./Select.module.css";
 
 export const Select = (props) => {
-    return (
-        <DefaultSelect
-            defaultValue={props.defaultValue}
-            className={SelectCSS.custom_select}
-            styles={customStyles}
-            options={props.options}
-            onChange={props.handleSelectChange}
-            isMulti={props.multi}
-            placeholder={props.placeholder}
-        />
-    );
+  return (
+    <DefaultSelect
+      defaultValue={props.defaultValue}
+      className={SelectCSS.custom_select}
+      styles={customStyles}
+      options={props.options}
+      onChange={props.handleSelectChange}
+      isMulti={props.multi}
+      placeholder={props.placeholder}
+    />
+  );
 };

@@ -8,6 +8,7 @@ import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import SubHeaderEmployee from "./components/elements/navigation/subHeaderEmployee/SubHeaderEmployee";
 import Tabs from "./components/elements/tabs/Tabs";
 import EmployeeHome from "./components/employee/EmployeeHome";
+import EmployeeProjectView from "./components/employee/EmployeeProjectView";
 import { Test } from "./components/test/Test";
 import { useAuth } from "./contexts/AuthProvider";
 import { DefaultRoute } from "./routes/defaultRoute";

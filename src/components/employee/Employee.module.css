@@ -1,4 +1,22 @@
 .contentContainer {
   display: flex;
   justify-content: center;
+  height: 100vh;
+}
+.employeeFirstTabContainer {
+  display: flex;
+  flex-direction: column;
+}
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.customSort {
+  width: 200px;
+  margin-left: 20px;
+}
+.cardWrapper {
+  display: flex;
 }
