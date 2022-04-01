@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useRef} from "react";
 import userHooks from "../../hooks/query/user";
 import { CardUserPanel } from "../elements/cards/cardUserPanel/CardUserPanel";
 import TestCSS from "./Test.module.css";
@@ -8,13 +8,23 @@ import { AdminHeader } from "../elements/navigation/adminHeader/AdminHeader";
 
 export const Test = () => {
     let users = userHooks.useUsers();
+    let [sortData,setSortData] = useState("")
+    let [filterData,setFilterData] = useState("")
+
+    const handleFilter = () => {
+
+    }
+
+    const handleSort = async (event) => {
+        // const debounce
+    }
+
     return (
         <div className={TestCSS.wrapper}>
             <div className={TestCSS.container}>
-                {users.status !== "success" && <p>ANSAKSESFUL</p>}
-                <AdminHeader/>
+                <AdminHeader handleFilter={handleFilter} handleSort={handleSort}/>
                 {users.status === "success" &&
-                    users.data.map((user) => (
+                    users.data?.map((user) => (
                         <CardUserPanel
                             avatar={
                                 user.avatar

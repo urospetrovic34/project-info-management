@@ -10,7 +10,7 @@ export const Select = (props) => {
       className={SelectCSS.custom_select}
       styles={customStyles}
       options={props.options}
-      onChange={props.handleSelectChange}
+      onChange={props.onChange}
       isMulti={props.multi}
       placeholder={props.placeholder}
     />

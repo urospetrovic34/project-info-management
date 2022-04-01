@@ -3,7 +3,7 @@ import Input from "../../input/Input";
 import { Select } from "../../select/Select";
 import AdminHeaderCSS from "./AdminHeader.module.css";
 
-export const AdminHeader = () => {
+export const AdminHeader = (props) => {
     const arrayOfOptions = [
         { value: "betmen", label: "BATMAN" },
         { value: "riddler", label: "RIDDLER" },
@@ -23,6 +23,8 @@ export const AdminHeader = () => {
         { value: "", label: "Projects - High to Low" },
         { value: "", label: "Projects - Low to High" },
     ];
+
+
     return (
         <div className={AdminHeaderCSS.wrapper}>
             <div className={AdminHeaderCSS.container}>
@@ -39,6 +41,7 @@ export const AdminHeader = () => {
                         placeholder="Sort by..."
                         options={sortArrayOptions}
                         multi={false}
+                        onChange={props.handleSort}
                         // defaultValue={arrayOfOptions[0]}
                     />
                 </div>
