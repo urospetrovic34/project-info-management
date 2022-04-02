@@ -5,18 +5,20 @@ import TestCSS from "./Test.module.css";
 import userAvatarPlaceholder from "../../assets/avatar-placeholder.png";
 import { Select } from "../elements/select/Select";
 import { AdminHeader } from "../elements/navigation/adminHeader/AdminHeader";
+import useDebounce from "../../hooks/custom/useDebounce";
 
 export const Test = () => {
     let users = userHooks.useUsers();
     let [sortData,setSortData] = useState("")
     let [filterData,setFilterData] = useState("")
+    let debouncedSearchTerm = useDebounce()
 
     const handleFilter = () => {
 
     }
 
     const handleSort = async (event) => {
-        // const debounce
+
     }
 
     return (
