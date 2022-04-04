@@ -19,4 +19,6 @@
 }
 .cardWrapper {
   display: flex;
+  max-width: 95%;
+  flex-wrap: wrap;
 }

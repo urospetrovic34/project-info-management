@@ -20,7 +20,6 @@ const EmployeeFirstTab = () => {
       </div>
       <div className={EmployeeCSS.cardWrapper}>
         <CardProjectManagement />
-        <CardProjectManagement />
       </div>
     </div>
   );
