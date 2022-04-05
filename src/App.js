@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Dashboard } from "./components/admin/dashboard/Dashboard";
 import { Login } from "./components/auth/login/Login";
 import { Register } from "./components/auth/register/Register";
+import CreateNoteTab from "./components/elements/createNoteTab/CreateNoteTab";
 import Header from "./components/elements/navigation/header/Header";
 // import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import SubHeaderEmployee from "./components/elements/navigation/subHeaderEmployee/SubHeaderEmployee";
@@ -14,6 +15,7 @@ import { useAuth } from "./contexts/AuthProvider";
 import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
 import { PublicRoute } from "./routes/publicRoute";
+
 
 function App() {
   const [authState, authDispatch] = useAuth();
@@ -30,7 +32,7 @@ function App() {
       <div className="wrapper">
         {user && token && <Header />}
         {/* {user && token && <Tabs />} */}
-
+        <CreateNoteTab />
         {/* {token && <SubHeader />} */}
         {/* <SubHeaderEmployee /> */}
         <Routes>

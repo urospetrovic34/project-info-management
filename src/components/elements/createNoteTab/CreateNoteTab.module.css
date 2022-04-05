@@ -1,0 +1,73 @@
+.container {
+    background-color: #fff;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0;
+    background-color: lightgray;
+    margin-bottom: 20px;
+}
+
+.nav {
+    font-size: 14px;
+    padding-right: 25px;
+    padding-left: 15px;
+}
+
+.input_label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+}
+
+.input_title {
+    margin-bottom: 8px;
+}
+
+.layout {
+    display: flex;
+}
+
+.note_info {
+    margin: 30px 60px 0 30px;
+}
+
+.description {
+    padding-left: 15px;
+}
+
+.category_list {
+    padding-left: 15px;
+    width: 170px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+
+.btn {
+    width: 100px;
+    height: 30px;
+    background-color: #4987f2;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+
+}
+
+.btn:hover {
+    cursor: pointer;
+    filter: brightness(120%);
+}
+
+.btn_position {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 60px;
+}
