@@ -5,7 +5,7 @@ import InputCSS from "../../input/Input.module.css";
 import { FaReact } from "react-icons/fa";
 import Input from "../../input/Input";
 
-const SubHeader = () => {
+const SubHeader = (props) => {
   return (
     <div className={SubHeaderCSS.container}>
       <div className={SubHeaderCSS.logo_container}>
@@ -15,8 +15,7 @@ const SubHeader = () => {
           <p className={SubHeaderCSS.paragraph}>Here you'll find all your projects</p>
         </div>
       </div>
-      <div className={InputCSS.input_container}>
-        <FaReact className={InputCSS.react_icon} />
+      <div className={InputCSS.input_container} onChange={props.onChange}>
         <Input />
       </div>
     </div>

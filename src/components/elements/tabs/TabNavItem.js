@@ -1,14 +1,11 @@
 import React from "react";
 import TabsCSS from "./Tabs.module.css";
 
-const TabNavItem = ({ id, title, activeTab, setActiveTab }) => {
-  const handleClick = () => {
-    setActiveTab(id);
-  };
+const TabNavItem = (props) => {
 
   return (
-    <li onClick={handleClick} className={activeTab === id ? TabsCSS.active : ""}>
-      {title}
+    <li onClick={props.handleActiveTab} value={props.title} className={props.activeTab === props.id ? TabsCSS.active : ""}>
+      {props.title}
     </li>
   );
 };

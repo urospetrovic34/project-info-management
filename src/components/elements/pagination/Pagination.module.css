@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    list-style-type: none;
+    margin: 10px 0px;
+}
+
+.item{
+    background-color:green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius:100%;
+    margin:0 5px;
+    cursor: pointer;
+}
+
+.disabled{
+    pointer-events: none;
+    background-color:purple;
+}
+
+.selected{
+    background-color: mediumseagreen;
+    pointer-events: none;
+}

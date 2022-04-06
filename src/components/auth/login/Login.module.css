@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    background-color: green;
 }
 
 .container {
@@ -17,7 +16,7 @@
     border-radius: 5px;
     width: calc(100% - 40px);
     max-width: 600px;
-    background-color: lightcyan;
+    background-color: lightgrey;
 }
 
 .form {

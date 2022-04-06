@@ -1,0 +1,14 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display:flex;
+    justify-content: center;
+}
+
+.tab_container{
+    width: 100%;
+    max-width:1200px;
+}

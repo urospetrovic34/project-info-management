@@ -1,14 +1,20 @@
 import axios from "../config/axiosConfig";
 
-const get = async (filters, populate, sort, pagination) => {
+const get = async (filter,/*, populate, sort, */ pagination) => {
+    let data;
     await axios
-        .get("/api/projects")
+        .get(
+            `/api/projects?pagination[pageSize]=12&${
+                pagination && `&pagination[page]=${pagination}`
+            }${filter && `&filters[name][$containsi]=${filter}`}&populate=*`
+        )
         .then((res) => {
-            return res;
+            data = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return data;
 };
 
 const getOne = async (id, filters, populate, sort, pagination) => {
