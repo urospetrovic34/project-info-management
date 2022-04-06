@@ -33,7 +33,7 @@ function App() {
       <div className="wrapper">
         {user && token && <Header />}
         {/* {user && token && <Tabs />} */}
-        <CreateNoteTab />
+        {/* <CreateNoteTab /> */}
         {/* {token && <SubHeader />} */}
         {/* <SubHeaderEmployee /> */}
         <Routes>
