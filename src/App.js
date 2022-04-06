@@ -5,7 +5,8 @@ import { Login } from "./components/auth/login/Login";
 import { Register } from "./components/auth/register/Register";
 import Header from "./components/elements/navigation/header/Header";
 // import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
-import SubHeaderEmployee from "./components/elements/navigation/subHeaderEmployee/SubHeaderEmployee";
+import { Home } from "./components/home/Home";
+import { Project } from "./components/project/Project";
 // import Tabs from "./components/elements/tabs/Tabs";
 // import EmployeeHome from "./components/employee/EmployeeHome";
 // import EmployeeProjectView from "./components/employee/EmployeeProjectView";
@@ -39,7 +40,16 @@ function App() {
             path="/"
             element={
               <PrivateRoute redirect="/login">
-                <Test />
+                  <Home/>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/projects/:id"
+            element={
+              <PrivateRoute redirect="/login">
+                  <Project/>
               </PrivateRoute>
             }
           />
