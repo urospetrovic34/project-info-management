@@ -9,6 +9,10 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 export const queryClient = new QueryClient();
 
+if (!localStorage.getItem("remember")) {
+    localStorage.setItem("remember", "false");
+}
+
 ReactDOM.render(
     <>
         <QueryClientProvider client={queryClient}>

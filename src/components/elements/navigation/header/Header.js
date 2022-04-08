@@ -35,7 +35,9 @@ const Header = () => {
                         <span>Dashboard</span>
                     </Link>
                 )}
-                <span className={HeaderCSS.navigationContent}>My Projects</span>
+                <Link to="/" className={HeaderCSS.navigationContent}>
+                    <span>My Projects</span>
+                </Link>
                 <span className={HeaderCSS.navigationContent}>Account</span>
                 <span
                     className={HeaderCSS.navigationContent}

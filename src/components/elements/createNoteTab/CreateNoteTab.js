@@ -1,8 +1,23 @@
-import React from 'react';
+import React,{useState} from 'react';
 import CreateNoteTabCSS from "../createNoteTab/CreateNoteTab.module.css";
 import Input from '../input/Input';
 import Button from '../button/Button';
+import categoryHooks from '../../../hooks/query/category'
+import projectHooks from '../../../hooks/query/project'
+import notesHooks from '../../../hooks/query/note'
+
 const CreateNoteTab = () => {
+
+    const categories = categoryHooks.useCategories()
+    const createCategoryMutation = categoryHooks.useCreateCategoryMutation()
+    const [data,setData] = useState({name:"nesto novo"})
+    console.log(categories)
+
+    const handleButton = (event) => {
+        event.preventDefault()
+        createCategoryMutation.mutate({"data":data})
+    }
+
     return (
         <div className={CreateNoteTabCSS.container}>
             <div className={CreateNoteTabCSS.header}>
@@ -25,7 +40,10 @@ const CreateNoteTab = () => {
                     <div className={CreateNoteTabCSS.input_label} >
                         <input type="text" list='Category' placeholder='Category' className={CreateNoteTabCSS.category_list} />
                         <datalist id='Category'>
-                            <option value="Deployment"></option>
+                            {categories.status === 'success' && categories.data?.data.map((category) => (
+                                <option key={category.id} value={category.attributes.name}></option>
+                            ))}
+                            {/* <option value="Deployment"></option>
                             <option value="Design"></option>
                             <option value="DevOps"></option>
                             <option value="Develeopment"></option>
@@ -34,13 +52,13 @@ const CreateNoteTab = () => {
                             <option value="Network"></option>
                             <option value="Other"></option>
                             <option value="Project Management"></option>
-                            <option value="Storage"></option>
+                            <option value="Storage"></option> */}
                         </datalist>
                     </div>
                 </div>
             </div>
             <div className={CreateNoteTabCSS.btn_position}>
-                <Button text="Save Note"></Button>
+                <Button onClick={handleButton} text="Save Note"></Button>
             </div>
         </div>
     )

@@ -20,7 +20,7 @@ const CardProjectInfo = (props) => {
             <div className={CardCSS.info_container}>
                 <div className={CardCSS.headerPMInfoContainer}>
                     <h1 className={CardCSS.cardHeader}>
-                        {props.project.attributes.name}
+                        {props.project.attributes.name.split('', 30).reduce((o, c) => o.length === 29 ? `${o}${c}...` : `${o}${c}` , '')}
                     </h1>
                     <FaExternalLinkAlt />
                 </div>

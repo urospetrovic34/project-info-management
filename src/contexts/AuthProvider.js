@@ -38,6 +38,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+    console.log(localStorage.getItem("remember"))
     const initialState = {
         user: JSON.parse(localStorage.getItem("user")),
         token: localStorage.getItem("token"),

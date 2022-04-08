@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Dashboard } from "./components/admin/dashboard/Dashboard";
 import { Login } from "./components/auth/login/Login";
@@ -17,76 +17,82 @@ import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
 import { PublicRoute } from "./routes/publicRoute";
 
-
 function App() {
-  const [authState, authDispatch] = useAuth();
-  const { user, token } = authState;
+    const [authState, authDispatch] = useAuth();
+    const { user, token } = authState;
 
-  window.addEventListener("beforeunload", () => {
-    if (localStorage.getItem("remember") === "false") {
-      localStorage.clear();
-    }
-  });
+    return (
+        <Router>
+            <div className="wrapper">
+                {user && token && <Header />}
+                {/* {user && token && <Tabs />} */}
 
-  return (
-    <Router>
-      <div className="wrapper">
-        {user && token && <Header />}
-        {/* {user && token && <Tabs />} */}
-        {/* <CreateNoteTab /> */}
-        {/* {token && <SubHeader />} */}
-        {/* <SubHeaderEmployee /> */}
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <PrivateRoute redirect="/login">
-                  <Home/>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            exact
-            path="/projects/:id"
-            element={
-              <PrivateRoute redirect="/login">
-                  <Project/>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            exact
-            path="/admin"
-            element={
-              <PrivateRoute redirect="/login">
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            exact
-            path="/login"
-            element={
-              <PublicRoute redirect="/">
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            exact
-            path="/register"
-            element={
-              <PublicRoute redirect="/">
-                <Register />
-              </PublicRoute>
-            }
-          />
-          <Route exact path="*" element={<DefaultRoute></DefaultRoute>} />
-        </Routes>
-      </div>
-    </Router>
-  );
+                {/* {token && <SubHeader />} */}
+                {/* <SubHeaderEmployee /> */}
+                <Routes>
+                    <Route
+                        exact
+                        path="/"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <Home />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/projects/:id"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <Project />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/notes/create"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <CreateNoteTab />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/admin"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <Dashboard />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/login"
+                        element={
+                            <PublicRoute redirect="/">
+                                <Login />
+                            </PublicRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/register"
+                        element={
+                            <PublicRoute redirect="/">
+                                <Register />
+                            </PublicRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="*"
+                        element={<DefaultRoute></DefaultRoute>}
+                    />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

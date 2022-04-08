@@ -1,12 +1,14 @@
 import axios from "../config/axiosConfig";
 
-const get = async (filter,/*, populate, sort, */ pagination) => {
+const get = async (projectName, pagination, userId) => {
     let data;
     await axios
         .get(
             `/api/projects?pagination[pageSize]=12&${
                 pagination && `&pagination[page]=${pagination}`
-            }${filter && `&filters[name][$containsi]=${filter}`}&populate=*`
+            }${projectName && `&filters[name][$containsi]=${projectName}`}${
+                userId && `&filters[employees][id][$containsi]=${userId}`
+            }&populate=*`
         )
         .then((res) => {
             data = res.data;
@@ -18,14 +20,16 @@ const get = async (filter,/*, populate, sort, */ pagination) => {
 };
 
 const getOne = async (id, filters, populate, sort, pagination) => {
+    let data;
     await axios
-        .get(`/api/projects/${id}`)
+        .get(`/api/projects/${id}?populate[notes][populate]=*&populate[logo][populate]=*`)
         .then((res) => {
-            return res;
+            data = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return data;
 };
 
 const create = async (data) => {

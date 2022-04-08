@@ -2,58 +2,93 @@ import React, { useState, useEffect } from "react";
 import TabsCSS from "./Tabs.module.css";
 import TabNavItem from "./TabNavItem";
 import TabContent from "./TabContent";
-import categoryHooks from "../../../hooks/query/category";
+import CardProjectManagement from "../cards/CardProjectManagement";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthProvider";
 
 const Tabs = (props) => {
-    const [activeTab, setActiveTab] = useState("");
-    const categories = categoryHooks.useCategories();
-    console.log(activeTab);
+    const [activeTab, setActiveTab] = useState("DevOps");
+    const [categories, setCategories] = useState([]);
+    const [authState, authDispatch] = useAuth();
+    console.log(authState.user.role.name);
 
     const handleActiveTab = (event) => {
         console.log(event.target.innerText);
         setActiveTab(event.target.innerText);
     };
 
+    // if (props.status === "success") {
+    //     categories = props.project.data?.data.attributes.notes.data?.map(
+    //         (note) => {
+    //             return note.data.attributes.category.data?.attributes.name;
+    //         }
+    //     );
+    //     console.log(categories)
+    // }
+
+    useEffect(() => {
+        let array = props.project.data?.data.attributes.notes.data?.map(
+            (note) => {
+                return note.attributes.category.data?.attributes.name;
+            }
+        );
+        setCategories(() => [...new Set(array)]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.project.status]);
+
+    useEffect(() => {
+        console.log(categories);
+    }, [categories]);
+
+    console.log(props.project);
+
     return (
         <div className={TabsCSS.tabs}>
             <ul className={TabsCSS.nav}>
-                <TabNavItem
-                    title="Betmen"
-                    activeTab={activeTab}
-                    handleActiveTab={handleActiveTab}
-                />
-                <TabNavItem
-                    title="Supermen"
-                    activeTab={activeTab}
-                    handleActiveTab={handleActiveTab}
-                />
-                <TabNavItem
-                    title="Flash"
-                    activeTab={activeTab}
-                    handleActiveTab={handleActiveTab}
-                />
-                {/* {categories.status === "success" &&
-                    categories.data?.data.map((category) => (
-                        <TabNavItem
-                            key={category.id}
-                            title={category.attributes.name}
-                            id={category.id}
-                            activeTab={activeTab}
-                            handleActiveTab={handleActiveTab}
-                        />
-                    ))} */}
-                  <button>ADD</button>
+                <div className={TabsCSS.categories_nav}>
+                    {props.project.status === "success" &&
+                        categories.map((category) => (
+                            <TabNavItem
+                                key={category}
+                                title={category}
+                                activeTab={activeTab}
+                                handleActiveTab={handleActiveTab}
+                            />
+                        ))}
+                </div>
+                {authState.user.role.name !== "Project Manager" && (
+                    <div>
+                        <Link to="/notes/create">
+                            <button>ADD NOTE</button>
+                        </Link>
+                    </div>
+                )}
             </ul>
 
             <div className={TabsCSS.outlet}>
-                <TabContent id="tab1" activeTab={activeTab}>
-                    {/* {tabContent} */}
-                </TabContent>
-                <TabContent id="tab2" activeTab={activeTab}>
-                    {/* <p>Tab 2 works!</p> */}
-                </TabContent>
-                <TabContent id="tab3" activeTab={activeTab}>
-                    {/* <p>Tab 3 works!</p> */}
+                <TabContent id={activeTab} activeTab={activeTab}>
+                    {props.project.status === "success" &&
+                        categories.length === 0 && (
+                            <div>This project hasn't got any notes yet</div>
+                        )}
+                    {props.project.status === "success" &&
+                        props.project.data?.data.attributes.notes.data
+                            .filter(
+                                (note) =>
+                                    note.attributes.category.data.attributes
+                                        .name === activeTab
+                            )
+                            .map((note) => (
+                                <CardProjectManagement
+                                    name={note.attributes.title}
+                                    description={note.attributes.description}
+                                    author={
+                                        note.attributes.author.data?.attributes
+                                            .fullName
+                                    }
+                                    key={note.id}
+                                />
+                            ))}
                 </TabContent>
             </div>
         </div>

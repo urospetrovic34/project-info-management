@@ -29,6 +29,7 @@ export const Login = () => {
     });
 
     const [rememberCheck, setRememberCheck] = useState(false);
+    console.log(rememberCheck)
 
     const handleCredentialsChange = (event) => {
         event.preventDefault();
@@ -39,7 +40,7 @@ export const Login = () => {
     };
 
     const handleCheckboxChange = () => {
-        setRememberCheck((rememberCheck) => !rememberCheck);
+        setRememberCheck(!rememberCheck);
         localStorage.setItem("remember", rememberCheck);
     };
 
@@ -73,10 +74,8 @@ export const Login = () => {
     };
 
     useEffect(() => {
-        if (user && token) {
-            navigate("/");
-        }
-    }, [navigate, user, token]);
+        localStorage.setItem("remember", rememberCheck);
+    },[])
 
     return (
         <div className={LoginCSS.wrapper}>
@@ -122,7 +121,7 @@ export const Login = () => {
                         <Checkbox
                             checked={rememberCheck}
                             text="Remember me"
-                            onChange={handleCheckboxChange}
+                            onChange={() => handleCheckboxChange()}
                         />
                     </div>
                     <div className={`${LoginCSS.row} ${LoginCSS.button_row}`}>

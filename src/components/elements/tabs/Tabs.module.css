@@ -15,14 +15,19 @@ ul.nav {
   display: flex;
   align-items: center;
   background-color: orange;
-  justify-content: flex-start;
-  overflow-x: hidden;
+  justify-content: space-between;
+  overflow: hidden;
   white-space: nowrap;
+  height: 50px;
   /* background-color: #eff1f8; */
   box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
   @media (max-width: 768px) {
     width: 90%;
   }
+}
+
+.categories_nav{
+  display: flex;
 }
 
 ul.nav li {
@@ -60,4 +65,5 @@ ul.nav li.active {
 
 .tabContent {
   padding: 20px;
+  display: flex;
 }

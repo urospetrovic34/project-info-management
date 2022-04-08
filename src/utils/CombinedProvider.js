@@ -1,7 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 const CombinedProvider = (props) => {
     const { components, children } = props;
+
+    useEffect(() => {
+        if (!localStorage.getItem("remember")) {
+            localStorage.setItem("remember", "false");
+        }
+    }, []);
 
     return (
         <div>

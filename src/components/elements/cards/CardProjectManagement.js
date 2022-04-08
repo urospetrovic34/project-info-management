@@ -6,15 +6,8 @@ import Avatar3 from "../../../assets/32.jpg";
 
 import { FaRegStickyNote } from "react-icons/fa";
 
-const CardProjectManagement = () => {
+const CardProjectManagement = (props) => {
   const cardInfos = [
-    {
-      cardTitle: "Project management tool",
-      message: "Monday.com for client task management. Internally, we use ActiveCollab.",
-      avatarUrl: Avatar,
-      pmName: "Segun Adebayo",
-      pmTitle: "Founder of Chakra UI",
-    },
     {
       cardTitle: "Client info",
       message: "There are 3 people in the clients team - Adam, Elwin and Jessica.",
@@ -22,27 +15,20 @@ const CardProjectManagement = () => {
       pmName: "Ivana Sokolovic",
       pmTitle: "Frontend employee",
     },
-    {
-      cardTitle: "Test Card",
-      message: "Testing message, Testing message, Testing message, Testing message",
-      avatarUrl: Avatar3,
-      pmName: "Some Person",
-      pmTitle: "Backend developer",
-    },
   ];
   return cardInfos.map((info) => {
     return (
       <div key={info.cardTitle} className={CardCSS.cardContainerSecond}>
         <div className={CardCSS.headerPMInfoContainer}>
-          <h1 className={CardCSS.cardHeader}>{info.cardTitle}</h1>
-          <span className={CardCSS.PMName}>{info.message}</span>
+          <h1 className={CardCSS.cardHeader}>{props.name}</h1>
+          <span className={CardCSS.PMName}>{props.description}</span>
         </div>
         <div className={CardCSS.iconPmInfoContainer}>
           <FaRegStickyNote className={CardCSS.noteIcon} />
           <div className={CardCSS.PMInfoContainer}>
             <img src={info.avatarUrl} alt="PM avatar" className={CardCSS.PMAvatar} />
             <div className={CardCSS.PMAdditionalInfo}>
-              <div className={CardCSS.PMNameAdditional}>{info.pmName}</div>
+              <div className={CardCSS.PMNameAdditional}>{props.author ? props.author : "Unknown"}</div>
               <div className={CardCSS.PMName}>{info.pmTitle}</div>
             </div>
           </div>

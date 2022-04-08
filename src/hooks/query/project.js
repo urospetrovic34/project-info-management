@@ -2,8 +2,8 @@ import { useQuery, useMutation } from "react-query";
 import { queryClient } from "../..";
 import ProjectAPI from "../../actions/project";
 
-const useProjects = (filter,pagination) => {
-    return useQuery(["projects",filter,pagination], () => ProjectAPI.get(filter,pagination));
+const useProjects = (projectName,pagination,userId) => {
+    return useQuery(["projects",projectName,pagination,userId], () => ProjectAPI.get(projectName,pagination,userId));
 };
 
 const useSingleProject = (id) => {
