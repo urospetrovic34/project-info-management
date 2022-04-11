@@ -1,19 +1,42 @@
 import axios from "../config/axiosConfig";
 import ErrorAPI from "./error";
+import { usernameGenerator } from "../utils/usernameGenerator";
+import UserAPI from "./user";
 
 //Registration action to be used with context
 //Add an errorDispatch to register
 
-const register = async (dispatch, { username, email, password }) => {
-    const body = { username, email, password };
-    await axios
-        .post("/api/auth/local/register", body)
+const register = async (
+    dispatch,
+    errorDispatch,
+    { name, surname, email, password }
+) => {
+    UserAPI.count()
+        .then((res) => {
+            console.log(res);
+            const username = usernameGenerator(name, surname, res.toString());
+            const body = { username, email, name, surname, password };
+            return body;
+        })
+        .then((res) => {
+            return axios.post("/api/auth/local/register", res);
+        })
         .then((res) => {
             dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
+            return res.data.user.id;
+        })
+        .then((res) => {
+            return UserAPI.edit(res, { role: 5 });
+        })
+        .then(() => {
+            return UserAPI.getCurrent();
+        })
+        .then((res) => {
+            dispatch({ type: "USER_LOADED", payload: res });
         })
         .catch((err) => {
             ErrorAPI.returnError(
-                dispatch,
+                errorDispatch,
                 err.response.data,
                 err.response.status,
                 "REGISTER_FAIL"
@@ -24,17 +47,16 @@ const register = async (dispatch, { username, email, password }) => {
 
 const login = async (dispatch, errorDispatch, { identifier, password }) => {
     const body = { identifier, password };
-    await axios
+    axios
         .post("/api/auth/local", body)
         .then((res) => {
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         })
         .then(() => {
-            return axios.get("/api/users/me");
+            return UserAPI.getCurrent();
         })
         .then((res) => {
-            console.log(res.data)
-            dispatch({ type: "USER_LOADED", payload: res.data });
+            dispatch({ type: "USER_LOADED", payload: res });
         })
         .catch((err) => {
             console.log(err.response);

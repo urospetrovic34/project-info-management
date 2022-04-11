@@ -8,12 +8,12 @@ import { useError } from "../../../contexts/ErrorProvider";
 import { emailRegex } from "../../../utils/regex";
 import Label from "../../elements/label/Label";
 import Button from "../../elements/button/Button";
+import AuthAPI from '../../../actions/auth'
 
 export const Register = () => {
     const [authState, authDispatch] = useAuth();
     const [errorState, errorDispatch] = useError();
     const { user } = authState;
-    console.log(user,authDispatch,errorDispatch)
     const { message } = errorState;
 
     const [errors, setErrors] = useState({
@@ -21,7 +21,6 @@ export const Register = () => {
         password: "",
         name: "",
         surname: "",
-        username: "",
         confirmPassword: "",
     });
     const [credentials, setCredentials] = useState({
@@ -29,7 +28,6 @@ export const Register = () => {
         password: "",
         name: "",
         surname: "",
-        username: "",
         confirmPassword: "",
     });
 
@@ -74,11 +72,23 @@ export const Register = () => {
                 password: "Field is required",
             }));
         }
-        if (!credentials.confirmPassword || credentials.confirmPassword !== credentials.password) {
+        if (
+            !credentials.confirmPassword ||
+            credentials.confirmPassword !== credentials.password
+        ) {
             setErrors((errors) => ({
                 ...errors,
                 confirmPassword: "Passwords do not match",
             }));
+        }
+        if (
+            credentials.name &&
+            credentials.surname &&
+            emailRegex.test(credentials.email) &&
+            credentials.confirmPassword &&
+            credentials.password
+        ) {
+            AuthAPI.register(authDispatch,errorDispatch,credentials)
         }
     };
 

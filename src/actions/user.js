@@ -1,14 +1,16 @@
 import axios from "../config/axiosConfig";
 
 const count = async () => {
+    let response;
     await axios
         .get("/api/users/count")
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 //Strapi plugin for users uses Entity Service API for some reason,
@@ -17,7 +19,7 @@ const count = async () => {
 //params to somehow make it work, we can't use pagination parameter
 
 const get = async (filters, populate, sort, start, limit) => {
-    let data;
+    let response;
     await axios
         .get(
             `/api/users?populate=*&limit=8${
@@ -25,12 +27,12 @@ const get = async (filters, populate, sort, start, limit) => {
             }`
         )
         .then((res) => {
-            data = res.data;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
-    return data;
+    return response;
 };
 
 const getOne = async (id, filters, populate, sort, start, limit) => {
@@ -45,14 +47,16 @@ const getOne = async (id, filters, populate, sort, start, limit) => {
 };
 
 const getCurrent = async () => {
+    let response;
     await axios
         .get("/api/users/me")
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 //Also of notice is that Strapi Entity Services don't require
@@ -60,14 +64,16 @@ const getCurrent = async () => {
 //unlike the Strapi REST API
 
 const edit = async (id, data) => {
+    let response;
     await axios
         .put(`/api/users/${id}`, data)
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 const remove = async (id) => {

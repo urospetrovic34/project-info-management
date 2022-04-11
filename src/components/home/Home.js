@@ -12,7 +12,7 @@ export const Home = () => {
     const [authState, authDispatch] = useAuth();
     const [pageNumber, setPageNumber] = useState(0);
     const [projectName, setProjectName] = useState("");
-    const debouncedPageNumber = useDebounce(pageNumber, 100);
+    const debouncedPageNumber = useDebounce(pageNumber, 250);
     const debouncedProjectName = useDebounce(projectName, 500);
     const projects = projectHooks.useProjects(
         debouncedProjectName,

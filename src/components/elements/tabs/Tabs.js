@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
 
 const Tabs = (props) => {
-    const [activeTab, setActiveTab] = useState("DevOps");
+    const [activeTab, setActiveTab] = useState("");
     const [categories, setCategories] = useState([]);
     const [authState, authDispatch] = useAuth();
     console.log(authState.user.role.name);
@@ -37,7 +37,7 @@ const Tabs = (props) => {
     }, [props.project.status]);
 
     useEffect(() => {
-        console.log(categories);
+        setActiveTab(categories[0]);
     }, [categories]);
 
     console.log(props.project);
@@ -59,7 +59,10 @@ const Tabs = (props) => {
                 {authState.user.role.name !== "Project Manager" && (
                     <div>
                         <Link to="/notes/create">
-                            <button>ADD NOTE</button>
+                          <TabNavItem
+                                activeTab={false}
+                                title="ADD NOTE"
+                            />
                         </Link>
                     </div>
                 )}

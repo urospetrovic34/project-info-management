@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
 import AuthAPI from "../../../actions/auth";
 import LoginCSS from "./Login.module.css";
@@ -9,14 +9,12 @@ import Label from "../../elements/label/Label";
 import { useError } from "../../../contexts/ErrorProvider";
 import { emailRegex } from "../../../utils/regex";
 import { Checkbox } from "../../elements/checkbox/Checkbox";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import File from "../../elements/file/File";
 
 export const Login = () => {
-    const navigate = useNavigate();
-
     const [authState, authDispatch] = useAuth();
     const [errorState, errorDispatch] = useError();
-    const { user, token } = authState; 
     const { message } = errorState;
 
     const [errors, setErrors] = useState({
@@ -28,8 +26,14 @@ export const Login = () => {
         password: "",
     });
 
+    const [fileTest, setFileTest] = useState("Choose a file");
+    const [formDataTest,setFormDataTest] = useState({formData:null})
+
+    const input = useRef(null);
+    const fileReader = new FileReader();
+
     const [rememberCheck, setRememberCheck] = useState(false);
-    console.log(rememberCheck)
+    console.log(rememberCheck);
 
     const handleCredentialsChange = (event) => {
         event.preventDefault();
@@ -75,7 +79,23 @@ export const Login = () => {
 
     useEffect(() => {
         localStorage.setItem("remember", rememberCheck);
-    },[])
+    }, []);
+
+    const handleFileClick = (event) => {
+        event.preventDefault();
+        input.current.click();
+    };
+
+    const handleFileChange = (event) => {
+        event.preventDefault();
+        const file = event.target.files[0];
+        setFileTest(file.name)
+        const formData = new FormData()
+        formData.append("files",file)
+        setFormDataTest({...formDataTest,formData:formData})
+    };
+
+    console.log(formDataTest)
 
     return (
         <div className={LoginCSS.wrapper}>
@@ -135,6 +155,12 @@ export const Login = () => {
                     <Link to="#">
                         <Label text="Forgot password?" />
                     </Link>
+                    <File
+                        name={fileTest}
+                        input={input}
+                        onClick={handleFileClick}
+                        onChange={handleFileChange}
+                    />
                 </div>
             </div>
         </div>
