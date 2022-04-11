@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 import ButtonCSS from "../button/Button.module.css";
 
 const Button = (props) => {
-    return (
-        <button
-            className={[ButtonCSS.btn]}
-            type={props.type}
-            onClick={props.onClick}
-            value={props.value}>
-            {props.text}
-        </button>
-
-    )
-}
+  return (
+    <button
+      className={[ButtonCSS.btn]}
+      type={props.type}
+      onClick={props.onClick}
+      value={props.value}
+      style={props.style}
+    >
+      {props.text}
+    </button>
+  );
+};
 
 export default Button;

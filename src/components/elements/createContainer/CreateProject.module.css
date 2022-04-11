@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.projectInfoHeader {
+  grid-area: projectInfoHeader;
+}
+.projectInfo {
+  grid-area: projectInfo;
+  display: flex;
+  flex-direction: column;
+}
+.membersHeader {
+  grid-area: membersHeader;
+}
+.membersInfo {
+  grid-area: membersInfo;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  font-size: 22px;
+}
+.labelInputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  padding-bottom: 10px;
+}
+.inputContainer {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+.file {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border: 1px solid lightgrey;
+}
+.textAreaContainer {
+  display: flex;
+  flex-direction: column;
+}
+.textarea {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-indent: 10px;
+  padding: 5px;
+  width: 80%;
+  outline: none;
+}
+.contentContainer {
+  background-color: #f6f8ff;
+  box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 50%;
+  grid-template-areas:
+    "projectInfoHeader  projectInfo "
+    "membersHeader membersInfo";
+  grid-gap: 20px;
+  margin-top: 90px;
+  overflow: hidden;
+  height: 500px;
+  width: 80vw;
+  padding: 20px;
+  border-radius: 10px;
+}
