@@ -5,10 +5,11 @@ import RegisterCSS from "./Register.module.css";
 import Input from "../../elements/input/Input";
 import logo from "../../../assets/q-logo.png";
 import { useError } from "../../../contexts/ErrorProvider";
-import { emailRegex,passwordAltRegex } from "../../../utils/regex";
+import { emailRegex, passwordAltRegex } from "../../../utils/regex";
 import Label from "../../elements/label/Label";
 import Button from "../../elements/button/Button";
-import AuthAPI from '../../../actions/auth'
+import { Checkbox } from "../../elements/checkbox/Checkbox";
+import AuthAPI from "../../../actions/auth";
 
 export const Register = () => {
     const [authState, authDispatch] = useAuth();
@@ -31,12 +32,19 @@ export const Register = () => {
         confirmPassword: "",
     });
 
+    const [rememberCheck, setRememberCheck] = useState(false);
+
     const handleCredentialsChange = (event) => {
         event.preventDefault();
         setCredentials({
             ...credentials,
             [event.target.name]: event.target.value,
         });
+    };
+
+    const handleCheckboxChange = () => {
+        localStorage.setItem("remember", !rememberCheck);
+        setRememberCheck(!rememberCheck);
     };
 
     //HERE PUT HANDLE CREDENTIALS CLICK
@@ -71,8 +79,7 @@ export const Register = () => {
                 ...errors,
                 password: "Field is required",
             }));
-        }
-        else if(!passwordAltRegex.test(credentials.password)){
+        } else if (!passwordAltRegex.test(credentials.password)) {
             setErrors((errors) => ({
                 ...errors,
                 password: "Your password is not strong enough.",
@@ -95,7 +102,7 @@ export const Register = () => {
             credentials.password &&
             passwordAltRegex.test(credentials.password)
         ) {
-            AuthAPI.register(authDispatch,errorDispatch,credentials)
+            AuthAPI.register(authDispatch, errorDispatch, credentials);
         }
     };
 
@@ -184,6 +191,13 @@ export const Register = () => {
                             placeholder="Confirm password"
                             error={errors.confirmPassword}
                             onChange={handleCredentialsChange}
+                        />
+                    </div>
+                    <div className={RegisterCSS.centre_row}>
+                        <Checkbox
+                            checked={rememberCheck}
+                            text="Remember me"
+                            onChange={() => handleCheckboxChange()}
                         />
                     </div>
                     <div
