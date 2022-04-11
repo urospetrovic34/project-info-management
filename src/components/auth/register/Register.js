@@ -5,7 +5,7 @@ import RegisterCSS from "./Register.module.css";
 import Input from "../../elements/input/Input";
 import logo from "../../../assets/q-logo.png";
 import { useError } from "../../../contexts/ErrorProvider";
-import { emailRegex } from "../../../utils/regex";
+import { emailRegex,passwordAltRegex } from "../../../utils/regex";
 import Label from "../../elements/label/Label";
 import Button from "../../elements/button/Button";
 import AuthAPI from '../../../actions/auth'
@@ -72,6 +72,12 @@ export const Register = () => {
                 password: "Field is required",
             }));
         }
+        else if(!passwordAltRegex.test(credentials.password)){
+            setErrors((errors) => ({
+                ...errors,
+                password: "Your password is not strong enough.",
+            }));
+        }
         if (
             !credentials.confirmPassword ||
             credentials.confirmPassword !== credentials.password
@@ -86,7 +92,8 @@ export const Register = () => {
             credentials.surname &&
             emailRegex.test(credentials.email) &&
             credentials.confirmPassword &&
-            credentials.password
+            credentials.password &&
+            passwordAltRegex.test(credentials.password)
         ) {
             AuthAPI.register(authDispatch,errorDispatch,credentials)
         }

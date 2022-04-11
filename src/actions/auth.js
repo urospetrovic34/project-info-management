@@ -56,6 +56,7 @@ const login = async (dispatch, errorDispatch, { identifier, password }) => {
             return UserAPI.getCurrent();
         })
         .then((res) => {
+            console.log(res)
             dispatch({ type: "USER_LOADED", payload: res });
         })
         .catch((err) => {

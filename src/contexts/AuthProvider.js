@@ -6,26 +6,54 @@ const AuthReducer = (state, action) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
         case "REGISTER_SUCCESS":
-            localStorage.setItem("token", action.payload.jwt);
+            (localStorage.getItem("remember") === "true"
+                ? localStorage
+                : sessionStorage
+            ).setItem("token", action.payload.jwt);
             return {
                 ...state,
-                token: localStorage.getItem("token"),
+                token: (localStorage.getItem("remember") === "true"
+                    ? localStorage
+                    : sessionStorage
+                ).getItem("token"),
             };
         case "USER_LOADED":
             console.log(action.payload);
-            localStorage.setItem("user", JSON.stringify(action.payload));
+            (localStorage.getItem("remember") === "true"
+                ? localStorage
+                : sessionStorage
+            ).setItem("user", JSON.stringify(action.payload));
             return {
                 ...state,
-                user: JSON.parse(localStorage.getItem("user")),
+                user: JSON.parse(
+                    (localStorage.getItem("remember") === "true"
+                        ? localStorage
+                        : sessionStorage
+                    ).getItem("user")
+                ),
             };
         case "LOGIN_FAIL":
         case "REGISTER_FAIL":
         case "LOGOUT_SUCCESS":
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
+            (localStorage.getItem("remember") === "true"
+                ? localStorage
+                : sessionStorage
+            ).removeItem("user");
+            (localStorage.getItem("remember") === "true"
+                ? localStorage
+                : sessionStorage
+            ).removeItem("token");
             return {
-                user: JSON.parse(localStorage.getItem("user")),
-                token: localStorage.getItem("token"),
+                user: JSON.parse(
+                    (localStorage.getItem("remember") === "true"
+                        ? localStorage
+                        : sessionStorage
+                    ).getItem("user")
+                ),
+                token: (localStorage.getItem("remember") === "true"
+                    ? localStorage
+                    : sessionStorage
+                ).getItem("token"),
             };
         default:
             return state;
@@ -38,10 +66,17 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    console.log(localStorage.getItem("remember"))
     const initialState = {
-        user: JSON.parse(localStorage.getItem("user")),
-        token: localStorage.getItem("token"),
+        user: JSON.parse(
+            (localStorage.getItem("remember") === "true"
+                ? localStorage
+                : sessionStorage
+            ).getItem("user")
+        ),
+        token: (localStorage.getItem("remember") === "true"
+            ? localStorage
+            : sessionStorage
+        ).getItem("token"),
     };
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);

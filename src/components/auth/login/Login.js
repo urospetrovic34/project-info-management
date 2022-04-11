@@ -27,7 +27,7 @@ export const Login = () => {
     });
 
     const [fileTest, setFileTest] = useState("Choose a file");
-    const [formDataTest,setFormDataTest] = useState({formData:null})
+    const [formDataTest, setFormDataTest] = useState({ formData: null });
 
     const input = useRef(null);
     const fileReader = new FileReader();
@@ -44,8 +44,8 @@ export const Login = () => {
     };
 
     const handleCheckboxChange = () => {
+        localStorage.setItem("remember", !rememberCheck);
         setRememberCheck(!rememberCheck);
-        localStorage.setItem("remember", rememberCheck);
     };
 
     const handleCredentialsClick = (event) => {
@@ -77,10 +77,6 @@ export const Login = () => {
         }
     };
 
-    useEffect(() => {
-        localStorage.setItem("remember", rememberCheck);
-    }, []);
-
     const handleFileClick = (event) => {
         event.preventDefault();
         input.current.click();
@@ -89,13 +85,15 @@ export const Login = () => {
     const handleFileChange = (event) => {
         event.preventDefault();
         const file = event.target.files[0];
-        setFileTest(file.name)
-        const formData = new FormData()
-        formData.append("files",file)
-        setFormDataTest({...formDataTest,formData:formData})
+        setFileTest(file.name);
+        const formData = new FormData();
+        formData.append("files", file);
+        setFormDataTest({ ...formDataTest, formData: formData });
     };
 
-    console.log(formDataTest)
+    useEffect(() => {
+        localStorage.setItem("remember", false)
+    },[])
 
     return (
         <div className={LoginCSS.wrapper}>
