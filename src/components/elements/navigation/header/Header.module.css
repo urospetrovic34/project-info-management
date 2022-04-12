@@ -84,3 +84,12 @@
     display: none;
   }
 }
+@media only screen and (max-width: 500px) {
+  .platformName {
+    font-size: 24px;
+    padding-left: 20px;
+  }
+  .logo {
+    padding-left: 20px;
+  }
+}

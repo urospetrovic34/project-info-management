@@ -33,4 +33,7 @@
     height: 130px;
     display: grid;
   }
+  .logo {
+    padding-left: 25px;
+  }
 }

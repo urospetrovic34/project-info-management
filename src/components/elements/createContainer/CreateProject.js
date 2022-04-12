@@ -23,17 +23,11 @@ const CreateProject = () => {
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
 
-  const [data, setData] = useState({});
-
   const handleButton = (event) => {
     event.preventDefault();
+    const data = { name: name, description: description, logo: "3" };
     createProjectMutation.mutate({ data });
-    console.log(data);
   };
-  useEffect(() => {
-    setData({ name: name, description: description, logo: "3" });
-    console.log(data);
-  }, []);
 
   return (
     <div className={CreateCSS.container}>
