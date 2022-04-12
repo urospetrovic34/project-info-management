@@ -26,6 +26,7 @@ const register = async (
             return res.data.user.id;
         })
         .then((res) => {
+            //NAKON STO REGISTRUJE KORISNIKA, ON GA PRETVORI U EMPLOYEE ULOGU
             return UserAPI.edit(res, { role: 5 });
         })
         .then(() => {

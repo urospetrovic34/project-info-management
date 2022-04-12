@@ -5,17 +5,25 @@ import TabContent from "./TabContent";
 import CardProjectManagement from "../cards/CardProjectManagement";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
+import { Note } from "../../note/Note";
 
 const Tabs = (props) => {
     const [activeTab, setActiveTab] = useState("");
     const [categories, setCategories] = useState([]);
     const [authState, authDispatch] = useAuth();
+    const [modalCheck,setModalCheck] = useState(false)
+    const [note,setNote] = useState({})
     console.log(authState.user.role.name);
 
     const handleActiveTab = (event) => {
         console.log(event.target.innerText);
         setActiveTab(event.target.innerText);
     };
+
+    const handleModal = (note) => {
+        setNote(note)
+        setModalCheck(true)
+    }
 
     // if (props.status === "success") {
     //     categories = props.project.data?.data.attributes.notes.data?.map(
@@ -44,6 +52,7 @@ const Tabs = (props) => {
 
     return (
         <div className={TabsCSS.tabs}>
+        {modalCheck && <Note note={note}/>}
             <ul className={TabsCSS.nav}>
                 <div className={TabsCSS.categories_nav}>
                     {props.project.status === "success" &&
@@ -83,6 +92,7 @@ const Tabs = (props) => {
                             )
                             .map((note) => (
                                 <CardProjectManagement
+                                    onClick={() => handleModal(note)}
                                     name={note.attributes.title}
                                     description={note.attributes.description}
                                     author={

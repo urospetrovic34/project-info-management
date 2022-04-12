@@ -18,7 +18,7 @@ const CardProjectManagement = (props) => {
   ];
   return cardInfos.map((info) => {
     return (
-      <div key={info.cardTitle} className={CardCSS.cardContainerSecond}>
+      <div onClick={props.onClick} key={info.cardTitle} className={CardCSS.cardContainerSecond}>
         <div className={CardCSS.headerPMInfoContainer}>
           <h1 className={CardCSS.cardHeader}>{props.name}</h1>
           <span className={CardCSS.PMName}>{props.description}</span>
