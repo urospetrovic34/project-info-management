@@ -36,14 +36,16 @@ const get = async (filters, populate, sort, start, limit) => {
 };
 
 const getOne = async (id, filters, populate, sort, start, limit) => {
+    let response;
     await axios
         .get(`/api/users/${id}`)
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 const getCurrent = async () => {
@@ -77,14 +79,16 @@ const edit = async (id, data) => {
 };
 
 const remove = async (id) => {
+    let response;
     await axios
         .delete(`/api/users/${id}`)
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 const user = {

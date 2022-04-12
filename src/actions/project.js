@@ -1,7 +1,7 @@
 import axios from "../config/axiosConfig";
 
 const get = async (projectName, pagination, userId) => {
-    let data;
+    let response;
     await axios
         .get(
             `/api/projects?pagination[pageSize]=12&${
@@ -11,58 +11,66 @@ const get = async (projectName, pagination, userId) => {
             }&populate=*`
         )
         .then((res) => {
-            data = res.data;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
-    return data;
+    return response;
 };
 
 const getOne = async (id, filters, populate, sort, pagination) => {
-    let data;
+    let response;
     await axios
-        .get(`/api/projects/${id}?populate[notes][populate]=*&populate[logo][populate]=*`)
+        .get(
+            `/api/projects/${id}?populate[notes][populate]=*&populate[logo][populate]=*`
+        )
         .then((res) => {
-            data = res.data;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
-    return data;
+    return response;
 };
 
 const create = async (data) => {
+    let response;
     await axios
         .post("/api/projects", data)
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 const edit = async (id, data) => {
+    let response;
     await axios
         .put(`/api/projects/${id}`, data)
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 const remove = async (id) => {
+    let response;
     await axios
         .delete(`/api/projects/${id}`)
         .then((res) => {
-            return res;
+            response = res.data;
         })
         .catch((err) => {
             return err;
         });
+    return response;
 };
 
 const project = {
