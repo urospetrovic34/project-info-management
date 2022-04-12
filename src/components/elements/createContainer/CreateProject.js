@@ -23,8 +23,7 @@ const CreateProject = () => {
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
 
-  const [data, setData] = useState({ name: "nesto novo", description: "blabla", logo: "2" });
-  console.log(data);
+  const [data, setData] = useState({});
 
   const handleButton = (event) => {
     event.preventDefault();
@@ -32,7 +31,7 @@ const CreateProject = () => {
     console.log(data);
   };
   useEffect(() => {
-    setData({ name: "test name", description: "teeest", logo: "3" });
+    setData({ name: name, description: description, logo: "3" });
     console.log(data);
   }, []);
 
@@ -48,7 +47,15 @@ const CreateProject = () => {
               <label htmlFor="projectName" className={CreateCSS.label}>
                 Project Name
               </label>
-              <Input type={"text"} name={"projectName"} placeholder={"Project name..."} id={"projectName"} />
+              <Input
+                type={"text"}
+                name={"projectName"}
+                placeholder={"Project name..."}
+                id={"projectName"}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
             </div>
             <label htmlFor="filePicker" className={CreateCSS.file}>
               Choose Project Logo
@@ -66,6 +73,9 @@ const CreateProject = () => {
               cols="50"
               placeholder="Project Description..."
               className={CreateCSS.textarea}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
             ></textarea>
           </div>
         </div>
