@@ -1,22 +1,27 @@
-import React,{useState} from 'react';
+import React from 'react';
 import CreateNoteTabCSS from "../createNoteTab/CreateNoteTab.module.css";
 import Input from '../input/Input';
 import Button from '../button/Button';
-import categoryHooks from '../../../hooks/query/category'
-import projectHooks from '../../../hooks/query/project'
-import notesHooks from '../../../hooks/query/note'
+import { useState } from 'react';
+import { useSaveNote } from '../../../hooks/custom/useSaveNote';
+
 
 const CreateNoteTab = () => {
 
-    const categories = categoryHooks.useCategories()
-    const createCategoryMutation = categoryHooks.useCreateCategoryMutation()
-    const [data,setData] = useState({name:"nesto novo"})
-    console.log(categories)
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('')
 
-    const handleButton = (event) => {
-        event.preventDefault()
-        createCategoryMutation.mutate({"data":data})
+
+    const { mutate } = useSaveNote();
+
+    const handleCreateNoteClick = () => {
+        console.log({ title, description });
+        const note = { data: { title, description } };
+        mutate(note);
     }
+
+
+
 
     return (
         <div className={CreateNoteTabCSS.container}>
@@ -31,19 +36,16 @@ const CreateNoteTab = () => {
                 <div>
                     <div className={CreateNoteTabCSS.input_label} >
                         <span className={CreateNoteTabCSS.input_title}>Note Title</span>
-                        <Input placeholder='Hello'></Input>
+                        <Input onChange={(e) => setTitle(e.target.value)} placeholder='Hello'></Input>
                     </div>
                     <div className={CreateNoteTabCSS.input_label} >
                         <span className={CreateNoteTabCSS.input_title}>New Description</span>
-                        <textarea name="Description" placeholder='Hello' className={CreateNoteTabCSS.description} cols="60" rows="5"></textarea>
+                        <textarea onChange={(e) => setDescription(e.target.value)} name="Description" placeholder='Hello' className={CreateNoteTabCSS.description} cols="60" rows="5"></textarea>
                     </div>
                     <div className={CreateNoteTabCSS.input_label} >
                         <input type="text" list='Category' placeholder='Category' className={CreateNoteTabCSS.category_list} />
                         <datalist id='Category'>
-                            {categories.status === 'success' && categories.data?.data.map((category) => (
-                                <option key={category.id} value={category.attributes.name}></option>
-                            ))}
-                            {/* <option value="Deployment"></option>
+                            <option value="Deployment"></option>
                             <option value="Design"></option>
                             <option value="DevOps"></option>
                             <option value="Develeopment"></option>
@@ -52,13 +54,13 @@ const CreateNoteTab = () => {
                             <option value="Network"></option>
                             <option value="Other"></option>
                             <option value="Project Management"></option>
-                            <option value="Storage"></option> */}
+                            <option value="Storage"></option>
                         </datalist>
                     </div>
                 </div>
             </div>
             <div className={CreateNoteTabCSS.btn_position}>
-                <Button onClick={handleButton} text="Save Note"></Button>
+                <Button onClick={handleCreateNoteClick} text="Save Note"></Button>
             </div>
         </div>
     )

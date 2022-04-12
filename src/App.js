@@ -26,7 +26,7 @@ function App() {
       <div className="wrapper">
         {user && token && <Header />}
         {/* {user && token && <Tabs />} */}
-
+        <CreateNoteTab />
         {/* {token && <SubHeader />} */}
         {/* <SubHeaderEmployee /> */}
         <Routes>
