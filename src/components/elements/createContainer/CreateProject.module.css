@@ -52,6 +52,10 @@
   width: 80%;
   outline: none;
 }
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
 .contentContainer {
   background-color: #f6f8ff;
   box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);

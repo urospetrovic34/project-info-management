@@ -11,6 +11,7 @@ import { Project } from "./components/project/Project";
 // import Tabs from "./components/elements/tabs/Tabs";
 // import EmployeeHome from "./components/employee/EmployeeHome";
 // import EmployeeProjectView from "./components/employee/EmployeeProjectView";
+import CreateProject from "./components/elements/createContainer/CreateProject";
 import { Test } from "./components/test/Test";
 import { useAuth } from "./contexts/AuthProvider";
 import { DefaultRoute } from "./routes/defaultRoute";
@@ -36,6 +37,7 @@ function App() {
             element={
               <PrivateRoute redirect="/login">
                 <Home />
+                <CreateProject />
               </PrivateRoute>
             }
           />

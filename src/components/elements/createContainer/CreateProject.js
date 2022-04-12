@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
 import CardMembers from "../cards/CardMembers";
+import projectHooks from "../../../hooks/query/project";
 
 const CreateProject = () => {
-  const btnStyle = {
+  const btnAddStyle = {
     backgroundColor: "transparent",
     color: "black",
     border: "1px solid lightgray",
     marginLeft: "10px",
   };
+  const btnSaveStyle = {
+    backgroundColor: "#319795",
+    color: "white",
+    border: "1px solid lightgray",
+    fontWeight: "600",
+  };
+  const createProjectMutation = projectHooks.useCreateProjectMutation();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [logo, setLogo] = useState("");
+
+  const [data, setData] = useState({ name: "nesto novo", description: "blabla", logo: "2" });
+  console.log(data);
+
+  const handleButton = (event) => {
+    event.preventDefault();
+    createProjectMutation.mutate({ data });
+    console.log(data);
+  };
+  useEffect(() => {
+    setData({ name: "test name", description: "teeest", logo: "3" });
+    console.log(data);
+  }, []);
+
   return (
     <div className={CreateCSS.container}>
       <div className={CreateCSS.contentContainer}>
@@ -20,7 +45,7 @@ const CreateProject = () => {
         <div className={CreateCSS.projectInfo}>
           <div className={CreateCSS.inputContainer}>
             <div className={CreateCSS.labelInputWrapper}>
-              <label for="projectName" className={CreateCSS.label}>
+              <label htmlFor="projectName" className={CreateCSS.label}>
                 Project Name
               </label>
               <Input type={"text"} name={"projectName"} placeholder={"Project name..."} id={"projectName"} />
@@ -31,7 +56,7 @@ const CreateProject = () => {
             <Input type={"file"} name={"filePicker"} id={"filePicker"} style={{ display: "none" }} />
           </div>
           <div className={CreateCSS.textAreaContainer}>
-            <label for="projectDescription" className={CreateCSS.label}>
+            <label htmlFor="projectDescription" className={CreateCSS.label}>
               Project Description
             </label>
             <textarea
@@ -50,10 +75,13 @@ const CreateProject = () => {
         <div className={CreateCSS.membersInfo}>
           <div className={CreateCSS.inputContainer}>
             <Input type={"text"} name={"findEmployee"} placeholder={"Find Employee..."} id={"findEmployee"} />
-            <Button value={"ADD"} text={"ADD"} style={btnStyle} />
+            <Button value={"ADD"} text={"ADD"} style={btnAddStyle} />
           </div>
           <CardMembers />
           <CardMembers />
+          <div className={CreateCSS.buttonWrapper}>
+            <Button value={"Save"} onClick={handleButton} text={"SAVE"} style={btnSaveStyle} />
+          </div>
         </div>
       </div>
     </div>
