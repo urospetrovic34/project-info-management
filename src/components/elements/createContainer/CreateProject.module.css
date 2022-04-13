@@ -39,6 +39,7 @@
   padding: 4px 10px;
   margin-left: 10px;
   border: 1px solid lightgrey;
+  font-size: 14px;
 }
 .textAreaContainer {
   display: flex;
@@ -77,7 +78,7 @@
   }
   .file {
     padding: 4px 6px;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
   }
 }

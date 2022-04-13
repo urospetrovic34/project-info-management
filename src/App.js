@@ -17,6 +17,8 @@ import { useAuth } from "./contexts/AuthProvider";
 import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
 import { PublicRoute } from "./routes/publicRoute";
+import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
+import CreateProjectPage from "./components/createProject/CreateProjectPage";
 
 function App() {
   const [authState, authDispatch] = useAuth();
@@ -27,7 +29,7 @@ function App() {
       <div className="wrapper">
         {user && token && <Header />}
         {/* {user && token && <Tabs />} */}
-        <CreateNoteTab />
+        {/* <CreateNoteTab /> */}
         {/* {token && <SubHeader />} */}
         {/* <SubHeaderEmployee /> */}
         <Routes>
@@ -37,7 +39,15 @@ function App() {
             element={
               <PrivateRoute redirect="/login">
                 <Home />
-                <CreateProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/projects/create"
+            element={
+              <PrivateRoute redirect="/login">
+                <CreateProjectPage />
               </PrivateRoute>
             }
           />

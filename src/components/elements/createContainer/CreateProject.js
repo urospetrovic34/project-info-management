@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
@@ -21,7 +21,7 @@ const CreateProject = () => {
   const createProjectMutation = projectHooks.useCreateProjectMutation();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [logo, setLogo] = useState("");
+  //   const [logo, setLogo] = useState("");
 
   const handleButton = (event) => {
     event.preventDefault();
