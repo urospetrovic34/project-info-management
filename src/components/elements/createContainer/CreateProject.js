@@ -4,6 +4,7 @@ import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
 import CardMembers from "../cards/CardMembers";
 import projectHooks from "../../../hooks/query/project";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateProject = () => {
   const btnAddStyle = {
@@ -18,6 +19,8 @@ const CreateProject = () => {
     border: "1px solid lightgray",
     fontWeight: "600",
   };
+  const navigate = useNavigate();
+
   const createProjectMutation = projectHooks.useCreateProjectMutation();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -27,6 +30,7 @@ const CreateProject = () => {
     event.preventDefault();
     const data = { name: name, description: description, logo: "3" };
     createProjectMutation.mutate({ data });
+    navigate("/");
   };
 
   return (
@@ -84,6 +88,9 @@ const CreateProject = () => {
           <CardMembers />
           <CardMembers />
           <div className={CreateCSS.buttonWrapper}>
+            <Link to="/">
+              <Button value={"Back"} text={"BACK"} style={btnSaveStyle} />
+            </Link>
             <Button value={"Save"} onClick={handleButton} text={"SAVE"} style={btnSaveStyle} />
           </div>
         </div>
