@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
 import CardMembers from "../cards/CardMembers";
 import projectHooks from "../../../hooks/query/project";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateProject = () => {
   const btnAddStyle = {
@@ -18,23 +19,19 @@ const CreateProject = () => {
     border: "1px solid lightgray",
     fontWeight: "600",
   };
+  const navigate = useNavigate();
+
   const createProjectMutation = projectHooks.useCreateProjectMutation();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [logo, setLogo] = useState("");
-
-  const [data, setData] = useState({ name: "nesto novo", description: "blabla", logo: "2" });
-  console.log(data);
+  //   const [logo, setLogo] = useState("");
 
   const handleButton = (event) => {
     event.preventDefault();
+    const data = { name: name, description: description, logo: "3" };
     createProjectMutation.mutate({ data });
-    console.log(data);
+    navigate("/");
   };
-  useEffect(() => {
-    setData({ name: "test name", description: "teeest", logo: "3" });
-    console.log(data);
-  }, []);
 
   return (
     <div className={CreateCSS.container}>
@@ -48,7 +45,15 @@ const CreateProject = () => {
               <label htmlFor="projectName" className={CreateCSS.label}>
                 Project Name
               </label>
-              <Input type={"text"} name={"projectName"} placeholder={"Project name..."} id={"projectName"} />
+              <Input
+                type={"text"}
+                name={"projectName"}
+                placeholder={"Project name..."}
+                id={"projectName"}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
             </div>
             <label htmlFor="filePicker" className={CreateCSS.file}>
               Choose Project Logo
@@ -66,6 +71,9 @@ const CreateProject = () => {
               cols="50"
               placeholder="Project Description..."
               className={CreateCSS.textarea}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
             ></textarea>
           </div>
         </div>
@@ -80,6 +88,9 @@ const CreateProject = () => {
           <CardMembers />
           <CardMembers />
           <div className={CreateCSS.buttonWrapper}>
+            <Link to="/">
+              <Button value={"Back"} text={"BACK"} style={btnSaveStyle} />
+            </Link>
             <Button value={"Save"} onClick={handleButton} text={"SAVE"} style={btnSaveStyle} />
           </div>
         </div>

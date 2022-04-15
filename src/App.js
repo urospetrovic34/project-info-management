@@ -18,6 +18,8 @@ import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
 import { PublicRoute } from "./routes/publicRoute";
 import { FilePreview } from "./components/elements/filePreview/FilePreview";
+import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
+import CreateProjectPage from "./components/createProject/CreateProjectPage";
 
 function App() {
   const [authState, authDispatch] = useAuth();
@@ -38,7 +40,15 @@ function App() {
             element={
               <PrivateRoute redirect="/login">
                 <Home />
-                <CreateProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/projects/create"
+            element={
+              <PrivateRoute redirect="/login">
+                <CreateProjectPage />
               </PrivateRoute>
             }
           />

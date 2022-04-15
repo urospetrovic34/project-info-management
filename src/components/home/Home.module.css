@@ -1,22 +1,22 @@
-.wrapper{
-    display: flex;
-    flex-direction: column;
+.wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-.container{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:space-between;
-    min-height:700px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 700px;
 }
 
-.card_container{
-    display:grid;
-    margin-top: 10px;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    max-width:1200px;
+.card_container {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  max-width: 1200px;
 }
 
 .no_projects_container{
@@ -35,4 +35,9 @@
     .card_container{
         grid-template-columns: repeat(2, 1fr);
     }
+}
+@media screen and (max-width: 500px) {
+  .card_container {
+    grid-template-columns: 1fr;
+  }
 }

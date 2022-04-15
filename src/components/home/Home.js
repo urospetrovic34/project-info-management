@@ -7,7 +7,7 @@ import projectHooks from "../../hooks/query/project";
 import useDebounce from "../../hooks/custom/useDebounce";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthProvider";
-import GIJane2 from '../../assets/16331238.jpg'
+import GIJane2 from "../../assets/16331238.jpg";
 
 export const Home = () => {
     const [authState, authDispatch] = useAuth();
@@ -20,7 +20,7 @@ export const Home = () => {
         debouncedPageNumber,
         authState.user.id
     );
-    console.log(projects)
+    console.log(projects);
 
     const handlePageChange = async (event) => {
         setPageNumber(event.target.value);
@@ -47,8 +47,10 @@ export const Home = () => {
                     <>
                         {projects.data.data.length === 0 && (
                             <div className={HomeCSS.no_projects_container}>
-                                <img src={GIJane2} alt="#"/>
-                                <p className={HomeCSS.no_projects_message}>You don't have any projects currently</p>
+                                <img src={GIJane2} alt="#" />
+                                <p className={HomeCSS.no_projects_message}>
+                                    You don't have any projects currently
+                                </p>
                             </div>
                         )}
                         <div className={HomeCSS.card_container}>
@@ -85,6 +87,16 @@ export const Home = () => {
                         </div>
                     </>
                 )}
+            </div>
+            <div className={HomeCSS.pagination}>
+                <Pagination
+                    handlePageChange={handlePageChange}
+                    handleNextPageChange={handleNextPageChange}
+                    handlePreviousPageChange={handlePreviousPageChange}
+                    currentPage={projects.data?.meta.pagination.page}
+                    totalCount={projects.data?.meta.pagination.total}
+                    pageSize={projects.data?.meta.pagination.pageSize}
+                />
             </div>
         </div>
     );
