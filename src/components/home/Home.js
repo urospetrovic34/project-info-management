@@ -88,16 +88,6 @@ export const Home = () => {
                     </>
                 )}
             </div>
-            <div className={HomeCSS.pagination}>
-                <Pagination
-                    handlePageChange={handlePageChange}
-                    handleNextPageChange={handleNextPageChange}
-                    handlePreviousPageChange={handlePreviousPageChange}
-                    currentPage={projects.data?.meta.pagination.page}
-                    totalCount={projects.data?.meta.pagination.total}
-                    pageSize={projects.data?.meta.pagination.pageSize}
-                />
-            </div>
         </div>
     );
 };
