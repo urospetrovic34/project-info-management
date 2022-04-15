@@ -30,23 +30,16 @@
   height: 40px;
   margin-right: -28px;
 }
-.project_manager {
-  margin-top: -20px;
-}
 .info {
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
-  margin-right: 90px;
 }
 .more {
   opacity: 50%;
   position: relative;
   left: 30px;
   bottom: 15px;
-}
-
-.employees {
-  margin-top: -20px;
 }
 .profile_pictures {
   margin-left: -10px;
@@ -60,7 +53,6 @@
     }
     .info {
        margin-top: 40px;
-       margin-right: 125px;
       }
   }
   @media only screen and (max-width: 740px) {

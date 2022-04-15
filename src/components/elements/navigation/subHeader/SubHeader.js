@@ -18,6 +18,7 @@ const SubHeader = (props) => {
       <div className={InputCSS.input_container} onChange={props.onChange}>
         <Input />
       </div>
+      
     </div>
   );
 };

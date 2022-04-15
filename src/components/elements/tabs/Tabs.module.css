@@ -1,6 +1,7 @@
 .tabs {
   width: 100%;
-  min-height: 400px;
+  height: calc(100vh - 270px);
+  max-height: calc(100vh - 270px);
   background: #f6f8ff;
   margin: 0 auto;
   margin-top: 20px;
@@ -42,16 +43,6 @@ ul.nav li {
   color: black;
   opacity: 0.6;
 }
-/* 
-ul.nav li:first-child {
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-}
-
-ul.nav li:last-child {
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
-} */
 
 ul.nav li:hover {
   background: red;
@@ -65,5 +56,7 @@ ul.nav li.active {
 
 .tabContent {
   padding: 20px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:10px;
 }

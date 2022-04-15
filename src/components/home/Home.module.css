@@ -19,6 +19,18 @@
     max-width:1200px;
 }
 
+.no_projects_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.no_projects_message{
+    font-size:25px;
+    font-weight:800;
+}
+
 @media screen and (max-width:1100px) {
     .card_container{
         grid-template-columns: repeat(2, 1fr);
