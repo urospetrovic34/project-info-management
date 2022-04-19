@@ -11,8 +11,8 @@ const Tabs = (props) => {
     const [activeTab, setActiveTab] = useState("");
     const [categories, setCategories] = useState([]);
     const [authState, authDispatch] = useAuth();
-    const [modalCheck,setModalCheck] = useState(false)
-    const [note,setNote] = useState({})
+    const [modalCheck, setModalCheck] = useState(false);
+    const [note, setNote] = useState({});
     console.log(authState.user.role.name);
 
     const handleActiveTab = (event) => {
@@ -20,10 +20,9 @@ const Tabs = (props) => {
         setActiveTab(event.target.innerText);
     };
 
-    const handleModal = (note) => {
-        setNote(note)
-        setModalCheck(true)
-    }
+    const handleModal = () => {
+        setModalCheck(modalCheck => !modalCheck);
+    };
 
     // if (props.status === "success") {
     //     categories = props.project.data?.data.attributes.notes.data?.map(
@@ -52,7 +51,7 @@ const Tabs = (props) => {
 
     return (
         <div className={TabsCSS.tabs}>
-        {modalCheck && <Note note={note}/>}
+            {modalCheck && <Note note={note} onClick={handleModal} />}
             <ul className={TabsCSS.nav}>
                 <div className={TabsCSS.categories_nav}>
                     {props.project.status === "success" &&
@@ -68,10 +67,7 @@ const Tabs = (props) => {
                 {authState.user.role.name !== "Project Manager" && (
                     <div>
                         <Link to="/notes/create">
-                          <TabNavItem
-                                activeTab={false}
-                                title="ADD NOTE"
-                            />
+                            <TabNavItem activeTab={false} title="ADD NOTE" />
                         </Link>
                     </div>
                 )}
@@ -92,13 +88,11 @@ const Tabs = (props) => {
                             )
                             .map((note) => (
                                 <CardProjectManagement
-                                    onClick={() => handleModal(note)}
-                                    name={note.attributes.title}
-                                    description={note.attributes.description}
-                                    author={
-                                        note.attributes.author.data?.attributes
-                                            .fullName
-                                    }
+                                    onClick={() => {
+                                        handleModal();
+                                        setNote(note);
+                                    }}
+                                    note={note}
                                     key={note.id}
                                 />
                             ))}

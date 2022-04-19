@@ -31,3 +31,8 @@ a{
     text-decoration: none;
     color:black;
 }
+
+.react-pdf__Page {
+    margin-top: 20px;
+    border:1px solid black;
+}
