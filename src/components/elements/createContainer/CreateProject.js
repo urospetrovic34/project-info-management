@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
 import axios from "../../../config/axiosConfig";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
+import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 
 const CreateProject = (props) => {
   const btnAddStyle = {
@@ -32,6 +33,8 @@ const CreateProject = (props) => {
   const [description, setDescription] = useState("");
   const [logoRes, setLogoRes] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [collabs, setCollabs] = useState("");
+  console.log(collabs);
 
   const handleButton = (event) => {
     event.preventDefault();
@@ -123,11 +126,10 @@ const CreateProject = (props) => {
         </div>
         <div className={CreateCSS.membersInfo}>
           <div className={CreateCSS.inputContainer}>
-            <Input type={"text"} name={"findEmployee"} placeholder={"Find Employee..."} id={"findEmployee"} />
-            <Button value={"ADD"} text={"ADD"} style={btnAddStyle} />
+            {/* <Button value={"ADD"} text={"ADD"} style={btnAddStyle} /> */}
           </div>
-          <CardMembers />
-          <CardMembers />
+          <AsyncSearchBar setCollabs={setCollabs} />
+          {collabs && <CardMembers membersInfo={collabs} />}
           <div className={CreateCSS.buttonWrapper}>
             <Link to="/">
               <Button value={"Back"} text={"BACK"} style={btnSaveStyle} />
