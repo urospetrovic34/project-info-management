@@ -5,8 +5,12 @@ import CreateCSS from "./CreateProject.module.css";
 import CardMembers from "../cards/CardMembers";
 import projectHooks from "../../../hooks/query/project";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthProvider";
+import axios from "../../../config/axiosConfig";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
+import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 
-const CreateProject = () => {
+const CreateProject = (props) => {
   const btnAddStyle = {
     backgroundColor: "transparent",
     color: "black",
@@ -20,17 +24,50 @@ const CreateProject = () => {
     fontWeight: "600",
   };
   const navigate = useNavigate();
+  // const [authState] = useAuth();
+  // const { user } = authState;
 
   const createProjectMutation = projectHooks.useCreateProjectMutation();
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  //   const [logo, setLogo] = useState("");
+  const [logoRes, setLogoRes] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [collabs, setCollabs] = useState("");
+  console.log(collabs);
 
   const handleButton = (event) => {
     event.preventDefault();
-    const data = { name: name, description: description, logo: "3" };
+    const data = { name, description, logo: logoRes };
     createProjectMutation.mutate({ data });
     navigate("/");
+  };
+
+  const handleFileChange = (event) => {
+    event.preventDefault();
+    const files = event.target.files[0];
+    const formData = new FormData();
+    formData.append("files", files);
+    uploadFile(formData);
+    setIsLoading(true);
+  };
+
+  const uploadFile = async (formData) => {
+    let response;
+    await axios
+      .post(`/api/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        response = res.data;
+        setLogoRes(res.data[0].id);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        return err;
+      });
+    return response;
   };
 
   return (
@@ -58,7 +95,14 @@ const CreateProject = () => {
             <label htmlFor="filePicker" className={CreateCSS.file}>
               Choose Project Logo
             </label>
-            <Input type={"file"} name={"filePicker"} id={"filePicker"} style={{ display: "none" }} />
+            <Input
+              type={"file"}
+              name={"filePicker"}
+              id={"filePicker"}
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              disabled={isLoading}
+            />
           </div>
           <div className={CreateCSS.textAreaContainer}>
             <label htmlFor="projectDescription" className={CreateCSS.label}>
@@ -82,11 +126,10 @@ const CreateProject = () => {
         </div>
         <div className={CreateCSS.membersInfo}>
           <div className={CreateCSS.inputContainer}>
-            <Input type={"text"} name={"findEmployee"} placeholder={"Find Employee..."} id={"findEmployee"} />
-            <Button value={"ADD"} text={"ADD"} style={btnAddStyle} />
+            {/* <Button value={"ADD"} text={"ADD"} style={btnAddStyle} /> */}
           </div>
-          <CardMembers />
-          <CardMembers />
+          <AsyncSearchBar setCollabs={setCollabs} />
+          {collabs && <CardMembers membersInfo={collabs} />}
           <div className={CreateCSS.buttonWrapper}>
             <Link to="/">
               <Button value={"Back"} text={"BACK"} style={btnSaveStyle} />
@@ -95,8 +138,11 @@ const CreateProject = () => {
           </div>
         </div>
       </div>
+      {isLoading ? <LoadingSpinner /> : null}
     </div>
   );
 };
 
 export default CreateProject;
+
+//
