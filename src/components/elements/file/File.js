@@ -11,6 +11,7 @@ const File = (props) => {
                 onChange={props.onChange}
                 className={FileCSS.input}
                 accept="image/*"
+                multiple
             />
             <label>{props.name}</label>
         </div>

@@ -37,7 +37,7 @@ export const Pagination = (props) => {
             </li>
             {paginationRange.map((pageNumber) => {
                 if (pageNumber === "...") {
-                    return <li>"..."</li>;
+                    return <li className={PaginationCSS.dots}>...</li>;
                 }
                 return (
                     <li

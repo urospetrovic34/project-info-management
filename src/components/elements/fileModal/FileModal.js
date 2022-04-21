@@ -69,7 +69,7 @@ export const FileModal = (props) => {
                 </div>
             ) : props.file.attributes.mime.split("/")[0] === "video" ? (
                 <div className={FileModalCSS.video_contaienr}>
-                    <video controls>
+                    <video width="1000" controls>
                         <source
                             src={props.file.attributes.url}
                             type={props.file.attributes.mime}

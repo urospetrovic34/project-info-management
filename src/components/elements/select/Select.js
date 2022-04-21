@@ -13,6 +13,7 @@ export const Select = (props) => {
       onChange={props.onChange}
       isMulti={props.multi}
       placeholder={props.placeholder}
+      isSearchable={props.isSearchable}
     />
   );
 };

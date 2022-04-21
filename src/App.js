@@ -12,7 +12,6 @@ import { Project } from "./components/project/Project";
 // import EmployeeHome from "./components/employee/EmployeeHome";
 // import EmployeeProjectView from "./components/employee/EmployeeProjectView";
 import CreateProject from "./components/elements/createContainer/CreateProject";
-import { Test } from "./components/test/Test";
 import { useAuth } from "./contexts/AuthProvider";
 import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
@@ -63,7 +62,7 @@ function App() {
           />
           <Route
             exact
-            path="/notes/create"
+            path="/notes/create/:id"
             element={
               <PrivateRoute redirect="/login">
                 <CreateNoteTab />

@@ -1,48 +1,60 @@
 .container {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+.wrapper{
   background-color: rgb(211, 211, 211, 0.3);
-  display: grid;
-  grid-template-columns: 60% 40%;
   justify-content: center;
-  align-items: center;
-  padding: 15px 0px;
+  display:flex;
 }
 .logo_container {
-  display: flex;
-  align-items: center;
-  margin-left: 60px;
+    display: flex;
+    align-items: center;
 }
 .title {
-  font-size: 22px;
+    font-size: 22px;
 }
 .paragraph {
-  opacity: 50%;
-  font-size: 14px;
-  inline-size: 400px;
-  overflow-wrap: break-word;
+    opacity: 50%;
+    font-size: 14px;
+    inline-size: 400px;
+    overflow-wrap: break-word;
 }
 .logo {
-  height: 60px;
-  padding-left: 90px;
-  padding-right: 20px;
+    object-fit: cover;
+    height: 60px;
+    width: 60px;
+    border-radius:100%;
+    background-color:white;
 }
 
 .profile_picture {
+  object-fit: cover;
   height: 40px;
-  margin-right: -28px;
+  width: 40px;
+  border-radius:100%;
+  background-color:white;
 }
 .info {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+    display: flex;
+    align-items: flex-start;
+    gap:30px;
+    margin:15px 0px;
 }
 .more {
-  opacity: 50%;
-  position: relative;
-  left: 30px;
-  bottom: 15px;
+    opacity: 50%;
+    margin-top: 10px;
+    margin-left: 5px;
 }
-.profile_pictures {
-  margin-left: -10px;
+.employees{
+  display: flex;
+  align-items: center;
+}
+.text{
+  margin-left:20px;
 }
 @media only screen and (max-width: 980px) {
     .container {
@@ -52,26 +64,29 @@
         align-items: center;
     }
     .info {
-       margin-top: 40px;
-      }
-  }
-  @media only screen and (max-width: 740px) {
+        margin-top: 40px;
+    }
+    .logo_container {
+        justify-content: center;
+    }
+}
+@media only screen and (max-width: 740px) {
     .info {
         margin-right: 0;
     }
-  }
-  @media only screen and (max-width: 640px) {
+}
+@media only screen and (max-width: 640px) {
     .logo {
-        padding-left: 0px;  
-      }
-  }
-  @media only screen and (max-width: 500px) {
-   .container{
-       display: inline-block;
-       margin-left: -20px;
-   }
-   .paragraph {
-    font-size: 12px;
-    inline-size: 200px;
-  }
-  }
+        padding-left: 0px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .container {
+        display: inline-block;
+        margin-left: -20px;
+    }
+    .paragraph {
+        font-size: 12px;
+        inline-size: 200px;
+    }
+}

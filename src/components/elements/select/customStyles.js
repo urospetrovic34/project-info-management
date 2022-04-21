@@ -3,7 +3,7 @@ export const customStyles = {
     ...provided,
     minHeight: "45px",
     height: "45px",
-    border: "none",
+    border: "1px solid black",
     boxShadow: "none",
     borderRadius: "2px",
     cursor: "pointer",

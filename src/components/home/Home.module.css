@@ -8,7 +8,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: 700px;
 }
 
 .card_container {
