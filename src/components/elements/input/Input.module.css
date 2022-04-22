@@ -5,16 +5,17 @@
   border-radius: 5px;
   outline: none;
   text-indent: 15px;
+  margin-bottom: 15px;
 }
-.input:hover {
-  /* border: 1px solid rgb(0, 0, 0, 0.4); */
-}
+
+
 .react_icon {
   opacity: 60%;
   position: absolute;
   top: 9px;
   left: 9px;
 }
+
 .input_container {
   display: inline;
   position: relative;
@@ -29,14 +30,17 @@
     width: 160px;
   }
 }
+
 @media only screen and (max-width: 630px) {
   .input {
     height: 26px;
   }
+
   .react_icon {
     position: absolute;
     top: 7px;
   }
+
   .input_container {
     display: flex;
     justify-content: flex-end;

@@ -20,6 +20,7 @@ import { PublicRoute } from "./routes/publicRoute";
 import { FilePreview } from "./components/elements/filePreview/FilePreview";
 import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import CreateProjectPage from "./components/createProject/CreateProjectPage";
+import EditAccountPage from "./components/elements/editAccountPage/EditAccountPage";
 
 function App() {
   const [authState, authDispatch] = useAuth();
@@ -29,6 +30,7 @@ function App() {
     <Router>
       <div className="wrapper">
         {user && token && <Header />}
+        <EditAccountPage />
         {/* {user && token && <Tabs />} */}
         {/* <CreateNoteTab /> */}
         {/* {token && <SubHeader />} */}
