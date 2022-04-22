@@ -1,72 +1,102 @@
-import React from "react";
+import React, { useState, useRef, useMemo } from "react";
 import CreateNoteTabCSS from "../createNoteTab/CreateNoteTab.module.css";
 import Input from "../input/Input";
 import Button from "../button/Button";
-import { useState } from "react";
-import { useSaveNote } from "../../../hooks/custom/useSaveNote";
+import { Link, useLocation } from "react-router-dom";
+import { Select } from "../select/Select";
+import categoryHooks from "../../../hooks/query/category";
+import File from "../file/File";
 
-const CreateNoteTab = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const CreateNoteTab = (props) => {
+    const location = useLocation();
+    const categories = categoryHooks.useCategories();
+    const options = useMemo(
+        () =>
+            categories.data?.data.map((category) => {
+                return { value: category.id, label: category.attributes.name };
+            }),
+        [categories.data]
+    );
+    console.log(options);
+    const [fileTest, setFileTest] = useState("Choose a file");
+    const [formDataTest, setFormDataTest] = useState({ formData: null });
 
-  const { mutate } = useSaveNote();
+    const input = useRef(null);
 
-  const handleCreateNoteClick = () => {
-    console.log({ title, description });
-    const note = { data: { title, description } };
-    mutate(note);
-  };
+    const handleFileClick = (event) => {
+        event.preventDefault();
+        input.current.click();
+    };
 
-  //
+    const handleFileChange = (event) => {
+        event.preventDefault();
+        const file = event.target.files[0];
+        setFileTest(file.name);
+        const formData = new FormData();
+        formData.append("files", file);
+        setFormDataTest({ ...formDataTest, formData: formData });
+    };
 
-  return (
-    <div className={CreateNoteTabCSS.container}>
-      <div className={CreateNoteTabCSS.header}>
-        <span className={CreateNoteTabCSS.nav}>Back</span>
-        <h3>Create a new Note</h3>
-      </div>
-      <div className={CreateNoteTabCSS.layout}>
-        <div className={CreateNoteTabCSS.note_info}>
-          <h3>Note info</h3>
+    return (
+        <div className={CreateNoteTabCSS.wrapper}>
+            <div className={CreateNoteTabCSS.container}>
+                <div className={CreateNoteTabCSS.header}>
+                    <Link to={`/projects/${location.pathname.split("/")[3]}`}>
+                        <span className={CreateNoteTabCSS.nav}>Back</span>
+                    </Link>
+                    <h3>Create a new Note</h3>
+                </div>
+                <div className={CreateNoteTabCSS.data_container}>
+                    <div className={CreateNoteTabCSS.layout}>
+                        <div>
+                            <div className={CreateNoteTabCSS.input_label}>
+                                <span className={CreateNoteTabCSS.input_title}>
+                                    Title
+                                </span>
+                                <Input placeholder="Note Title"></Input>
+                            </div>
+                            <div className={CreateNoteTabCSS.input_label}>
+                                <span className={CreateNoteTabCSS.input_title}>
+                                    Description
+                                </span>
+                                <textarea
+                                    name="Description"
+                                    placeholder="Note Description..."
+                                    className={CreateNoteTabCSS.description}
+                                    cols="60"
+                                    rows="5"
+                                ></textarea>
+                            </div>
+                            <div className={CreateNoteTabCSS.input_label_two}>
+                                <span className={CreateNoteTabCSS.input_title}>
+                                    Category
+                                </span>
+                                <Select
+                                    placeholder="Search Category..."
+                                    multi={false}
+                                    options={options}
+                                />
+                            </div>
+                            <div className={CreateNoteTabCSS.input_label_two}>
+                                <span className={CreateNoteTabCSS.input_title}>
+                                    Files
+                                </span>
+                                <File
+                                    name={fileTest}
+                                    input={input}
+                                    onClick={handleFileClick}
+                                    onChange={handleFileChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={CreateNoteTabCSS.btn_position}>
+                        <Button text="Save Note"></Button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-          <div className={CreateNoteTabCSS.input_label}>
-            <span className={CreateNoteTabCSS.input_title}>Note Title</span>
-            <Input onChange={(e) => setTitle(e.target.value)} placeholder="Hello"></Input>
-          </div>
-          <div className={CreateNoteTabCSS.input_label}>
-            <span className={CreateNoteTabCSS.input_title}>New Description</span>
-            <textarea
-              onChange={(e) => setDescription(e.target.value)}
-              name="Description"
-              placeholder="Hello"
-              className={CreateNoteTabCSS.description}
-              cols="60"
-              rows="5"
-            ></textarea>
-          </div>
-          <div className={CreateNoteTabCSS.input_label}>
-            <input type="text" list="Category" placeholder="Category" className={CreateNoteTabCSS.category_list} />
-            <datalist id="Category">
-              <option value="Deployment"></option>
-              <option value="Design"></option>
-              <option value="DevOps"></option>
-              <option value="Develeopment"></option>
-              <option value="Documentation"></option>
-              <option value="Maintenance"></option>
-              <option value="Network"></option>
-              <option value="Other"></option>
-              <option value="Project Management"></option>
-              <option value="Storage"></option>
-            </datalist>
-          </div>
-        </div>
-      </div>
-      <div className={CreateNoteTabCSS.btn_position}>
-        <Button onClick={handleCreateNoteClick} text="Save Note"></Button>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default CreateNoteTab;

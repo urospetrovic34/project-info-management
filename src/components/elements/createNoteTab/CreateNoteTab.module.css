@@ -1,9 +1,17 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container {
-    background-color: #fff;
-    width: 70%;
-    margin: 0 auto;
-    padding-bottom: 20px;
-    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    height: calc(100vh - 200px);
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 50px;
+    border:1px solid black;
 }
 
 .header {
@@ -27,12 +35,21 @@
     margin-bottom: 13px;
 }
 
+.input_label_two{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+    width: 25%;
+}
+
 .input_title {
     margin-bottom: 8px;
 }
 
 .layout {
     display: flex;
+    flex-direction: column;
+    padding: 30px 60px 0px 60px;
 }
 
 .note_info {
@@ -40,7 +57,9 @@
 }
 
 .description {
-    padding-left: 15px;
+    padding: 5px 15px 0px 15px;
+    border:1px solid black;
+    resize: none;
 }
 
 .category_list {
@@ -70,5 +89,12 @@
 .btn_position {
     display: flex;
     justify-content: flex-end;
-    margin-right: 60px;
+    padding:60px;
+}
+
+.data_container{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height:100%;
 }

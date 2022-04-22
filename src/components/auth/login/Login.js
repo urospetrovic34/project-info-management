@@ -13,126 +13,155 @@ import { Link } from "react-router-dom";
 import File from "../../elements/file/File";
 
 export const Login = () => {
-  const [authState, authDispatch] = useAuth();
-  const [errorState, errorDispatch] = useError();
-  const { message } = errorState;
+    const [authState, authDispatch] = useAuth();
+    const [errorState, errorDispatch] = useError();
+    const { message } = errorState;
 
-  const [errors, setErrors] = useState({
-    identifier: "",
-    password: "",
-  });
-  const [credentials, setCredentials] = useState({
-    identifier: "",
-    password: "",
-  });
-
-  const [fileTest, setFileTest] = useState("Choose a file");
-  const [formDataTest, setFormDataTest] = useState({ formData: null });
-
-  const input = useRef(null);
-  const fileReader = new FileReader();
-
-  const [rememberCheck, setRememberCheck] = useState(false);
-  console.log(rememberCheck);
-
-  const handleCredentialsChange = (event) => {
-    event.preventDefault();
-    setCredentials({
-      ...credentials,
-      [event.target.name]: event.target.value,
+    const [errors, setErrors] = useState({
+        identifier: "",
+        password: "",
     });
-  };
+    const [credentials, setCredentials] = useState({
+        identifier: "",
+        password: "",
+    });
 
-  const handleCheckboxChange = () => {
-    localStorage.setItem("remember", !rememberCheck);
-    setRememberCheck(!rememberCheck);
-  };
+    const [fileTest, setFileTest] = useState("Choose a file");
+    const [formDataTest, setFormDataTest] = useState({ formData: null });
 
-  const handleCredentialsClick = (event) => {
-    event.preventDefault();
-    setErrors((errors) => ({ errors }));
-    if (!credentials.identifier) {
-      setErrors((errors) => ({
-        ...errors,
-        identifier: "Field is required",
-      }));
-    } else if (!emailRegex.test(credentials.identifier)) {
-      setErrors((errors) => ({
-        ...errors,
-        identifier: "Email is not valid",
-      }));
-    }
-    if (!credentials.password) {
-      setErrors((errors) => ({
-        ...errors,
-        password: "Field is required",
-      }));
-    }
-    if (credentials.identifier && credentials.password && emailRegex.test(credentials.identifier)) {
-      AuthAPI.login(authDispatch, errorDispatch, credentials);
-    }
-  };
+    const input = useRef(null);
+    const fileReader = new FileReader();
 
-  const handleFileClick = (event) => {
-    event.preventDefault();
-    input.current.click();
-  };
+    const [rememberCheck, setRememberCheck] = useState(false);
+    console.log(rememberCheck);
 
-  const handleFileChange = (event) => {
-    event.preventDefault();
-    const file = event.target.files[0];
-    setFileTest(file.name);
-    const formData = new FormData();
-    formData.append("files", file);
-    setFormDataTest({ ...formDataTest, formData: formData });
-  };
+    const handleCredentialsChange = (event) => {
+        event.preventDefault();
+        setCredentials({
+            ...credentials,
+            [event.target.name]: event.target.value,
+        });
+    };
 
-  useEffect(() => {
-    localStorage.setItem("remember", false);
-  }, []);
+    const handleCheckboxChange = () => {
+        localStorage.setItem("remember", !rememberCheck);
+        setRememberCheck(!rememberCheck);
+    };
 
-  return (
-    <div className={LoginCSS.wrapper}>
-      <div className={LoginCSS.container}>
-        <img className={LoginCSS.logo} src={logo} alt="alt" />
-        <Label text="Sign in" style={LoginCSS.header} />
-        <Label text={message ? message.error.message : <>&nbsp;</>} style={LoginCSS.credentials} />
-        <form className={LoginCSS.form}>
-          <div className={LoginCSS.row}>
-            <Label style={LoginCSS.input_label} text="Email" required={true} errorMessage={errors.identifier} />
-            <Input
-              type="text"
-              name="identifier"
-              placeholder="Email"
-              onChange={handleCredentialsChange}
-              error={errors.identifier}
-            />
-          </div>
-          <div className={LoginCSS.row}>
-            <Label style={LoginCSS.input_label} text="Password" required={true} errorMessage={errors.password} />
-            <Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleCredentialsChange}
-              error={errors.password}
-            />
-          </div>
-          <div className={LoginCSS.centre_row}>
-            <Checkbox checked={rememberCheck} text="Remember me" onChange={() => handleCheckboxChange()} />
-          </div>
-          <div className={`${LoginCSS.row} ${LoginCSS.button_row}`}>
-            <Button text="Sign in" onClick={handleCredentialsClick} />
-          </div>
-        </form>
-        <div className={LoginCSS.forget_row}>
-          <Link to="#">
-            <Label text="Forgot password?" />
-          </Link>
-          <File name={fileTest} input={input} onClick={handleFileClick} onChange={handleFileChange} />
+    const handleCredentialsClick = (event) => {
+        event.preventDefault();
+        setErrors((errors) => ({ errors }));
+        if (!credentials.identifier) {
+            setErrors((errors) => ({
+                ...errors,
+                identifier: "Field is required",
+            }));
+        } else if (!emailRegex.test(credentials.identifier)) {
+            setErrors((errors) => ({
+                ...errors,
+                identifier: "Email is not valid",
+            }));
+        }
+        if (!credentials.password) {
+            setErrors((errors) => ({
+                ...errors,
+                password: "Field is required",
+            }));
+        }
+        if (
+            credentials.identifier &&
+            credentials.password &&
+            emailRegex.test(credentials.identifier)
+        ) {
+            AuthAPI.login(authDispatch, errorDispatch, credentials);
+        }
+    };
+
+    const handleFileClick = (event) => {
+        event.preventDefault();
+        input.current.click();
+    };
+
+    const handleFileChange = (event) => {
+        event.preventDefault();
+        const file = event.target.files[0];
+        setFileTest(file.name);
+        const formData = new FormData();
+        formData.append("files", file);
+        setFormDataTest({ ...formDataTest, formData: formData });
+    };
+
+    useEffect(() => {
+        localStorage.setItem("remember", false);
+    }, []);
+
+    return (
+        <div className={LoginCSS.wrapper}>
+            <div className={LoginCSS.container}>
+                <img className={LoginCSS.logo} src={logo} alt="alt" />
+                <Label text="Sign in" style={LoginCSS.header} />
+                <Label
+                    text={message ? message.error.message : <>&nbsp;</>}
+                    style={LoginCSS.credentials}
+                />
+                <form className={LoginCSS.form}>
+                    <div className={LoginCSS.row}>
+                        <Label
+                            style={LoginCSS.input_label}
+                            text="Email"
+                            required={true}
+                            errorMessage={errors.identifier}
+                        />
+                        <Input
+                            type="text"
+                            name="identifier"
+                            placeholder="Email"
+                            onChange={handleCredentialsChange}
+                            error={errors.identifier}
+                        />
+                    </div>
+                    <div className={LoginCSS.row}>
+                        <Label
+                            style={LoginCSS.input_label}
+                            text="Password"
+                            required={true}
+                            errorMessage={errors.password}
+                        />
+                        <Input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={handleCredentialsChange}
+                            error={errors.password}
+                        />
+                    </div>
+                    <div className={LoginCSS.centre_row}>
+                        <Checkbox
+                            checked={rememberCheck}
+                            text="Remember me"
+                            onChange={() => handleCheckboxChange()}
+                        />
+                    </div>
+                    <div className={`${LoginCSS.row} ${LoginCSS.button_row}`}>
+                        <Button
+                            text="Sign in"
+                            onClick={handleCredentialsClick}
+                        />
+                    </div>
+                </form>
+                <div className={LoginCSS.forget_row}>
+                    <Link to="#">
+                        <Label text="Forgot password?" />
+                    </Link>
+                    <File
+                        name={fileTest}
+                        input={input}
+                        onClick={handleFileClick}
+                        onChange={handleFileChange}
+                    />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 //
