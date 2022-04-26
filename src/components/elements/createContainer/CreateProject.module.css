@@ -84,6 +84,8 @@
 .imgPreview {
   width: 68px;
   border-radius: 10px;
+  height: 68px;
+  object-fit: cover;
 }
 @media only screen and (max-width: 635px) {
   .textarea {

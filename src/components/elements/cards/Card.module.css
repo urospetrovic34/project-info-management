@@ -39,7 +39,7 @@
 .avatar {
   width: 68px;
   height: 68px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 100%;
 }
 .headerPMInfoContainer {
