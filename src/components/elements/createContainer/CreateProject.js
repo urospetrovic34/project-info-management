@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
@@ -11,12 +11,12 @@ import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 
 const CreateProject = (props) => {
-  const btnAddStyle = {
-    backgroundColor: "transparent",
-    color: "black",
-    border: "1px solid lightgray",
-    marginLeft: "10px",
-  };
+  // const btnAddStyle = {
+  //   backgroundColor: "transparent",
+  //   color: "black",
+  //   border: "1px solid lightgray",
+  //   marginLeft: "10px",
+  // };
   const btnSaveStyle = {
     backgroundColor: "#319795",
     color: "white",
@@ -34,14 +34,23 @@ const CreateProject = (props) => {
   const [logoRes, setLogoRes] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [collabs, setCollabs] = useState("");
-  console.log(collabs);
+  const employees = [];
+
+  useEffect(() => {
+    if (collabs) {
+      collabs.forEach((collab) => {
+        employees.push(collab.id);
+      });
+    }
+  }, [collabs]);
 
   const handleButton = (event) => {
     event.preventDefault();
-    const data = { name, description, logo: logoRes };
+    const data = { name, description, logo: logoRes, employees };
     createProjectMutation.mutate({ data });
     navigate("/");
   };
+  console.log(collabs);
 
   const handleFileChange = (event) => {
     event.preventDefault();

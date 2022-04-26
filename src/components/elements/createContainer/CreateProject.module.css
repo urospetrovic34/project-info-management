@@ -81,8 +81,6 @@
     font-size: 12px;
     text-align: center;
   }
-}
-@media only screen and (max-width: 530px) {
   .contentContainer {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -93,5 +91,6 @@
       "membersInfo";
     grid-gap: 10px;
     width: 95%;
+    padding: 10px;
   }
 }
