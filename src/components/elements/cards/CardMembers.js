@@ -22,7 +22,11 @@ const CardMembers = (props) => {
     return (
       <div key={member.id} className={CardCSS.cardMembersContainer}>
         <div className={CardCSS.PMInfoContainer}>
-          <img src={Avatar} alt="PM avatar" className={CardCSS.PMAvatar} />
+          <img
+            src={member.avatar ? member.avatar.formats.small.url : Avatar}
+            alt="PM avatar"
+            className={CardCSS.PMAvatar}
+          />
           <div className={CardCSS.PMAdditionalInfo}>
             <div className={CardCSS.PMNameAdditional}>{`${member.name} ${member.surname}`}</div>
             <div className={CardCSS.PMName}>{`${member.role.name}`}</div>

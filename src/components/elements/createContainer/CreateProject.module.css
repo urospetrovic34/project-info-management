@@ -72,6 +72,26 @@
   border-radius: 10px;
   margin-top: 30px;
 }
+.uploadPreview {
+  width: 70px;
+  height: 70px;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.imgPreview {
+  width: 68px;
+  border-radius: 10px;
+  height: 68px;
+  object-fit: cover;
+}
+@media only screen and (min-width: 1300px) {
+  .contentContainer {
+    width: 50vw;
+  }
+}
 @media only screen and (max-width: 635px) {
   .textarea {
     width: 100%;
@@ -81,8 +101,6 @@
     font-size: 12px;
     text-align: center;
   }
-}
-@media only screen and (max-width: 530px) {
   .contentContainer {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -93,5 +111,6 @@
       "membersInfo";
     grid-gap: 10px;
     width: 95%;
+    padding: 10px;
   }
 }

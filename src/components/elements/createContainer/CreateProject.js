@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
 import CardMembers from "../cards/CardMembers";
 import projectHooks from "../../../hooks/query/project";
+import Photo from "../../../assets/photo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
 import axios from "../../../config/axiosConfig";
@@ -11,12 +12,6 @@ import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 
 const CreateProject = (props) => {
-  const btnAddStyle = {
-    backgroundColor: "transparent",
-    color: "black",
-    border: "1px solid lightgray",
-    marginLeft: "10px",
-  };
   const btnSaveStyle = {
     backgroundColor: "#319795",
     color: "white",
@@ -27,21 +22,32 @@ const CreateProject = (props) => {
   // const [authState] = useAuth();
   // const { user } = authState;
 
-  const createProjectMutation = projectHooks.useCreateProjectMutation();
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [logoRes, setLogoRes] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [collabs, setCollabs] = useState("");
-  console.log(collabs);
+  const [upload, setUpload] = useState();
+  const employees = [];
+
+  const createProjectMutation = projectHooks.useCreateProjectMutation();
+
+  useEffect(() => {
+    if (collabs) {
+      collabs.forEach((collab) => {
+        employees.push(collab.id);
+      });
+    }
+  }, [collabs]);
 
   const handleButton = (event) => {
     event.preventDefault();
-    const data = { name, description, logo: logoRes };
+    const data = { name, description, logo: logoRes, employees };
     createProjectMutation.mutate({ data });
     navigate("/");
   };
+  console.log(collabs);
+  console.log(logoRes);
 
   const handleFileChange = (event) => {
     event.preventDefault();
@@ -51,6 +57,27 @@ const CreateProject = (props) => {
     uploadFile(formData);
     setIsLoading(true);
   };
+
+  const getOneUpload = async (id) => {
+    let response;
+    await axios
+      .get(`/api/upload/files/${id}`)
+      .then((res) => {
+        response = res.data;
+        setUpload(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        return err;
+      });
+    return response;
+  };
+
+  useEffect(() => {
+    if (logoRes) {
+      getOneUpload(logoRes);
+    }
+  }, [logoRes]);
 
   const uploadFile = async (formData) => {
     let response;
@@ -103,6 +130,9 @@ const CreateProject = (props) => {
               onChange={handleFileChange}
               disabled={isLoading}
             />
+            <div className={CreateCSS.uploadPreview}>
+              <img src={upload ? upload.formats.small.url : Photo} alt="uploadPhoto" className={CreateCSS.imgPreview} />
+            </div>
           </div>
           <div className={CreateCSS.textAreaContainer}>
             <label htmlFor="projectDescription" className={CreateCSS.label}>

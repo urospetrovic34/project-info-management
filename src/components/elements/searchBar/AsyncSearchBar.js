@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import makeAnimated from "react-select/animated";
 import axios from "../../../config/axiosConfig";
+import { customSearchStyle } from "./customSearchStyle";
 
 const AsyncSearchBar = ({ setCollabs }) => {
   const [query, setQuery] = useState("");
@@ -32,6 +33,7 @@ const AsyncSearchBar = ({ setCollabs }) => {
         loadOptions={getUsers}
         onInputChange={getUsers}
         onChange={(value) => setCollabs(value)}
+        styles={customSearchStyle}
       />
     </>
   );
