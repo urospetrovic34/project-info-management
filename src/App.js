@@ -29,7 +29,7 @@ function App() {
     <Router>
       <div className="wrapper">
         {user && token && <Header />}
-        <EditAccountPage />
+        {/* <EditAccountPage /> */}
         {/* {user && token && <Tabs />} */}
         {/* <CreateNoteTab /> */}
         {/* {token && <SubHeader />} */}

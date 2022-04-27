@@ -14,7 +14,7 @@ export const Project = () => {
     //HAD TO DO IT THIS WAY BELOW,
     //BECAUSE THIS PIECE OF SHIT API DOES NOT
     //RETURN ALL THE FIELDS, EVEN AFTER MULTIPLE POPULATES
-    //TO WHOM IT MAY CONCERN, FUCK STRAPI, BETTER CREATE API YOURSELF
+    //TO WHOM IT MAY CONCERN, FUCK STRAPI, BETTER CREATE API YOURSELF, BE A REAL LAD
     const findProjectManager = userHooks.useUsers(
         location.pathname.split("/")[2],
         "project_manager"

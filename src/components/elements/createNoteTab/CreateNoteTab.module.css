@@ -1,65 +1,78 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .container {
-    display:flex;
+    display: flex;
     flex-direction: column;
     height: calc(100vh - 200px);
     width: 100%;
     max-width: 1200px;
-    margin-top: 50px;
-    border:1px solid black;
+    margin-top: 30px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
 }
 
 .header {
     display: flex;
     align-items: center;
-    text-align: center;
     padding: 10px 0;
-    background-color: lightgray;
-    margin-bottom: 20px;
+    background-image: linear-gradient(
+        90deg,
+        #cbd5e0 0%,
+        #e2e8f0 19%,
+        #edf2f7 36%,
+        #cbd5e0 55%,
+        #edf2f7 79%,
+        #edf2f7 100%
+    );
+    margin-bottom: 10px;
 }
 
 .nav {
-    font-size: 14px;
-    padding-right: 25px;
-    padding-left: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+}
+
+.nav span {
+    font-weight: 500;
+    font: size 18px;
+    margin-left: 10px;
 }
 
 .input_label {
     display: flex;
     flex-direction: column;
-    margin-bottom: 13px;
 }
 
-.input_label_two{
+.input_title{
+    display: flex;
+    align-items: center;
+    font-weight:600;
+    margin:10px 0px;
+}
+
+.input_label_two {
     display: flex;
     flex-direction: column;
-    margin-bottom: 13px;
     width: 25%;
 }
 
-.input_title {
-    margin-bottom: 8px;
+.file_row {
+    display: flex;
+    gap:10px;
 }
 
 .layout {
     display: flex;
     flex-direction: column;
-    padding: 30px 60px 0px 60px;
-}
-
-.note_info {
-    margin: 30px 60px 0 30px;
-}
-
-.description {
-    padding: 5px 15px 0px 15px;
-    border:1px solid black;
-    resize: none;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0px 60px 0px 60px;
 }
 
 .category_list {
@@ -78,7 +91,6 @@
     outline: none;
     border-radius: 5px;
     color: #fff;
-
 }
 
 .btn:hover {
@@ -89,12 +101,12 @@
 .btn_position {
     display: flex;
     justify-content: flex-end;
-    padding:60px;
+    margin-bottom: 25px;
 }
 
-.data_container{
+.data_container {
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
-    height:100%;
+    justify-content: space-between;
+    height: 100%;
 }

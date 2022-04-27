@@ -1,19 +1,17 @@
 import React from "react";
 import FileCSS from "./File.module.css";
+import { GiCancel } from "react-icons/gi";
 
 const File = (props) => {
     return (
-        <div className={FileCSS.container}>
-            <button onClick={props.onClick}>Choose</button>
-            <input
-                type="file"
-                ref={props.input}
-                onChange={props.onChange}
-                className={FileCSS.input}
-                accept="image/*"
-                multiple
-            />
-            <label>{props.name}</label>
+        <div className={FileCSS.card}>
+            <div className={FileCSS.card_col_one}>
+                <p>{props.name}</p>
+                <p className={FileCSS.size}>{(props.size/1024).toFixed(2)} KB</p>
+            </div>
+            <div className={FileCSS.card_col_two}>
+                <GiCancel className={FileCSS.remove} onClick={() => props.removeFile(props.id)}/>
+            </div>
         </div>
     );
 };

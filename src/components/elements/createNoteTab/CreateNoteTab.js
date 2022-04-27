@@ -1,11 +1,15 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import CreateNoteTabCSS from "../createNoteTab/CreateNoteTab.module.css";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import { Link, useLocation } from "react-router-dom";
 import { Select } from "../select/Select";
+import projectHooks from "../../../hooks/query/project";
 import categoryHooks from "../../../hooks/query/category";
-import File from "../file/File";
+import { FileButton } from "../file/FileButton";
+import { IoIosArrowBack } from "react-icons/io";
+import { Textarea } from "../textarea/Textarea";
+import { AttachFiles } from "../file/AttachFiles";
 
 const CreateNoteTab = (props) => {
     const location = useLocation();
@@ -17,9 +21,20 @@ const CreateNoteTab = (props) => {
             }),
         [categories.data]
     );
-    console.log(options);
-    const [fileTest, setFileTest] = useState("Choose a file");
-    const [formDataTest, setFormDataTest] = useState({ formData: null });
+    const project = projectHooks.useSingleProject(
+        location.pathname.split("/")[3]
+    );
+    const projectTitle = useMemo(() => {
+        return project.data?.data.attributes.name;
+    }, [project.data]);
+    console.log(project);
+
+    const [data, setData] = useState({
+        title: "",
+        description: "",
+        category: "",
+        files: [],
+    });
 
     const input = useRef(null);
 
@@ -30,21 +45,41 @@ const CreateNoteTab = (props) => {
 
     const handleFileChange = (event) => {
         event.preventDefault();
-        const file = event.target.files[0];
-        setFileTest(file.name);
         const formData = new FormData();
-        formData.append("files", file);
-        setFormDataTest({ ...formDataTest, formData: formData });
+        for (let i = 0; i < event.target.files.length; i++) {
+            const file = event.target.files[i];
+            formData.append(`file${i + 1}`, file);
+        }
+        setData({ ...data, files: formData });
     };
+
+    //SINCE I DID NOT KNOW HOW TO FILTER OUT FORMDATA OBJECT
+    //I HAD TO GO THROUGH AN ALTERNATIVE ROUTE
+    const handleRemoveFile = (event) => {
+        const formData = new FormData();
+        for (var entry of data.files.entries()) {
+            if (entry[0] !== event) {
+                formData.append(entry[0], entry[1]);
+            }
+        }
+        setData({ ...data, files: formData });
+    };
+
+    const handleCategoryChange = (event) => {
+        
+    }
 
     return (
         <div className={CreateNoteTabCSS.wrapper}>
             <div className={CreateNoteTabCSS.container}>
                 <div className={CreateNoteTabCSS.header}>
                     <Link to={`/projects/${location.pathname.split("/")[3]}`}>
-                        <span className={CreateNoteTabCSS.nav}>Back</span>
+                        <IoIosArrowBack className={CreateNoteTabCSS.nav} />
                     </Link>
-                    <h3>Create a new Note</h3>
+                    <h3 className={CreateNoteTabCSS.nav}>
+                        {projectTitle} <span>-</span>
+                        <span>Create a new note</span>
+                    </h3>
                 </div>
                 <div className={CreateNoteTabCSS.data_container}>
                     <div className={CreateNoteTabCSS.layout}>
@@ -59,13 +94,11 @@ const CreateNoteTab = (props) => {
                                 <span className={CreateNoteTabCSS.input_title}>
                                     Description
                                 </span>
-                                <textarea
+                                <Textarea
                                     name="Description"
                                     placeholder="Note Description..."
-                                    className={CreateNoteTabCSS.description}
-                                    cols="60"
-                                    rows="5"
-                                ></textarea>
+                                    rows={6}
+                                />
                             </div>
                             <div className={CreateNoteTabCSS.input_label_two}>
                                 <span className={CreateNoteTabCSS.input_title}>
@@ -75,23 +108,32 @@ const CreateNoteTab = (props) => {
                                     placeholder="Search Category..."
                                     multi={false}
                                     options={options}
+                                    isSearchable={true}
+                                    onChange={handleCategoryChange}
                                 />
                             </div>
-                            <div className={CreateNoteTabCSS.input_label_two}>
-                                <span className={CreateNoteTabCSS.input_title}>
-                                    Files
-                                </span>
-                                <File
-                                    name={fileTest}
-                                    input={input}
-                                    onClick={handleFileClick}
-                                    onChange={handleFileChange}
+                            <div className={CreateNoteTabCSS.input_label}>
+                                <div className={CreateNoteTabCSS.file_row}>
+                                    <span
+                                        className={CreateNoteTabCSS.input_title}
+                                    >
+                                        Files
+                                    </span>
+                                    <FileButton
+                                        input={input}
+                                        onClick={handleFileClick}
+                                        onChange={handleFileChange}
+                                    />
+                                </div>
+                                <AttachFiles
+                                    files={data.files}
+                                    removeFile={handleRemoveFile}
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className={CreateNoteTabCSS.btn_position}>
-                        <Button text="Save Note"></Button>
+                        <div className={CreateNoteTabCSS.btn_position}>
+                            <Button text="Save Note"></Button>
+                        </div>
                     </div>
                 </div>
             </div>

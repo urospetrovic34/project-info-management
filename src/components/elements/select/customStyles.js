@@ -3,11 +3,10 @@ export const customStyles = {
     ...provided,
     minHeight: "45px",
     height: "45px",
-    border: "1px solid black",
+    border: "1px solid lightgrey",
     boxShadow: "none",
     borderRadius: "2px",
     cursor: "pointer",
-    marginTop: "5px",
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -44,13 +43,16 @@ export const customStyles = {
     padding: "0px",
     marginTop: "0px",
     maxHeight: "225px",
-    overflow: "hidden",
+    overflow: "true",
   }),
   menuList: (provided, state) => ({
     ...provided,
     padding: "0px",
     borderRadius: "2px",
     maxHeight: "225px",
-    overflow: "hidden",
+    overflow: "true",
+    "::-webkit-scrollbar": {
+      display:"none"
+    },
   }),
 };
