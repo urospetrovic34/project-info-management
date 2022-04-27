@@ -25,6 +25,10 @@ function App() {
   const [authState, authDispatch] = useAuth();
   const { user, token } = authState;
 
+  useEffect(() => {
+    document.title = "Project Info Management";
+  }, []);
+
   return (
     <Router>
       <div className="wrapper">
