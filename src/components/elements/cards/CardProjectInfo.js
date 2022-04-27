@@ -5,7 +5,6 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 
 const CardProjectInfo = (props) => {
   let logoData = props.project.attributes.logo.data;
-  console.log(props.project);
 
   return (
     <div className={CardCSS.cardContainer}>

@@ -46,8 +46,6 @@ const CreateProject = (props) => {
     createProjectMutation.mutate({ data });
     navigate("/");
   };
-  console.log(collabs);
-  console.log(logoRes);
 
   const handleFileChange = (event) => {
     event.preventDefault();
