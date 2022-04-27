@@ -32,7 +32,6 @@
   border-radius: 100%;
   width: 70px;
   height: 70px;
-  border: 1px solid black;
   display: flex;
   background-color: white;
   margin-right: 10px;
@@ -58,7 +57,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid rgb(49, 151, 149);
   margin-right: 5px;
   object-fit: contain;
 }
@@ -71,7 +70,7 @@
   font-weight: bold;
 }
 .cardHeader {
-  font-size: 18px;
+  font-size: 16px;
 }
 .btnEmployeeInfoContainer {
   display: flex;

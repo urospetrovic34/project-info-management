@@ -31,14 +31,13 @@ const SubHeader = (props) => {
         </div>
       </div>
       <div className={SubHeaderCSS.inputBtnContainer} onChange={props.onChange}>
-        {location.pathname === "/" && <Input />}
+        {location.pathname === "/" && <Input placeholder={"Search projects"} />}
         {user.role.name === "Project Manager" && location.pathname === "/" && (
           <Link to="/projects/create" className={SubHeaderCSS.projectBtn}>
             <Button value={"NewProject"} text={"New Project"} style={btnCreateProjectStyle} />
           </Link>
         )}
       </div>
-      
     </div>
   );
 };
