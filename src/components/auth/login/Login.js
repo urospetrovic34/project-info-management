@@ -26,14 +26,7 @@ export const Login = () => {
         password: "",
     });
 
-    const [fileTest, setFileTest] = useState("Choose a file");
-    const [formDataTest, setFormDataTest] = useState({ formData: null });
-
-    const input = useRef(null);
-    const fileReader = new FileReader();
-
     const [rememberCheck, setRememberCheck] = useState(false);
-    console.log(rememberCheck);
 
     const handleCredentialsChange = (event) => {
         event.preventDefault();
@@ -75,20 +68,6 @@ export const Login = () => {
         ) {
             AuthAPI.login(authDispatch, errorDispatch, credentials);
         }
-    };
-
-    const handleFileClick = (event) => {
-        event.preventDefault();
-        input.current.click();
-    };
-
-    const handleFileChange = (event) => {
-        event.preventDefault();
-        const file = event.target.files[0];
-        setFileTest(file.name);
-        const formData = new FormData();
-        formData.append("files", file);
-        setFormDataTest({ ...formDataTest, formData: formData });
     };
 
     useEffect(() => {
@@ -153,12 +132,6 @@ export const Login = () => {
                     <Link to="#">
                         <Label text="Forgot password?" />
                     </Link>
-                    <File
-                        name={fileTest}
-                        input={input}
-                        onClick={handleFileClick}
-                        onChange={handleFileChange}
-                    />
                 </div>
             </div>
         </div>
