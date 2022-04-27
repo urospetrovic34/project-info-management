@@ -1,182 +1,190 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .cardContainer {
-  display: flex;
-  justify-content: flex-start;
-  border-radius: 10px;
-  background-color: #ffffff;
-  padding: 15px;
-  height: 130px;
-  align-items: center;
-  margin: 10px;
-  box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
-  background-color: #f2efef;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid whitesmoke;
+    border-radius: 10px;
+    background-image: linear-gradient(
+        90deg,
+        #cbd5e0 0%,
+        #e2e8f0 19%,
+        #edf2f7 36%,
+        #cbd5e0 55%,
+        #edf2f7 79%,
+        #edf2f7 100%
+    );
+    padding: 15px;
+    height: 130px;
+    align-items: center;
+    margin: 10px;
+    /* box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%); */
 }
 .info_container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .avatarPMContainer {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 .cardAvatar {
-  border-radius: 100%;
-  width: 70px;
-  height: 70px;
-  border: 1px solid black;
-  display: flex;
-  background-color: white;
-  margin-right: 10px;
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    display: flex;
+    background-color: white;
+    margin-right: 10px;
 }
 .avatar {
-  width: 68px;
-  height: 68px;
-  object-fit: cover;
-  border-radius: 100%;
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 100%;
 }
 .headerPMInfoContainer {
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-  justify-content: space-between;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 .PMInfoContainer {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 .PMAvatar {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 1px solid black;
-  margin-right: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-right: 5px;
 }
 .PMName {
-  font-size: 14px;
-  opacity: 0.6;
+    font-size: 14px;
+    opacity: 0.6;
 }
 .PMNameAdditional {
-  font-size: 14px;
-  font-weight: bold;
+    font-size: 14px;
+    font-weight: bold;
 }
 .cardHeader {
-  font-size: 20px;
+    font-size: 20px;
 }
 .btnEmployeeInfoContainer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-.EmployeeInfo {
-  padding-top: 22px;
-  opacity: 0.6;
-}
-.cardContainerSecond {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  background-color: #ffffff;
-  padding: 15px;
-  width: 100%;
-  justify-content: space-between;
-  margin: 5px;
-  box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
-}
-.iconPmInfoContainer {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  padding-top: 15px;
-}
-.noteIcon {
-  width: 20px;
-  height: 20px;
-}
-.cardMembersContainer {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 10px;
-  background-color: #ffffff;
-  padding: 10px;
-  align-items: center;
-  box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
-  max-width: 80%;
-  margin-bottom: 10px;
-}
-.close {
-  cursor: pointer;
-}
-@media only screen and (max-width: 1080px) {
-  .btnEmployeeInfoContainer {
     display: flex;
-    flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
+}
+.EmployeeInfo {
+    padding-top: 22px;
+    opacity: 0.6;
+}
+.cardContainerSecond {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 15px;
     width: 100%;
-  }
+    justify-content: space-between;
+    margin: 5px;
+    box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
+}
+.iconPmInfoContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+.noteIcon {
+    width: 20px;
+    height: 20px;
+}
+.cardMembersContainer {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0px 16px 30px -10px rgb(70 96 187 / 20%);
+    max-width: 80%;
+    margin-bottom: 10px;
+}
+.close {
+    cursor: pointer;
+}
+@media only screen and (max-width: 1080px) {
+    .btnEmployeeInfoContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        width: 100%;
+    }
 }
 @media only screen and (max-width: 780px) {
-  .cardAvatar {
-    width: 50px;
-    height: 50px;
-  }
-  .avatar {
-    width: 48px;
-    height: 48px;
-  }
-  .cardHeader {
-    font-size: 14px;
-  }
-  /* .PMAvatar {
+    .cardAvatar {
+        width: 50px;
+        height: 50px;
+    }
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+    .cardHeader {
+        font-size: 14px;
+    }
+    /* .PMAvatar {
     display: none;
   } */
-  .PMName {
-    font-size: 12px;
-  }
-  .PMNameAdditional {
-    font-size: 12px;
-  }
+    .PMName {
+        font-size: 12px;
+    }
+    .PMNameAdditional {
+        font-size: 12px;
+    }
 
-  .EmployeeInfo {
-    font-size: 12px;
-  }
+    .EmployeeInfo {
+        font-size: 12px;
+    }
 }
 @media only screen and (max-width: 620px) {
-  .iconPmInfoContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  .noteIcon {
-    order: 2;
-    padding-top: 10px;
-    width: 28px;
-    height: 28px;
-  }
-  /* .PMAvatar {
+    .iconPmInfoContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    .noteIcon {
+        order: 2;
+        padding-top: 10px;
+        width: 28px;
+        height: 28px;
+    }
+    /* .PMAvatar {
     display: none;
   } */
-  .cardMembersContainer {
-    max-width: 100%;
-  }
+    .cardMembersContainer {
+        max-width: 100%;
+    }
 }
 @media only screen and (max-width: 580px) {
-  .cardContainerSecond {
-    width: 100%;
-  }
+    .cardContainerSecond {
+        width: 100%;
+    }
 }
 @media only screen and (max-width: 500px) {
-  .avatarPMContainer {
-    display: flex;
-    flex-direction: column;
-  }
+    .avatarPMContainer {
+        display: flex;
+        flex-direction: column;
+    }
 }

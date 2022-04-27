@@ -5,6 +5,7 @@ import ProjectCSS from "./Project.module.css";
 import userHooks from "../../hooks/query/user";
 import projectHooks from "../../hooks/query/project";
 import Tabs from "../elements/tabs/Tabs";
+import Placeholder from "../../assets/avatar-placeholder.png";
 
 export const Project = () => {
     const location = useLocation();
@@ -25,8 +26,14 @@ export const Project = () => {
         <div className={ProjectCSS.wrapper}>
             <SubHeaderEmployee
                 project={project}
-                projectManagerAvatar={findProjectManager.data?.[0].avatar.url}
-                projectManagerId={findProjectManager.data?.[0].id}
+                projectManagerAvatar={
+                    "https://upload.wikimedia.org/wikipedia/commons/a/a0/PEGI_Online_annotated.svg"
+                    // findProjectManager.data?.[0].avatar.url
+                }
+                projectManagerId={
+                    "placeholder"
+                    // findProjectManager.data?.[0].id
+                }
             />
             <div className={ProjectCSS.container}>
                 <div className={ProjectCSS.tab_container}>
