@@ -5,7 +5,6 @@
 }
 
 .item {
-  background-color: green;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,15 +14,19 @@
   margin: 0 5px;
   cursor: pointer;
 }
+.item:hover {
+  background-color: rgb(112, 193, 192);
+  color: white;
+}
 
 .disabled {
   pointer-events: none;
-  background-color: purple;
 }
 
 .selected {
-  background-color: mediumseagreen;
+  background-color: rgb(49, 151, 149);
   pointer-events: none;
+  color: white;
 }
 
 .dots {

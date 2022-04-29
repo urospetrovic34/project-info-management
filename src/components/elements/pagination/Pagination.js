@@ -1,7 +1,7 @@
 import React from "react";
 import PaginationCSS from "./Pagination.module.css";
 import usePagination from "../../../hooks/custom/usePagination";
-import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 export const Pagination = (props) => {
   const paginationRange = usePagination(props.currentPage, props.totalCount, props.pageSize);
@@ -26,7 +26,7 @@ export const Pagination = (props) => {
         className={`${PaginationCSS.item} ${props.currentPage === 1 && PaginationCSS.disabled}`}
         onClick={props.handlePreviousPageChange}
       >
-        <RiArrowDropLeftLine />
+        <HiChevronLeft />
       </li>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === "...") {
@@ -47,7 +47,7 @@ export const Pagination = (props) => {
         className={`${PaginationCSS.item} ${props.currentPage === lastPage && PaginationCSS.disabled}`}
         onClick={props.handleNextPageChange}
       >
-        <RiArrowDropRightLine />
+        <HiChevronRight />
       </li>
     </ul>
   );
