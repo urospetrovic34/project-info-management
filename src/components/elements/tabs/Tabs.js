@@ -83,7 +83,7 @@ const Tabs = (props) => {
                             />
                         ))}
                 </div>
-                {authState.user.role.name !== "Project Manager" && (
+                {authState.user.role.name === "Project Manager" && (
                     <div>
                         <Link
                             to={`/notes/create/${props.project.data?.data?.id}`}

@@ -3,6 +3,7 @@ import CardCSS from "./Card.module.css";
 import Avatar from "../../../assets/q-logo.png";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import userHooks from "../../../hooks/query/user";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const CardProjectInfo = (props) => {
     let logoData = props.project.attributes.logo.data;
@@ -51,14 +52,18 @@ const CardProjectInfo = (props) => {
                             className={CardCSS.PMAvatar}
                         />
                         <span className={CardCSS.PMName}>
-                            {"PLACEHOLDER"/* {findProjectManager.data
+                            {
+                                "PLACEHOLDER" /* {findProjectManager.data
                                 ? findProjectManager.data?.[0].username
-                                : "PROJECT MANAGER"} */}
+                                : "PROJECT MANAGER"} */
+                            }
                         </span>
                     </div>
                     <p className={CardCSS.EmployeeInfo}>
-                        {props.project.attributes.employees.data?.length}{" "}
-                        Employees
+                        {props.project.attributes.employees.data?.length === 1
+                            ? "1 Employee" : props.project.attributes.employees.data?.length > 1 && (
+                              props.project.attributes.employees.data?.length + " Employees"
+                            )}
                     </p>
                 </div>
             </div>
