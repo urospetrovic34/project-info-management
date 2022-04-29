@@ -2,6 +2,7 @@ import axios from "../config/axiosConfig";
 
 const get = async (projectName, pagination, userId) => {
     let response;
+    console.log(projectName)
     await axios
         .get(
             `/api/projects?&pagination[pageSize]=12&${
