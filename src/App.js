@@ -5,25 +5,23 @@ import { Login } from "./components/auth/login/Login";
 import { Register } from "./components/auth/register/Register";
 import CreateNoteTab from "./components/elements/createNoteTab/CreateNoteTab";
 import Header from "./components/elements/navigation/header/Header";
-// import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import { Home } from "./components/home/Home";
 import { Project } from "./components/project/Project";
-// import Tabs from "./components/elements/tabs/Tabs";
-// import EmployeeHome from "./components/employee/EmployeeHome";
-// import EmployeeProjectView from "./components/employee/EmployeeProjectView";
-import CreateProject from "./components/elements/createContainer/CreateProject";
 import { useAuth } from "./contexts/AuthProvider";
 import { DefaultRoute } from "./routes/defaultRoute";
 import { PrivateRoute } from "./routes/privateRoute";
 import { PublicRoute } from "./routes/publicRoute";
 import { FilePreview } from "./components/elements/filePreview/FilePreview";
-import SubHeader from "./components/elements/navigation/subHeader/SubHeader";
 import CreateProjectPage from "./components/createProject/CreateProjectPage";
 import EditAccountPage from "./components/elements/editAccountPage/EditAccountPage";
 
 function App() {
   const [authState, authDispatch] = useAuth();
   const { user, token } = authState;
+
+  useEffect(() => {
+    document.title = "Project Info Management";
+  }, []);
 
   return (
     <Router>
