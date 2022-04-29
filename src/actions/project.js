@@ -5,7 +5,7 @@ const get = async (projectName, pagination, userId) => {
     console.log(projectName)
     await axios
         .get(
-            `/api/projects?&pagination[pageSize]=12&${
+            `/api/projects?&pagination[pageSize]=9&${
                 pagination && `&pagination[page]=${pagination}`
             }${projectName && `&filters[name][$containsi]=${projectName}`}${
                 userId && `&filters[employees][id][$containsi]=${userId}`
