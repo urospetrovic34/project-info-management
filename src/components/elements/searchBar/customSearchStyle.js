@@ -7,7 +7,7 @@ export const customSearchStyle = {
     outline: "none",
     focus: "none",
     border: "1px solid lightgray",
-    marginBottom: "10px",
+    marginBottom: "25px",
     width: "80%",
     "@media only screen and (max-width: 635px)": {
       ...provided["@media only screen and (max-width: 635px)"],
