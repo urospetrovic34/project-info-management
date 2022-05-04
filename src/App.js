@@ -14,7 +14,6 @@ import { PublicRoute } from "./routes/publicRoute";
 import { FilePreview } from "./components/elements/filePreview/FilePreview";
 import CreateProjectPage from "./components/createProject/CreateProjectPage";
 import EditAccountPage from "./components/elements/editAccountPage/EditAccountPage";
-import { Account } from "./components/account/Account";
 
 function App() {
     const [authState, authDispatch] = useAuth();
@@ -75,7 +74,7 @@ function App() {
                         path="/account"
                         element={
                             <PrivateRoute redirect="/login">
-                                <Account />
+                                <EditAccountPage />
                             </PrivateRoute>
                         }
                     />

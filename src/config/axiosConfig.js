@@ -15,13 +15,32 @@ instance.interceptors.request.use(
         if (token) {
             const user = decode(token);
             console.log(user);
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers['Authorization'] = `Bearer ${token}`;
         }
 
         return config;
     },
     (error) => {
         console.log(error);
+    }
+);
+
+instance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    async (error) => {
+        if (error.response) {
+            if (error.response.status === 401) {
+                axios
+                    .post("/api/auth/refreshToken")
+                    .then((res) => console.log(res));
+            }
+            if (error.response.status !== 401) {
+                return Promise.reject(error.response.data);
+            }
+        }
+        return Promise.reject(error);
     }
 );
 

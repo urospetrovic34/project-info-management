@@ -53,7 +53,7 @@ const getOne = async (id, filters, populate, sort, start, limit) => {
 const getCurrent = async () => {
     let response;
     await axios
-        .get("/api/users/me")
+        .get("/api/users/me?populate=*")
         .then((res) => {
             response = res.data;
         })

@@ -63,3 +63,19 @@
     border-radius: 5px;
     color: #fff;
 }
+
+.avatar{
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: black;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight:600;
+    background-color:transparent;
+}
+
+.avatar:hover{
+    text-decoration: underline;
+}

@@ -7,6 +7,7 @@ import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const CardProjectInfo = (props) => {
     let logoData = props.project.attributes.logo.data;
+    console.log(logoData?.attributes)
     const findProjectManager = userHooks.useUsers(
         props.project.id,
         "project_manager"
@@ -18,7 +19,7 @@ const CardProjectInfo = (props) => {
             <div className={CardCSS.avatarPMContainer}>
                 <div className={CardCSS.cardAvatar}>
                     <img
-                        src={logoData ? logoData.attributes.url : Avatar}
+                        src={logoData?.attributes !== undefined && logoData?.attributes.formats !== null ? logoData?.attributes.url : Avatar}
                         alt="avatar"
                         className={CardCSS.avatar}
                     />
@@ -42,8 +43,7 @@ const CardProjectInfo = (props) => {
                 <div className={CardCSS.btnEmployeeInfoContainer}>
                     <div className={CardCSS.PMInfoContainer}>
                         <img
-                            src={
-                                Avatar
+                            src={Avatar
                                 // findProjectManager.data
                                 //     ? findProjectManager.data?.[0].avatar.url
                                 //     : "https://upload.wikimedia.org/wikipedia/commons/a/a0/PEGI_Online_annotated.svg"
@@ -52,18 +52,18 @@ const CardProjectInfo = (props) => {
                             className={CardCSS.PMAvatar}
                         />
                         <span className={CardCSS.PMName}>
-                            {
-                                "PLACEHOLDER" /* {findProjectManager.data
-                                ? findProjectManager.data?.[0].username
-                                : "PROJECT MANAGER"} */
-                            }
+                            {findProjectManager?.data
+                                ? findProjectManager.data?.[0].name + " " + findProjectManager.data?.[0].surname
+                                : ""}
                         </span>
                     </div>
                     <p className={CardCSS.EmployeeInfo}>
                         {props.project.attributes.employees.data?.length === 1
-                            ? "1 Employee" : props.project.attributes.employees.data?.length > 1 && (
-                              props.project.attributes.employees.data?.length + " Employees"
-                            )}
+                            ? "1 Employee"
+                            : props.project.attributes.employees.data?.length >
+                                  1 &&
+                              props.project.attributes.employees.data?.length +
+                                  " Employees"}
                     </p>
                 </div>
             </div>
