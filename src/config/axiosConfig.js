@@ -15,13 +15,13 @@ instance.interceptors.request.use(
         if (token) {
             const user = decode(token);
             console.log(user);
-            config.headers['Authorization'] = `Bearer ${token}`;
+            config.headers["Authorization"] = `Bearer ${token}`;
         }
 
         return config;
     },
     (error) => {
-        console.log(error);
+        return Promise.reject(error);
     }
 );
 

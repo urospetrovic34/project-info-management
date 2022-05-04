@@ -5,8 +5,8 @@ export const FileButton = (props) => {
     console.log(props);
     return (
         <div className={FileCSS.container}>
-            <button className={props.avatar ? FileCSS.avatar : FileCSS.button} onClick={props.onClick}>
-                Choose
+            <button className={props.avatar ? FileCSS.avatar : props.project ? FileCSS.project : FileCSS.button} onClick={props.onClick}>
+                {props.placeholder ? props.placeholder : "Choose"}
             </button>
             <input
                 type="file"
