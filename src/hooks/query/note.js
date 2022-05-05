@@ -1,5 +1,4 @@
-import { useQuery, useMutation } from "react-query";
-import { queryClient } from "../..";
+import { useQuery, useMutation, queryClient } from "react-query";
 import NoteAPI from "../../actions/note";
 
 const useNotes = () => {

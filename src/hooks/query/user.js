@@ -1,11 +1,14 @@
-import { useQuery, useMutation } from "react-query";
-import { queryClient } from "../..";
+import { useQuery, useMutation, queryClient } from "react-query";
 import UserAPI from "../../actions/user";
 
 const useUsers = (projectId, role, sort) => {
     return useQuery(["users", projectId, role, sort], () =>
         UserAPI.get(projectId, role, sort)
     );
+};
+
+const useUsersRegular = () => {
+    return useQuery(["users"], () => UserAPI.getRegular());
 };
 
 const useSingleUser = (id) => {
@@ -51,6 +54,7 @@ const useDeleteUserMutation = () => {
 
 const user = {
     useUsers,
+    useUsersRegular,
     useSingleUser,
     useCurrentUser,
     useCountUsers,

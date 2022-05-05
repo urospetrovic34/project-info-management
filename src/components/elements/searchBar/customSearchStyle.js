@@ -1,38 +1,28 @@
 export const customSearchStyle = {
   control: (provided, state) => ({
     ...provided,
+    minHeight: "45px",
+    height: "45px",
+    border: "1px solid lightgrey",
     boxShadow: "none",
-    borderRadius: "5px",
+    borderRadius: "2px",
     cursor: "pointer",
-    outline: "none",
-    focus: "none",
-    border: "1px solid lightgray",
-    marginBottom: "10px",
-    width: "80%",
-    "@media only screen and (max-width: 635px)": {
-      ...provided["@media only screen and (max-width: 635px)"],
-      width: "100%",
-    },
   }),
-
   valueContainer: (provided, state) => ({
     ...provided,
     padding: "0px",
+    marginLeft: "5px",
+    marginTop: "-5px",
   }),
   input: (provided, state) => ({
     ...provided,
-    outline: "none",
   }),
   indicatorSeparator: (state) => ({
     display: "none",
   }),
   indicatorsContainer: (provided, state) => ({
     ...provided,
-    height: "35px",
-  }),
-  dropdownIndicator: () => ({
-    color: "#001628",
-    marginRight: "7px",
+    height: "45px",
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
     cursor: "pointer",
@@ -41,19 +31,24 @@ export const customSearchStyle = {
     alignItems: "center",
     justifyContent: "flex-start",
     paddingLeft: "7px",
-    backgroundColor: isFocused ? "lightgray" : "white",
-    color: isFocused ? "black" : "#001628",
+    backgroundColor: isFocused ? "#001628" : "white",
+    color: isFocused ? "#99D9D9" : "#001628",
   }),
   menu: (provided, state) => ({
     ...provided,
     padding: "0px",
     marginTop: "0px",
-    overflow: "hidden",
+    maxHeight: "225px",
+    overflow: "true",
   }),
   menuList: (provided, state) => ({
     ...provided,
     padding: "0px",
     borderRadius: "2px",
-    overflow: "hidden",
+    maxHeight: "225px",
+    overflow: "true",
+    "::-webkit-scrollbar": {
+      display:"none"
+    },
   }),
 };

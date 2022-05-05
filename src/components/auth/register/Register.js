@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
-// import AuthAPI from "../../../actions/auth";
 import RegisterCSS from "./Register.module.css";
 import Input from "../../elements/input/Input";
 import logo from "../../../assets/q-logo.png";

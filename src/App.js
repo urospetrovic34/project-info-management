@@ -27,6 +27,7 @@ function App() {
   const [authState, authDispatch] = useAuth();
   const { user, token } = authState;
 
+
   return (
     <Router>
       <div className="wrapper">
@@ -106,6 +107,103 @@ function App() {
       </div>
     </Router>
   );
+
+  useEffect(() => {
+    document.title = "Project Info Management";
+  }, []);
+
+  return (
+    <Router>
+      <div className="wrapper">
+        {user && token && <Header />}
+        {/* <EditAccountPage /> */}
+        {/* {user && token && <Tabs />} */}
+        {/* <CreateNoteTab /> */}
+        {/* {token && <SubHeader />} */}
+        {/* <SubHeaderEmployee /> */}
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <PrivateRoute redirect="/login">
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/projects/create"
+            element={
+              <PrivateRoute redirect="/login">
+                <CreateProjectPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/projects/:id"
+            element={
+              <PrivateRoute redirect="/login">
+                <Project />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/notes/create/:id"
+            element={
+              <PrivateRoute redirect="/login">
+                <CreateNoteTab />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/account"
+            element={
+              <PrivateRoute redirect="/login">
+                <EditAccountPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/admin"
+            element={
+              <PrivateRoute redirect="/login">
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/login"
+            element={
+              <PublicRoute redirect="/">
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <PublicRoute redirect="/">
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="*"
+            element={<DefaultRoute></DefaultRoute>}
+          />
+        </Routes>
+      </div>
+    </Router>
+  );
+
 }
 
 export default App;

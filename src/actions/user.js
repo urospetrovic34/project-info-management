@@ -37,6 +37,19 @@ const get = async (projectId, role, sort) => {
     return response;
 };
 
+const getRegular = async () => {
+    let response;
+    await axios
+      .get(`/api/users?populate=role,avatar,projects`)
+      .then((res) => {
+        response = res.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+    return response;
+};
+
 const getOne = async (id, filters, populate, sort, start, limit) => {
     let response;
     await axios
@@ -53,7 +66,7 @@ const getOne = async (id, filters, populate, sort, start, limit) => {
 const getCurrent = async () => {
     let response;
     await axios
-        .get("/api/users/me")
+        .get("/api/users/me?populate=*")
         .then((res) => {
             response = res.data;
         })
@@ -96,6 +109,7 @@ const remove = async (id) => {
 const user = {
     count,
     get,
+    getRegular,
     getOne,
     getCurrent,
     edit,
