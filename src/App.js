@@ -32,7 +32,6 @@ function App() {
     <Router>
       <div className="wrapper">
         {user && token && <Header />}
-        < SystemAdminPage />
         {/* <EditAccountPage /> */}
         {/* {user && token && <Tabs />} */}
         {/* <CreateNoteTab /> */}
