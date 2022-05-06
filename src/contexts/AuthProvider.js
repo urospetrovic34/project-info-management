@@ -55,6 +55,18 @@ const AuthReducer = (state, action) => {
                     : sessionStorage
                 ).getItem("token"),
             };
+        case "REFRESH":
+            (localStorage.getItem("remember") === "true"
+                ? localStorage
+                : sessionStorage
+            ).setItem("token", action.payload);
+            return {
+                ...state,
+                token: (localStorage.getItem("remember") === "true"
+                    ? localStorage
+                    : sessionStorage
+                ).getItem("token"),
+            };
         default:
             return state;
     }

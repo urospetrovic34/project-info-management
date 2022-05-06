@@ -13,8 +13,6 @@ instance.interceptors.request.use(
                 : sessionStorage
         ).getItem("token");
         if (token) {
-            const user = decode(token);
-            console.log(user);
             config.headers["Authorization"] = `Bearer ${token}`;
         }
 
@@ -29,18 +27,10 @@ instance.interceptors.response.use(
     (response) => {
         return response;
     },
-    async (error) => {
-        if (error.response) {
-            if (error.response.status === 401) {
-                axios
-                    .post("/api/auth/refreshToken")
-                    .then((res) => console.log(res));
-            }
-            if (error.response.status !== 401) {
-                return Promise.reject(error.response.data);
-            }
+    (error) => {
+        if (error.response.status === 401) {
+            console.log("NAPISI NESTO");
         }
-        return Promise.reject(error);
     }
 );
 

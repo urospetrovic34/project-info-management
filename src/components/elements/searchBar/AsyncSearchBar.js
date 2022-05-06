@@ -3,13 +3,15 @@ import AsyncSelect from "react-select/async";
 import axios from "../../../config/axiosConfig";
 import { customSearchStyle } from "./customSearchStyle";
 
-const AsyncSearchBar = ({ setCollabs }) => {
-    const [query, setQuery] = useState("");
-
-    const getUsers = async () => {
+const AsyncSearchBar = (props) => {
+    const getUsers = async (value) => {
         let response;
         await axios
-            .get(`/api/users?populate=role,avatar,projects`)
+            .get(
+                `/api/users?${
+                    value ? `filters[name][$containsi]=${value}` : null
+                }&filters[role][name][$eq]=Employee&populate=role,avatar,projects`
+            )
             .then((res) => {
                 response = res.data;
             })
@@ -22,8 +24,6 @@ const AsyncSearchBar = ({ setCollabs }) => {
     return (
         <>
             <AsyncSelect
-                cacheOptions
-                isMulti
                 components={{
                     DropdownIndicator: () => null,
                     IndicatorSeparator: () => null,
@@ -31,9 +31,9 @@ const AsyncSearchBar = ({ setCollabs }) => {
                 }}
                 getOptionLabel={(e) => `${e.name} ${e.surname}`}
                 getOptionValue={(e) => e.id}
-                loadOptions={getUsers}
-                onInputChange={getUsers}
-                onChange={(value) => setCollabs(value)}
+                loadOptions={(value) => getUsers(value)}
+                onInputChange={(value) => getUsers(value)}
+                onChange={(value) => props.onChange(value)}
                 styles={customSearchStyle}
                 placeholder="Search Members"
                 controlShouldRenderValue={false}

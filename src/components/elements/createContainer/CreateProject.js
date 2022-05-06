@@ -3,16 +3,15 @@ import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
 import CardMembers from "../cards/CardMembers";
-import projectHooks from "../../../hooks/query/project";
-import userHooks from "../../../hooks/query/user";
 import Photo from "../../../assets/photo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
-import axios from "../../../config/axiosConfig";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 import { FileButton } from "../file/FileButton";
-import { Select } from "../select/Select";
+import UploadAPI from "../../../actions/upload";
+import ProjectAPI from "../../../actions/project";
+import { useMutation, queryClient } from "react-query";
 
 const CreateProject = (props) => {
     const btnSaveStyle = {
@@ -22,16 +21,7 @@ const CreateProject = (props) => {
         fontWeight: "600",
     };
     const navigate = useNavigate();
-
-    const users = userHooks.useUsersRegular();
-    console.log(users);
-    const userOptions = useMemo(
-        () =>
-            users.data?.map((user) => {
-                return { value: user.id, label: "user.name" };
-            }),
-        [users.data]
-    );
+    const [authState, authDispatch] = useAuth();
 
     const [credentials, setCredentials] = useState({
         name: "",
@@ -40,29 +30,15 @@ const CreateProject = (props) => {
         image: null,
     });
     const [isLoading, setIsLoading] = useState(false);
-    const [collabs, setCollabs] = useState("");
-    const employees = [];
-    const [upload, setUpload] = useState();
+    const [members, setMembers] = useState([]);
+
+    console.log(members);
 
     const input = useRef(null);
     const fileReader = new FileReader();
 
-    const createProjectMutation = projectHooks.useCreateProjectMutation();
-
-    useEffect(() => {
-        if (collabs) {
-            collabs.forEach((collab) => {
-                employees.push(collab.id);
-            });
-        }
-        console.log(employees);
-    }, [collabs]);
-
-    const handleButton = (event) => {
-        event.preventDefault();
-        // const data = { name, description, logo: logoRes, employees };
-        // createProjectMutation.mutate({ data });
-        navigate("/");
+    const handleUpdateCollabs = (id) => {
+        setMembers((members) => members.filter((_, index) => index !== id));
     };
 
     const handleCredentialsChange = (event) => {
@@ -73,19 +49,54 @@ const CreateProject = (props) => {
         });
     };
 
-    const getOneUpload = async (id) => {
-        let response;
-        await axios
-            .get(`/api/upload/files/${id}`)
-            .then((res) => {
-                response = res.data;
-                setUpload(res.data);
-                console.log(res.data);
-            })
-            .catch((err) => {
-                return err;
-            });
-        return response;
+    const mutationLogo = useMutation(
+        (files) => {
+            return UploadAPI.create(files);
+        },
+        {
+            onMutate: async () => {
+                setIsLoading(true);
+            },
+            onSuccess: (response) => {
+                const employees = Array.from(
+                    members.map((member) => member.id)
+                );
+                employees.push(authState.user.id);
+                let data = {
+                    name: credentials.name,
+                    description: credentials.description,
+                    employees: employees,
+                    logo: response[0].id,
+                };
+                mutationProject.mutate({ data: data });
+            },
+        }
+    );
+
+    const mutationProject = useMutation(
+        (data) => {
+            return ProjectAPI.create(data);
+        },
+        {
+            onMutate: async () => {
+                setIsLoading(true);
+            },
+            onSuccess: (response) => {
+                setIsLoading(false);
+                navigate("/");
+            },
+        }
+    );
+
+    const handleMembersChange = (value) => {
+        console.log(members);
+        setMembers((members) => [...members, value]);
+        setMembers((members) =>
+            members.filter(
+                (value, index, self) =>
+                    index === self.findIndex((member) => member.id === value.id)
+            )
+        );
     };
 
     const handleFileClick = (event) => {
@@ -116,6 +127,24 @@ const CreateProject = (props) => {
         }
     };
 
+    const handleButton = (event) => {
+        event.preventDefault();
+        console.log();
+        if (credentials.logo) {
+            mutationLogo.mutate(credentials.logo);
+        } else {
+            const employees = Array.from(members.map((member) => member.id));
+            employees.push(authState.user.id);
+            mutationProject.mutate({
+                data: {
+                    name: credentials.name,
+                    description: credentials.description,
+                    employees: employees,
+                },
+            });
+        }
+    };
+
     return (
         <div className={CreateCSS.container}>
             <div className={CreateCSS.contentContainer}>
@@ -137,8 +166,8 @@ const CreateProject = (props) => {
                                     </label>
                                     <Input
                                         type="text"
-                                        name="projectName"
-                                        placeholder="Project name..."
+                                        name="name"
+                                        placeholder="Project Name"
                                         id="projectName"
                                         onChange={handleCredentialsChange}
                                     />
@@ -176,10 +205,10 @@ const CreateProject = (props) => {
                         </label>
                         <textarea
                             id="projectDescription"
-                            name="projectDescription"
+                            name="description"
                             rows="4"
                             cols="50"
-                            placeholder="Project Description..."
+                            placeholder="Description..."
                             className={CreateCSS.textarea}
                             onChange={handleCredentialsChange}
                         ></textarea>
@@ -192,10 +221,17 @@ const CreateProject = (props) => {
                     <div className={CreateCSS.inputContainer}>
                         {/* <Button value={"ADD"} text={"ADD"} style={btnAddStyle} /> */}
                     </div>
-                    <AsyncSearchBar setCollabs={setCollabs} />
+                    <AsyncSearchBar onChange={handleMembersChange} />
                     <div className={CreateCSS.employee_container}>
-                        {collabs ? (
-                            <CardMembers membersInfo={collabs} />
+                        {members.length > 0 ? (
+                            members.map((member) => (
+                                <CardMembers
+                                    key={member.id}
+                                    member={member}
+                                    updateMembers={handleUpdateCollabs}
+                                    index={members.indexOf(member)}
+                                />
+                            ))
                         ) : (
                             <span>No members added</span>
                         )}

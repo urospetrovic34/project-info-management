@@ -47,7 +47,7 @@ export const Home = () => {
                 {projects.isLoading && <LoadingSpinner />}
                 {projects.status === "success" && (
                     <>
-                        {projects.data.data.length === 0 && (
+                        {projects.data?.projects.length === 0 && (
                             <div className={HomeCSS.no_projects_container}>
                                 <img src={GIJane2} alt="#" />
                                 <p className={HomeCSS.no_projects_message}>
@@ -57,7 +57,7 @@ export const Home = () => {
                         )}
                         <div className={HomeCSS.card_container}>
                             {projects.status === "success" &&
-                                projects.data?.data.map((project) => (
+                                projects.data?.projects.map((project) => (
                                     <Link
                                         state={{ id: project.id }}
                                         key={project.id}
