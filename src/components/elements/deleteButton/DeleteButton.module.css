@@ -1,0 +1,14 @@
+.btn {
+    width: 100px;
+    height: 30px;
+    background-color: #f60000d4;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.btn:hover {
+    cursor: pointer;
+    filter: brightness(120%);
+}
