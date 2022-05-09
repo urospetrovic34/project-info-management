@@ -17,7 +17,6 @@ const SubHeader = (props) => {
   const btnCreateProjectStyle = {
     backgroundColor: "#319795",
     color: "white",
-    border: "1px solid lightgray",
     fontWeight: "600",
     marginLeft: "20px",
   };

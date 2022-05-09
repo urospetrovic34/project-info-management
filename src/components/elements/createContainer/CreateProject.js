@@ -17,7 +17,6 @@ const CreateProject = (props) => {
   const btnSaveStyle = {
     backgroundColor: "#319795",
     color: "white",
-    border: "1px solid lightgray",
     fontWeight: "600",
   };
   const navigate = useNavigate();

@@ -20,7 +20,6 @@ export const Login = () => {
   const loginBtnStyle = {
     backgroundColor: "#319795",
     color: "white",
-    border: "1px solid lightgray",
     fontWeight: "400",
   };
 
