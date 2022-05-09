@@ -1,27 +1,17 @@
 .container {
-    border: 1px solid black;
+    border-radius:5px;
     width: 1200px;
-    display: flex;
-    justify-content: space-between;
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
     align-items: center;
-    margin: 0 auto;
-    margin-top: 10px;
-    background-color: rgb(211, 211, 211, 0.3);
-
-}
-
-.container:hover {
-    cursor: pointer;
-    transform: scaleY(1.1);
-    transition: all .2s;
+    margin: 10px auto;
+    padding:7px;
+    background-color: rgb(170, 158, 158);
 }
 
 .logo {
     height: 50px;
-    width: 60px;
-    border-radius: 50%;
-    border: 1px solid black;
-    margin-top: 3px;
-    margin-left: 100px;
-
+    width: 50px;
+    background-color:white;
+    border-radius: 100%;
 }

@@ -9,11 +9,11 @@ const AsyncSearchBar = (props) => {
         await axios
             .get(
                 `/api/users?${
-                    value ? `filters[name][$containsi]=${value}` : null
+                    value ? `filters[$or][0][name][$containsi]=${value}&filters[$or][1][surname][$containsi]=${value}` : null
                 }&filters[role][name][$eq]=Employee&populate=role,avatar,projects`
             )
             .then((res) => {
-                response = res.data;
+                response = res.data.data;
             })
             .catch((err) => {
                 return err;

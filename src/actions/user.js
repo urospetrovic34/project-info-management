@@ -26,7 +26,7 @@ const get = async (projectId, role, sort) => {
                 sort ? `&sort=${sort.key}:${sort.value}` : ""
             }${projectId ? `&filters[projects][id]=${projectId}` : ""}${
                 role ? `&filters[role][type]=${role}` : ""
-            }&populate[avatar]=*`
+            }&populate[avatar]=*&populate[role]=*`
         )
         .then((res) => {
             response = res.data;
@@ -37,16 +37,26 @@ const get = async (projectId, role, sort) => {
     return response;
 };
 
-const getRegular = async () => {
+const getV2 = async (sort, name, start) => {
     let response;
     await axios
-      .get(`/api/users?populate=role,avatar,projects`)
-      .then((res) => {
-        response = res.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+        .get(
+            `/api/users?limit=8${
+                sort ? `&sort=${sort.key}:${sort.value}` : ""
+            }${
+                name
+                    ? `&filters[$or][0][name][$containsi]=${name}&filters[$or][1][surname][$containsi]=${name}`
+                    : ""
+            }${
+                start ? `&start=${start * 8}` : ""
+            }&populate[avatar]=*&populate[role]=*&filters[role][name][$notContainsi]=System Administrator`
+        )
+        .then((res) => {
+            response = res.data;
+        })
+        .catch((err) => {
+            return err;
+        });
     return response;
 };
 
@@ -109,7 +119,7 @@ const remove = async (id) => {
 const user = {
     count,
     get,
-    getRegular,
+    getV2,
     getOne,
     getCurrent,
     edit,

@@ -5,7 +5,7 @@ export const customStyles = {
         height: "45px",
         border: "1px solid lightgrey",
         boxShadow: "none",
-        borderRadius: "2px",
+        borderRadius: "5px",
         cursor: "pointer",
         "&:hover": { border: "1px solid lightgrey" },
     }),
@@ -13,6 +13,7 @@ export const customStyles = {
         ...provided,
         padding: "0px",
         marginLeft: "5px",
+        borderRadius: "5px",
         marginTop: "-5px",
     }),
     input: (provided, state) => ({
@@ -49,7 +50,6 @@ export const customStyles = {
     menuList: (provided, state) => ({
         ...provided,
         padding: "0px",
-        borderRadius: "2px",
         maxHeight: "225px",
         overflow: "true",
         "::-webkit-scrollbar": {

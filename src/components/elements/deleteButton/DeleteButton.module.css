@@ -1,14 +1,16 @@
 .btn {
-    width: 100px;
-    height: 30px;
-    background-color: #f60000d4;
     border: none;
     outline: none;
     border-radius: 5px;
-    color: #fff;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .btn:hover {
     cursor: pointer;
-    filter: brightness(120%);
+}
+
+.trash{
+    color: red;
+    width: 150px;
+    height: 20px;
 }
