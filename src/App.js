@@ -73,6 +73,15 @@ function App() {
             }
           />
           <Route
+              exact
+              path="/account"
+              element={
+                  <PrivateRoute redirect="/login">
+                      <EditAccountPage />
+                  </PrivateRoute>
+              }
+          />
+          <Route
             exact
             path="/admin"
             element={

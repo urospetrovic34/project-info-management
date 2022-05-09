@@ -3,7 +3,6 @@ import File from "./File";
 import FileCSS from "./File.module.css";
 
 export const AttachFiles = (props) => {
-    console.log(props.files);
     return (
         <div className={FileCSS.attach_container}>
             {Array.from(props.files.entries()).map((entry) => (

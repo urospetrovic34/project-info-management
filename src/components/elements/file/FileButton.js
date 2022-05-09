@@ -2,7 +2,6 @@ import React from "react";
 import FileCSS from "./File.module.css";
 
 export const FileButton = (props) => {
-    console.log(props);
     return (
         <div className={FileCSS.container}>
             <button className={props.avatar ? FileCSS.avatar : props.project ? FileCSS.project : FileCSS.button} onClick={props.onClick}>

@@ -9,6 +9,7 @@ export const Textarea = (props) => {
                 name={props.name}
                 placeholder={props.placeholder}
                 rows={props.rows}
+                onChange={props.onChange}
             ></textarea>
         </div>
     );
