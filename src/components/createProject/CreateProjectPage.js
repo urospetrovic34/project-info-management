@@ -7,7 +7,7 @@ import SubHeader from "../elements/navigation/subHeader/SubHeader";
 const CreateProjectPage = () => {
   return (
     <div className={CreateCSS.wrapper}>
-      {/* <SubHeader /> */}
+      <SubHeader />
       <CreateProject />
     </div>
   );

@@ -14,7 +14,7 @@
 ul.nav {
   display: flex;
   align-items: center;
-  background-color: rgb(191, 204, 203);
+  background-color: #319795;
   justify-content: space-between;
   overflow: hidden;
   white-space: nowrap;
@@ -25,19 +25,19 @@ ul.nav {
   }
 }
 
-.categories_nav{
+.categories_nav {
   display: flex;
 }
 
 ul.nav li {
   padding: 16px;
-  display:flex;
+  display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   list-style: none;
   text-align: center;
   cursor: pointer;
-  color: black;
+  color: white;
   opacity: 0.6;
 }
 
@@ -54,35 +54,35 @@ ul.nav li.active {
 .tabContent {
   padding: 10px 20px 20px 20px;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
-.outlet{
+.outlet {
   background-color: whitesmoke;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 0 1 auto;
 }
 
-.option_row{
+.option_row {
   display: flex;
   align-items: flex-end;
   padding: 20px 20px 0px 20px;
-  gap:25px;
+  gap: 25px;
 }
 
-.option_row > div input{
-  height:45px;
+.option_row > div input {
+  height: 45px;
 }
 
-.pagination{
+.pagination {
   display: flex;
-  justify-content:center;
-  align-items:flex-end;
+  justify-content: center;
+  align-items: flex-end;
 }
 
-.sort_col{
-  width:250px;
+.sort_col {
+  width: 250px;
 }

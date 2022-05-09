@@ -42,7 +42,7 @@
     justify-content: flex-start;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .card_container {
     grid-template-columns: 1fr;
   }
