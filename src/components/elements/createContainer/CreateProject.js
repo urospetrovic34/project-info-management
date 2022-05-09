@@ -11,7 +11,7 @@ import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 import { FileButton } from "../file/FileButton";
 import UploadAPI from "../../../actions/upload";
 import ProjectAPI from "../../../actions/project";
-import { useMutation, queryClient } from "react-query";
+import { useMutation } from "react-query";
 
 const CreateProject = (props) => {
   const btnSaveStyle = {
