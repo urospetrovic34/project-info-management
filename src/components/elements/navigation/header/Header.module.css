@@ -22,6 +22,7 @@
   display: flex;
   width: 40%;
   justify-content: space-evenly;
+  align-items: center;
 }
 .navigationContent {
   cursor: pointer;
@@ -96,12 +97,30 @@
   object-fit: contain;
   background-color: white;
 }
+.userHeaderAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgb(49, 151, 149);
+  margin-right: 5px;
+  object-fit: contain;
+  background-color: white;
+  margin-bottom: 5px;
+}
 .userInfoContainer {
   margin: 0px 25px;
 }
 .userName,
 .userRole {
   color: white;
+}
+.userHeaderAvatarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userNameHeader {
+  font-size: 13px;
 }
 @media only screen and (max-width: 820px) {
   .hamburgerIcon {
