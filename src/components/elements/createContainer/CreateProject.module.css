@@ -1,110 +1,109 @@
 .container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .projectInfoHeader {
-    grid-area: projectInfoHeader;
+  grid-area: projectInfoHeader;
 }
 .projectInfo {
-    grid-area: projectInfo;
-    display: flex;
-    flex-direction: column;
+  grid-area: projectInfo;
+  display: flex;
+  flex-direction: column;
 }
 .membersHeader {
-    grid-area: membersHeader;
-    margin-top: 20px;
+  grid-area: membersHeader;
+  margin-top: 20px;
 }
 .membersInfo {
-    grid-area: membersInfo;
-    display: flex;
-    flex-direction: column;
+  grid-area: membersInfo;
+  display: flex;
+  flex-direction: column;
 }
 .header {
-    font-size: 22px;
+  font-size: 22px;
 }
 .labelInputWrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .label {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 .inputContainer {
-    display: flex;
-    align-items: flex-end;
-    justify-content:space-between;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
-.row{
+.row {
   display: flex;
   align-items: flex-end;
   margin-top: 10px;
 }
 .file {
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 4px 10px;
-    margin-left: 10px;
-    border: 1px solid lightgrey;
-    font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border: 1px solid lightgrey;
+  font-size: 14px;
 }
 .textAreaContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 .textarea {
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    text-indent: 10px;
-    padding: 5px;
-    width: 100%;
-    outline: none;
-    resize: none;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-indent: 10px;
+  padding: 5px;
+  width: 100%;
+  outline: none;
+  resize: none;
 }
 .buttonWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100px;
 }
 .contentContainer {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 30px;
-    box-shadow: 0px 30px 75px -30px hsl(229deg 6% 66%);
-    border-top: 3px solid rgb(49, 151, 149);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: 0px 30px 75px -30px hsl(229deg 6% 66%);
+  border-top: 3px solid rgb(49, 151, 149);
 }
 .uploadPreview {
-    width: 100px;
-    height: 100px;
-    margin-left: 10px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background-color:white;
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .uploadPreview:hover {
-    filter: brightness(0.85);
+  filter: brightness(0.85);
 }
 .imgPreview {
-    width: 100px;
-    border-radius: 10px;
-    height: 100px;
-    object-fit: cover;
-    cursor: pointer;
-    border: 1px solid lightgray;
+  width: 100px;
+  border-radius: 10px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid lightgray;
 }
 
-.employee_container{
+.employee_container {
   margin-top: 15px;
-  padding:10px;
-  height:190px;
+  padding: 10px;
   overflow-y: scroll;
   border: 1px solid lightgray;
   border-radius: 5px;
@@ -112,40 +111,53 @@
 .employee_container::-webkit-scrollbar {
   display: none;
 }
-.employee_container span{
-  font-size: 22px;
-  font-weight:600;
-  color:rgb(180, 180, 180);
+.employee_container span {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(180, 180, 180);
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 @media only screen and (min-width: 1300px) {
-    .contentContainer {
-        width: 50vw;
-    }
+  .contentContainer {
+    width: 50vw;
+  }
 }
 @media only screen and (max-width: 635px) {
-    .textarea {
-        width: 100%;
-    }
-    .file {
-        padding: 4px 6px;
-        font-size: 12px;
-        text-align: center;
-    }
-    .contentContainer {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-template-areas:
-            "projectInfoHeader"
-            "projectInfo "
-            "membersHeader"
-            "membersInfo";
-        grid-gap: 10px;
-        width: 95%;
-        padding: 10px;
-    }
+  .textarea {
+    width: 100%;
+  }
+  .file {
+    padding: 4px 6px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .contentContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "projectInfoHeader"
+      "projectInfo "
+      "membersHeader"
+      "membersInfo";
+    grid-gap: 10px;
+    width: 95%;
+    padding: 10px;
+  }
+  .uploadPreview {
+    width: 80px;
+    height: 80px;
+  }
+  .imgPreview {
+    width: 78px;
+    border-radius: 10px;
+    height: 78px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid lightgray;
+  }
 }
