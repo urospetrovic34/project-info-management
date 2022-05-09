@@ -1,97 +1,103 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
 .container {
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 50px;
-    border-radius: 5px;
-    width: calc(100% - 40px);
-    max-width: 600px;
-    background-color: lightgrey;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  border-radius: 5px;
+  width: calc(100% - 40px);
+  max-width: 600px;
+  background-color: #c7e0d6;
 }
 
 .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .form input,
 .form button {
-    width: 100%;
-    height: 40px;
+  width: 100%;
+  height: 40px;
 }
 
-.form input{
-    margin-top: 5px;
+.form input {
+  margin-top: 5px;
 }
 
 .button_row {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .row {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.centre_row{
-    display: flex;
-    justify-content:center;
-    margin-top: 10px;
-    width: 100%;
+.centre_row {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.forget_row{
-    display: flex;
-    justify-content:center;
-    margin-top: 20px;
-    width: 100%;
+.forget_row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
 }
 
-.centre_row input{
-    width: auto;
-    height: auto;
+.centre_row input {
+  width: auto;
+  height: auto;
 }
 
 .logo {
-    object-fit: contain;
-    height: 100px;
-    width: 100px;
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
 }
 
-.header{
-    font-size: 30px;
-    font-weight: 800;
+.header {
+  font-size: 30px;
+  font-weight: 800;
 }
 
 .error {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 
-.input_label{
-    font-weight: 600;
+.input_label {
+  font-weight: 600;
 }
 
-.input_label span{
-    color:red;
-    font-size:13px;
+.input_label span {
+  color: red;
+  font-size: 13px;
 }
 
-.credentials{
-    color:red;
-    font-weight:400;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.credentials {
+  color: red;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    margin-top: 18px;
+    padding: 15px;
+  }
 }

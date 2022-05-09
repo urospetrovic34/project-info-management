@@ -13,128 +13,111 @@ import { Link } from "react-router-dom";
 import File from "../../elements/file/File";
 
 export const Login = () => {
-    const [authState, authDispatch] = useAuth();
-    const [errorState, errorDispatch] = useError();
-    const { message } = errorState;
+  const [authState, authDispatch] = useAuth();
+  const [errorState, errorDispatch] = useError();
+  const { message } = errorState;
 
-    const [errors, setErrors] = useState({
-        identifier: "",
-        password: "",
+  const loginBtnStyle = {
+    backgroundColor: "#319795",
+    color: "white",
+    fontWeight: "400",
+  };
+
+  const [errors, setErrors] = useState({
+    identifier: "",
+    password: "",
+  });
+  const [credentials, setCredentials] = useState({
+    identifier: "",
+    password: "",
+  });
+
+  const [rememberCheck, setRememberCheck] = useState(false);
+
+  const handleCredentialsChange = (event) => {
+    event.preventDefault();
+    setCredentials({
+      ...credentials,
+      [event.target.name]: event.target.value,
     });
-    const [credentials, setCredentials] = useState({
-        identifier: "",
-        password: "",
-    });
+  };
 
-    const [rememberCheck, setRememberCheck] = useState(false);
+  const handleCheckboxChange = () => {
+    localStorage.setItem("remember", !rememberCheck);
+    setRememberCheck(!rememberCheck);
+  };
 
-    const handleCredentialsChange = (event) => {
-        event.preventDefault();
-        setCredentials({
-            ...credentials,
-            [event.target.name]: event.target.value,
-        });
-    };
+  const handleCredentialsClick = (event) => {
+    event.preventDefault();
+    setErrors((errors) => ({ errors }));
+    if (!credentials.identifier) {
+      setErrors((errors) => ({
+        ...errors,
+        identifier: "Field is required",
+      }));
+    } else if (!emailRegex.test(credentials.identifier)) {
+      setErrors((errors) => ({
+        ...errors,
+        identifier: "Email is not valid",
+      }));
+    }
+    if (!credentials.password) {
+      setErrors((errors) => ({
+        ...errors,
+        password: "Field is required",
+      }));
+    }
+    if (credentials.identifier && credentials.password && emailRegex.test(credentials.identifier)) {
+      AuthAPI.login(authDispatch, errorDispatch, credentials);
+    }
+  };
 
-    const handleCheckboxChange = () => {
-        localStorage.setItem("remember", !rememberCheck);
-        setRememberCheck(!rememberCheck);
-    };
+  useEffect(() => {
+    localStorage.setItem("remember", false);
+  }, []);
 
-    const handleCredentialsClick = (event) => {
-        event.preventDefault();
-        setErrors((errors) => ({ errors }));
-        if (!credentials.identifier) {
-            setErrors((errors) => ({
-                ...errors,
-                identifier: "Field is required",
-            }));
-        } else if (!emailRegex.test(credentials.identifier)) {
-            setErrors((errors) => ({
-                ...errors,
-                identifier: "Email is not valid",
-            }));
-        }
-        if (!credentials.password) {
-            setErrors((errors) => ({
-                ...errors,
-                password: "Field is required",
-            }));
-        }
-        if (
-            credentials.identifier &&
-            credentials.password &&
-            emailRegex.test(credentials.identifier)
-        ) {
-            AuthAPI.login(authDispatch, errorDispatch, credentials);
-        }
-    };
-
-    useEffect(() => {
-        localStorage.setItem("remember", false);
-    }, []);
-
-    return (
-        <div className={LoginCSS.wrapper}>
-            <div className={LoginCSS.container}>
-                <img className={LoginCSS.logo} src={logo} alt="alt" />
-                <Label text="Sign in" style={LoginCSS.header} />
-                <Label
-                    text={message ? message.error.message : <>&nbsp;</>}
-                    style={LoginCSS.credentials}
-                />
-                <form className={LoginCSS.form}>
-                    <div className={LoginCSS.row}>
-                        <Label
-                            style={LoginCSS.input_label}
-                            text="Email"
-                            required={true}
-                            errorMessage={errors.identifier}
-                        />
-                        <Input
-                            type="text"
-                            name="identifier"
-                            placeholder="Email"
-                            onChange={handleCredentialsChange}
-                            error={errors.identifier}
-                        />
-                    </div>
-                    <div className={LoginCSS.row}>
-                        <Label
-                            style={LoginCSS.input_label}
-                            text="Password"
-                            required={true}
-                            errorMessage={errors.password}
-                        />
-                        <Input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            onChange={handleCredentialsChange}
-                            error={errors.password}
-                        />
-                    </div>
-                    <div className={LoginCSS.centre_row}>
-                        <Checkbox
-                            checked={rememberCheck}
-                            text="Remember me"
-                            onChange={() => handleCheckboxChange()}
-                        />
-                    </div>
-                    <div className={`${LoginCSS.row} ${LoginCSS.button_row}`}>
-                        <Button
-                            text="Sign in"
-                            onClick={handleCredentialsClick}
-                        />
-                    </div>
-                </form>
-                <div className={LoginCSS.forget_row}>
-                    <Link to="#">
-                        <Label text="Forgot password?" />
-                    </Link>
-                </div>
-            </div>
+  return (
+    <div className={LoginCSS.wrapper}>
+      <div className={LoginCSS.container}>
+        <img className={LoginCSS.logo} src={logo} alt="alt" />
+        <Label text="Sign In" style={LoginCSS.header} />
+        <Label text={message ? message.error.message : <>&nbsp;</>} style={LoginCSS.credentials} />
+        <form className={LoginCSS.form}>
+          <div className={LoginCSS.row}>
+            <Label style={LoginCSS.input_label} text="Email" required={true} errorMessage={errors.identifier} />
+            <Input
+              type="text"
+              name="identifier"
+              placeholder="Email"
+              onChange={handleCredentialsChange}
+              error={errors.identifier}
+            />
+          </div>
+          <div className={LoginCSS.row}>
+            <Label style={LoginCSS.input_label} text="Password" required={true} errorMessage={errors.password} />
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleCredentialsChange}
+              error={errors.password}
+            />
+          </div>
+          <div className={LoginCSS.centre_row}>
+            <Checkbox checked={rememberCheck} text="Remember me" onChange={() => handleCheckboxChange()} />
+          </div>
+          <div className={`${LoginCSS.row} ${LoginCSS.button_row}`}>
+            <Button text="Sign In" onClick={handleCredentialsClick} style={loginBtnStyle} />
+          </div>
+        </form>
+        <div className={LoginCSS.forget_row}>
+          <Link to="#">
+            <Label text="Forgot password?" />
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
+
 //
