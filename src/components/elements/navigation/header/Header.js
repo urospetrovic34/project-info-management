@@ -22,7 +22,7 @@ const Header = () => {
   console.log(user);
   return (
     <div className={HeaderCSS.header}>
-      <Link to="/">
+      <Link to={user.role.name !== "System Administrator" ? "/" : "/admin"}>
         <div className={HeaderCSS.logoHeaderContainer}>
           <img src={logo} alt="logo" className={HeaderCSS.logo} />
           <h1 className={HeaderCSS.platformName}>Q Project Info</h1>
@@ -31,14 +31,16 @@ const Header = () => {
 
       <div className={HeaderCSS.navigationContainer}>
         {/* {user.role.name === "System Administrator" && <span className={HeaderCSS.navigationContent}>Dashboard</span>} */}
-        {user.role.name === "Authenticated" && (
+        {user.role.name === "System Administrator" && (
           <Link to="/admin" className={HeaderCSS.navigationContent}>
             <span>Dashboard</span>
           </Link>
         )}
-        <Link to="/" className={HeaderCSS.navigationContent}>
-          <span>My Projects</span>
-        </Link>
+        {user.role.name !== "System Administrator" && (
+          <Link to="/" className={HeaderCSS.navigationContent}>
+            <span>My Projects</span>
+          </Link>
+        )}
         <Link to="/account" className={HeaderCSS.navigationContent}>
           <span>Account</span>
         </Link>
@@ -47,7 +49,7 @@ const Header = () => {
         </span>
         <span className={HeaderCSS.userHeaderAvatarContainer}>
           <img
-            src={user.avatar ? user.avatar.formats.small.url : Avatar}
+            src={Avatar}
             alt="User"
             className={HeaderCSS.userHeaderAvatar}
           />

@@ -15,7 +15,7 @@ const NavigationMob = ({ showMobileNav }) => {
       </span>
       <div className={HeaderCSS.userInfoContainer}>
         <img
-          src={user.avatar ? user.avatar.formats.small.url : Avatar}
+          src={Avatar}
           alt="PM avatar"
           className={HeaderCSS.userAvatar}
         />

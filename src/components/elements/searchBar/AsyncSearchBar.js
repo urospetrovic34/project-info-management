@@ -4,22 +4,22 @@ import axios from "../../../config/axiosConfig";
 import { customSearchStyle } from "./customSearchStyle";
 
 const AsyncSearchBar = (props) => {
-  const getUsers = async (value) => {
-    let response;
-    await axios
-      .get(
-        `/api/users?${
-          value ? `filters[name][$containsi]=${value}` : null
-        }&filters[role][name][$eq]=Employee&populate=role,avatar,projects`
-      )
-      .then((res) => {
-        response = res.data.data;
-      })
-      .catch((err) => {
-        return err;
-      });
-    return response;
-  };
+    const getUsers = async (value) => {
+        let response;
+        await axios
+            .get(
+                `/api/users?${
+                    value ? `filters[$or][0][name][$containsi]=${value}&filters[$or][1][surname][$containsi]=${value}` : null
+                }&filters[role][name][$eq]=Employee&populate=role,avatar,projects`
+            )
+            .then((res) => {
+                response = res.data.data;
+            })
+            .catch((err) => {
+                return err;
+            });
+        return response;
+    };
 
   return (
     <>

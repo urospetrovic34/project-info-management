@@ -7,8 +7,10 @@ const useUsers = (projectId, role, sort) => {
     );
 };
 
-const useUsersRegular = () => {
-    return useQuery(["users"], () => UserAPI.getRegular());
+const useUsersV2 = (sort, name, start) => {
+    return useQuery(["usersV2", sort, name, start], () =>
+        UserAPI.getV2(sort, name, start)
+    );
 };
 
 const useSingleUser = (id) => {
@@ -54,7 +56,7 @@ const useDeleteUserMutation = () => {
 
 const user = {
     useUsers,
-    useUsersRegular,
+    useUsersV2,
     useSingleUser,
     useCurrentUser,
     useCountUsers,
