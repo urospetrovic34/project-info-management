@@ -108,12 +108,18 @@ const CreateNoteTab = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [options]);
 
+    const btnStyle = {
+        backgroundColor: "#319795",
+        color: "white",
+        fontWeight: "600",
+    };
+
     return (
         <div className={CreateNoteTabCSS.wrapper}>
             <div className={CreateNoteTabCSS.container}>
                 <div className={CreateNoteTabCSS.header}>
                     <Link to={`/projects/${location.pathname.split("/")[3]}`}>
-                        <IoIosArrowBack className={CreateNoteTabCSS.nav} />
+                        <IoIosArrowBack className={CreateNoteTabCSS.backBtn} />
                     </Link>
                     <h3 className={CreateNoteTabCSS.nav}>
                         {projectTitle} <span>-</span>
@@ -140,7 +146,7 @@ const CreateNoteTab = (props) => {
                                 </span>
                                 <Textarea
                                     placeholder="Note Description..."
-                                    rows={6}
+                                    rows={4}
                                     type="text"
                                     name="description"
                                     onChange={handleDataChange}
@@ -171,6 +177,7 @@ const CreateNoteTab = (props) => {
                                         input={input}
                                         onClick={handleFileClick}
                                         onChange={handleFileChange}
+                                        style={btnStyle}
                                         multiple={true}
                                     />
                                 </div>
@@ -183,6 +190,7 @@ const CreateNoteTab = (props) => {
                         <div className={CreateNoteTabCSS.btn_position}>
                             <Button
                                 onClick={handleButton}
+                                style={btnStyle}
                                 text="Save Note"
                             ></Button>
                         </div>
