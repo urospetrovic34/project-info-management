@@ -11,7 +11,7 @@ const CardMembers = (props) => {
                 <img
                     src={
                         props.member.avatar
-                            ? props.member.avatar.formats.small.url
+                            ? props.member.avatar.url
                             : Avatar
                     }
                     alt="PM avatar"
