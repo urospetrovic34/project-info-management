@@ -48,7 +48,7 @@ const getV2 = async (sort, name, start) => {
                     ? `&filters[$or][0][name][$containsi]=${name}&filters[$or][1][surname][$containsi]=${name}`
                     : ""
             }${
-                start ? `&start=${start * 8}` : ""
+                start ? `&start=${start * 8}` : "&start=0"
             }&populate[avatar]=*&populate[role]=*&filters[role][name][$notContainsi]=System Administrator`
         )
         .then((res) => {
@@ -90,6 +90,19 @@ const getCurrent = async () => {
 //additional data object for encapsulation when sending params
 //unlike the Strapi REST API
 
+const create = async (data) => {
+    let response;
+    await axios
+        .post("/api/users", data)
+        .then((res) => {
+            response = res.data;
+        })
+        .catch((err) => {
+            return err;
+        });
+    return response;
+};
+
 const edit = async (id, data) => {
     let response;
     await axios
@@ -122,6 +135,7 @@ const user = {
     getV2,
     getOne,
     getCurrent,
+    create,
     edit,
     remove,
 };

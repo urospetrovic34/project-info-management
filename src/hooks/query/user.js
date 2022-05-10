@@ -28,6 +28,19 @@ const useCountUsers = () => {
     return useQuery("userCount", UserAPI.count);
 };
 
+const useCreateUserMutation = () => {
+    return useMutation(
+      (data) => {
+        return UserAPI.create(data)
+      },
+      {
+        onSettled: () => {
+          queryClient.invalidateQueries("users");
+        },
+      }
+    );
+  };
+
 const useEditUserMutation = () => {
     return useMutation(
         (id, data) => {
@@ -60,6 +73,7 @@ const user = {
     useSingleUser,
     useCurrentUser,
     useCountUsers,
+    useCreateUserMutation,
     useEditUserMutation,
     useDeleteUserMutation,
 };

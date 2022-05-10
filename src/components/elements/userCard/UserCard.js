@@ -4,10 +4,41 @@ import logo from "../../../assets/avatar-placeholder.png";
 import Button from "../button/Button";
 import axios from "axios";
 import DeleteButton from "../deleteButton/DeleteButton";
+import { useNavigate } from "react-router-dom";
+import userHooks from "../../../hooks/query/user";
+import { useMutation, useQueryClient } from "react-query";
+import UserAPI from "../../../actions/user";
 
 const UserCard = (props) => {
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
+
+    const handleDeleteUser = (event) => {
+        event.stopPropagation();
+        mutationUser.mutate();
+    };
+
+    const mutationUser = useMutation(
+        () => {
+            return UserAPI.remove(props.user.id);
+        },
+        {
+            // onMutate: async () => {
+            //     setIsLoading(true);
+            // },
+            onSuccess: (data) => {
+                console.log(data);
+                queryClient.invalidateQueries('usersV2')
+            },
+        }
+    );
+
+    const handleNavigate = () => {
+        navigate(`/users/edit/${props.user.id}`);
+    };
+
     return (
-        <div>
+        <div onClick={handleNavigate}>
             <div className={UserCardCSS.container}>
                 <img
                     src={props.user.avatar ? props.user.avatar.url : logo}
@@ -27,7 +58,7 @@ const UserCard = (props) => {
                 <div>
                     <p>{props.user.role.name}</p>
                 </div>
-                <div>
+                <div onClick={handleDeleteUser}>
                     <DeleteButton />
                 </div>
                 <div></div>
