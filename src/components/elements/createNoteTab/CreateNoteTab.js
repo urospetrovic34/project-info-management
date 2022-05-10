@@ -106,12 +106,18 @@ const CreateNoteTab = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
+  const btnStyle = {
+    backgroundColor: "#319795",
+    color: "white",
+    fontWeight: "600",
+  };
+
   return (
     <div className={CreateNoteTabCSS.wrapper}>
       <div className={CreateNoteTabCSS.container}>
         <div className={CreateNoteTabCSS.header}>
           <Link to={`/projects/${location.pathname.split("/")[3]}`}>
-            <IoIosArrowBack className={CreateNoteTabCSS.nav} />
+            <IoIosArrowBack className={CreateNoteTabCSS.backBtn} />
           </Link>
           <h3 className={CreateNoteTabCSS.nav}>
             {projectTitle} <span>-</span>
@@ -129,7 +135,7 @@ const CreateNoteTab = (props) => {
                 <span className={CreateNoteTabCSS.input_title}>Description</span>
                 <Textarea
                   placeholder="Note Description..."
-                  rows={6}
+                  rows={4}
                   type="text"
                   name="description"
                   onChange={handleDataChange}
@@ -148,13 +154,19 @@ const CreateNoteTab = (props) => {
               <div className={CreateNoteTabCSS.input_label}>
                 <div className={CreateNoteTabCSS.file_row}>
                   <span className={CreateNoteTabCSS.input_title}>Files</span>
-                  <FileButton input={input} onClick={handleFileClick} onChange={handleFileChange} />
+                  <FileButton
+                    input={input}
+                    onClick={handleFileClick}
+                    onChange={handleFileChange}
+                    style={btnStyle}
+                    multiple={true}
+                  />
                 </div>
                 <AttachFiles files={data.files} removeFile={handleRemoveFile} />
               </div>
             </div>
             <div className={CreateNoteTabCSS.btn_position}>
-              <Button onClick={handleButton} text="Save Note"></Button>
+              <Button onClick={handleButton} style={btnStyle} text="Save Note"></Button>
             </div>
           </div>
         </div>
