@@ -9,6 +9,11 @@ export const Note = (props) => {
     console.log(props.note);
     const [modalCheck, setModalCheck] = useState(false);
     const [file, setFile] = useState({});
+    const [allFiles, setAllFiles] = useState(
+        props.note.attributes.files.data.filter(
+            (file) => file.attributes.provider_metadata.resource_type !== "raw"
+        )
+    );
 
     const handleModal = (data) => {
         setFile(data);
@@ -16,13 +21,18 @@ export const Note = (props) => {
     };
 
     const handleDownload = (data) => {
-        setFile(data);
-        saveAs(file.attributes.url, file.attributes.caption);
+        saveAs(data.attributes.url, data.attributes.caption);
     };
 
     return (
         <div className={NoteCSS.wrapper}>
-            {modalCheck && <FileModal file={file} onClick={handleModal} />}
+            {modalCheck && (
+                <FileModal
+                    file={file}
+                    allFiles={allFiles}
+                    onClick={handleModal}
+                />
+            )}
             <div className={NoteCSS.container}>
                 <div className={NoteCSS.row}>
                     <div className={NoteCSS.title_container}>

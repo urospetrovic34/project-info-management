@@ -52,6 +52,11 @@
   display: flex;
 }
 
+.arrow{
+    cursor: pointer;
+    color:white;
+}
+
 .button {
   display: flex;
   align-items: center;
@@ -69,4 +74,16 @@
 .surprise {
   color: white;
   font-size: 34px;
+}
+
+.central_container{
+    width: 90%;
+    display: flex;
+    justify-content:center;
+}
+
+.arrow_container{
+    width: 10%;
+    display: flex;
+    justify-content:center;
 }

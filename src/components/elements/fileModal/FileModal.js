@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileModalCSS from "./FileModal.module.css";
 import { Document, Page, pdfjs } from "react-pdf";
-import { AiOutlineClose, AiOutlineDownload } from "react-icons/ai";
+import {
+    AiOutlineClose,
+    AiOutlineDownload,
+    AiOutlineArrowLeft,
+    AiOutlineArrowRight,
+} from "react-icons/ai";
 import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
 
 export const FileModal = (props) => {
     const [numPages, setNumPages] = useState(null);
     const [zoomValue, setZoomValue] = useState(1);
-    console.log(props.file);
+    const [currentFile, setCurrentFile] = useState(props.file);
 
     pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -25,7 +30,25 @@ export const FileModal = (props) => {
     };
 
     const handleDownload = () => {
-        saveAs(props.file.attributes.url, props.file.attributes.caption);
+        saveAs(currentFile.attributes.url, currentFile.attributes.caption);
+    };
+
+    const handleArrowLeft = () => {
+        const index = props.allFiles.findIndex(
+            (file) => file.id === currentFile.id
+        );
+        if (index > 0) {
+            setCurrentFile(props.allFiles[index - 1]);
+        }
+    };
+
+    const handleArrowRight = () => {
+        const index = props.allFiles.findIndex(
+            (file) => file.id === currentFile.id
+        );
+        if (index < props.allFiles.length - 1) {
+            setCurrentFile(props.allFiles[index + 1]);
+        }
     };
 
     return (
@@ -40,52 +63,74 @@ export const FileModal = (props) => {
                     onClick={props.onClick}
                 />
             </div>
-            {props.file.attributes.ext === ".pdf" ? (
-                <div
-                    className={FileModalCSS.pdf_container}
-                    onClick={handleZoom}
-                >
-                    <Document
-                        file={props.file.attributes.url}
-                        options={{ workerSrc: "/pdf.worker.js" }}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                        className={FileModalCSS.pdf_container}
-                    >
-                        {Array.from(new Array(numPages), (el, index) => (
-                            <Page
-                                key={`page_${index + 1}`}
-                                pageNumber={index + 1}
-                                scale={zoomValue}
-                            />
-                        ))}
-                    </Document>
-                </div>
-            ) : props.file.attributes.mime.split("/")[0] === "image" ? (
-                <div className={FileModalCSS.image_container}>
-                    <img src={props.file.attributes.url} alt="#" />
-                </div>
-            ) : props.file.attributes.mime.split("/")[0] === "video" ? (
-                <div className={FileModalCSS.video_contaienr}>
-                    <video width="1000" controls>
-                        <source
-                            src={props.file.attributes.url}
-                            type={props.file.attributes.mime}
-                        />
-                    </video>
-                </div>
-            ) : props.file.attributes.mime.split("/")[0] === "audio" ? (
-                <div className={FileModalCSS.audio_container}>
-                    <audio controls>
-                        <source
-                            src={props.file.attributes.url}
-                            type={props.file.attributes.mime}
-                        />
-                    </audio>
+            {props.allFiles.findIndex((file) => file.id === currentFile.id) >
+                0 && props.allFiles.length > 1 ? (
+                <div className={FileModalCSS.arrow_container}>
+                    <AiOutlineArrowLeft
+                        className={FileModalCSS.button}
+                        onClick={handleArrowLeft}
+                    />
                 </div>
             ) : (
-                <p className={FileModalCSS.surprise}>
-                    ZA TEBE IMA 8=======================D
-                </p>
+                <div className={FileModalCSS.arrow_container}></div>
+            )}
+            <div className={FileModalCSS.central_container}>
+                {currentFile.attributes.ext === ".pdf" ? (
+                    <div
+                        className={FileModalCSS.pdf_container}
+                        onClick={handleZoom}
+                    >
+                        <Document
+                            file={currentFile.attributes.url}
+                            options={{ workerSrc: "/pdf.worker.js" }}
+                            onLoadSuccess={onDocumentLoadSuccess}
+                            className={FileModalCSS.pdf_container}
+                        >
+                            {Array.from(new Array(numPages), (el, index) => (
+                                <Page
+                                    key={`page_${index + 1}`}
+                                    pageNumber={index + 1}
+                                    scale={zoomValue}
+                                />
+                            ))}
+                        </Document>
+                    </div>
+                ) : currentFile.attributes.mime.split("/")[0] === "image" ? (
+                    <div className={FileModalCSS.image_container}>
+                        <img src={currentFile.attributes.url} alt="#" />
+                    </div>
+                ) : currentFile.attributes.mime.split("/")[0] === "video" ? (
+                    <div className={FileModalCSS.video_contaienr}>
+                        <video width="1000" controls>
+                            <source
+                                src={currentFile.attributes.url}
+                                type={currentFile.attributes.mime}
+                            />
+                        </video>
+                    </div>
+                ) : currentFile.attributes.mime.split("/")[0] === "audio" ? (
+                    <div className={FileModalCSS.audio_container}>
+                        <audio controls>
+                            <source
+                                src={currentFile.attributes.url}
+                                type={currentFile.attributes.mime}
+                            />
+                        </audio>
+                    </div>
+                ) : (
+                    <p className={FileModalCSS.surprise}>"EMPTY"</p>
+                )}
+            </div>
+            {props.allFiles.findIndex((file) => file.id === currentFile.id) <
+                props.allFiles.length - 1 && props.allFiles.length > 1 ? (
+                <div className={FileModalCSS.arrow_container}>
+                    <AiOutlineArrowRight
+                        className={FileModalCSS.button}
+                        onClick={handleArrowRight}
+                    />
+                </div>
+            ) : (
+                <div className={FileModalCSS.arrow_container}></div>
             )}
         </div>
     );

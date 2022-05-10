@@ -171,6 +171,7 @@ const CreateNoteTab = (props) => {
                                         input={input}
                                         onClick={handleFileClick}
                                         onChange={handleFileChange}
+                                        multiple={true}
                                     />
                                 </div>
                                 <AttachFiles
