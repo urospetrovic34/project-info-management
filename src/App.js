@@ -22,6 +22,7 @@ import EditAccountPage from "./components/elements/editAccountPage/EditAccountPa
 import SystemAdminPage from "./components/systemAdminPage/SystemAdminPage";
 import EmployeeFirstTab from "./components/employee/EmployeeFirstTab";
 import { CreateUser } from "./components/createUser/CreateUser";
+import { EditUser } from "./components/editUser/EditUser";
 
 function App() {
     const [authState, authDispatch] = useAuth();
@@ -79,6 +80,15 @@ function App() {
                         element={
                             <PrivateRoute redirect="/login">
                                 <CreateUser />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/users/edit/:id"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <EditUser />
                             </PrivateRoute>
                         }
                     />

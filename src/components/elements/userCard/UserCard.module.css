@@ -2,6 +2,7 @@
     border-radius:5px;
     width: 1200px;
     display:grid;
+    cursor: pointer;
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
     margin: 10px auto;
@@ -13,5 +14,6 @@
     height: 50px;
     width: 50px;
     background-color:white;
+    object-fit: cover;
     border-radius: 100%;
 }

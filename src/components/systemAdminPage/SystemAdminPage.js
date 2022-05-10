@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../elements/button/Button";
 import AsyncSearchBar from "../elements/searchBar/AsyncSearchBar";
 import { Select } from "../elements/select/Select";
@@ -9,6 +9,7 @@ import { Pagination } from "../elements/pagination/Pagination";
 import Input from "../elements/input/Input";
 import { Link } from "react-router-dom";
 import useDebounce from "../../hooks/custom/useDebounce";
+import user from "../../hooks/query/user";
 
 const SystemAdminPage = () => {
     const [pageNumber, setPageNumber] = useState(0);
@@ -20,6 +21,7 @@ const SystemAdminPage = () => {
         debouncedUserName,
         debouncedPageNumber
     );
+    console.log(pageNumber);
     const sortEmployeeOptions = [
         { value: "", label: "Option-1" },
         { value: "", label: "Option-2" },
@@ -33,17 +35,27 @@ const SystemAdminPage = () => {
     };
 
     const handleNextPageChange = async () => {
-        setPageNumber(users.data?.meta?.pagination.page - 1 + 1);
+        setPageNumber(pageNumber + 1);
     };
 
     const handlePreviousPageChange = async () => {
-        setPageNumber(users.data?.meta?.pagination.page - 1 - 1);
+        setPageNumber(pageNumber - 1);
     };
 
     const handleUserNameFilter = async (event) => {
         setPageNumber(0);
         setUserName(event.target.value);
     };
+
+    useEffect(() => {
+        if (
+            users.data?.data?.length === 0 &&
+            users.data?.meta?.pagination.page > 1
+        ) {
+            setPageNumber(0);
+        }
+    }, [users]);
+
     return (
         <div className={SystemAdminPageCSS.container}>
             <>

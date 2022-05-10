@@ -8,9 +8,10 @@ import { useAuth } from "../../../contexts/AuthProvider";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 import { FileButton } from "../file/FileButton";
 import UploadAPI from "../../../actions/upload";
-import ProjectAPI from "../../../actions/project";
+import UserAPI from "../../../actions/user";
 import { useMutation } from "react-query";
 import { Select } from "../select/Select";
+import userHooks from "../../../hooks/query/user";
 
 const CreateUser = (props) => {
     const btnSaveStyle = {
@@ -20,6 +21,7 @@ const CreateUser = (props) => {
     };
     const navigate = useNavigate();
     const [authState, authDispatch] = useAuth();
+    const count = userHooks.useCountUsers();
 
     const [credentials, setCredentials] = useState({
         name: "",
@@ -66,24 +68,30 @@ const CreateUser = (props) => {
                 setIsLoading(true);
             },
             onSuccess: (response) => {
-                const employees = Array.from(
-                    members.map((member) => member.id)
-                );
-                employees.push(authState.user.id);
                 let data = {
                     name: credentials.name,
+                    surname: credentials.surname,
                     description: credentials.description,
-                    employees: employees,
-                    logo: response[0].id,
+                    email: credentials.email,
+                    username:
+                        credentials.name.toLowerCase() +
+                        credentials.surname.toLowerCase() +
+                        count.data,
+                    password: credentials.password,
+                    role: credentials.role,
+                    confirmed: credentials.confirmed,
+                    avatar: response[0].id,
                 };
-                mutationProject.mutate({ data: data });
+                console.log(data);
+                mutationUser.mutate(data);
             },
         }
     );
 
-    const mutationProject = useMutation(
+    const mutationUser = useMutation(
         (data) => {
-            return ProjectAPI.create(data);
+            console.log(data);
+            return UserAPI.create(data);
         },
         {
             onMutate: async () => {
@@ -129,14 +137,18 @@ const CreateUser = (props) => {
         if (credentials.logo) {
             mutationLogo.mutate(credentials.logo);
         } else {
-            const employees = Array.from(members.map((member) => member.id));
-            employees.push(authState.user.id);
-            mutationProject.mutate({
-                data: {
-                    name: credentials.name,
-                    description: credentials.description,
-                    employees: employees,
-                },
+            mutationUser.mutate({
+                name: credentials.name,
+                surname: credentials.surname,
+                description: credentials.description,
+                email: credentials.email,
+                username:
+                    credentials.name.toLowerCase() +
+                    credentials.surname.toLowerCase() +
+                    count.data,
+                password: credentials.password,
+                role: credentials.role,
+                confirmed: credentials.confirmed,
             });
         }
     };
@@ -231,7 +243,10 @@ const CreateUser = (props) => {
                     </div>
                     <div className={CreateCSS.row}>
                         <div className={CreateCSS.labelInputWrapperEmail}>
-                            <label htmlFor="password" className={CreateCSS.label}>
+                            <label
+                                htmlFor="password"
+                                className={CreateCSS.label}
+                            >
                                 Password
                             </label>
                             <Input
