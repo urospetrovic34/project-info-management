@@ -50,6 +50,9 @@
   top: 0;
   right: 0;
   display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  background-color: rgb(49, 151, 149);
 }
 
 .button {
@@ -57,11 +60,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border-radius: 100%;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin: 20px;
   /* background-color: purple; */
   color: white;
 }
