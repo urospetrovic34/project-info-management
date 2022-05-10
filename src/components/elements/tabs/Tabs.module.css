@@ -26,8 +26,12 @@ ul.nav {
 
 .categories_nav {
   display: flex;
+  align-items: center;
 }
-
+.backBtn {
+  color: white;
+  margin: 6px 5px 0px 10px;
+}
 ul.nav li {
   padding: 16px;
   display: flex;
