@@ -48,11 +48,7 @@ const Header = () => {
           Logout
         </span>
         <span className={HeaderCSS.userHeaderAvatarContainer}>
-          <img
-            src={Avatar}
-            alt="User"
-            className={HeaderCSS.userHeaderAvatar}
-          />
+          <img src={user.avatar ? user.avatar.url : Avatar} alt="User" className={HeaderCSS.userHeaderAvatar} />
           <div className={HeaderCSS.userNameHeader}>{`${user.name} ${user.surname}`}</div>
         </span>
       </div>
