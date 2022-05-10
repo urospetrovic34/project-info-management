@@ -14,11 +14,7 @@ const NavigationMob = ({ showMobileNav }) => {
         <img src={closeIcon} alt="close-icon" className={HeaderCSS.closeIcon} onClick={() => showMobileNav(false)} />
       </span>
       <div className={HeaderCSS.userInfoContainer}>
-        <img
-          src={Avatar}
-          alt="PM avatar"
-          className={HeaderCSS.userAvatar}
-        />
+        <img src={user.avatar ? user.avatar.url : Avatar} alt="PM avatar" className={HeaderCSS.userAvatar} />
         <div className={HeaderCSS.userInfo}>
           <div className={HeaderCSS.userName}>{`${user.name} ${user.surname}`}</div>
           <div className={HeaderCSS.userRole}>{user.role.name}</div>
