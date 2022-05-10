@@ -5,6 +5,7 @@ import File from "../../../assets/file.jpg";
 import { FileModal } from "../fileModal/FileModal";
 
 export const FilePreview = (props) => {
+    console.log(props.type)
     return (
         <div className={FilePreviewCSS.container} onClick={props.onClick}>
             <img
@@ -14,7 +15,7 @@ export const FilePreview = (props) => {
                         ? Audio
                         : props.type === "video"
                         ? props.previewUrl
-                        : props.type === "application"
+                        : props.type === "application" || props.type === "text"
                         ? File
                         : props.thumbnail
                 }

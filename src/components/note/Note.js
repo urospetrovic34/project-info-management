@@ -81,7 +81,9 @@ export const Note = (props) => {
                                     key={file.id}
                                     onClick={() =>
                                         file.attributes.provider_metadata
-                                            .resource_type === "raw"
+                                            .resource_type === "raw" ||
+                                        file.attributes.provider_metadata
+                                            .resource_type === "text"
                                             ? handleDownload(file)
                                             : handleModal(file)
                                     }
