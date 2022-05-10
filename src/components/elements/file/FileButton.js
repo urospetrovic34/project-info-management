@@ -12,7 +12,7 @@ export const FileButton = (props) => {
                 ref={props.input}
                 onChange={props.onChange}
                 className={FileCSS.input}
-                multiple
+                multiple={props.multiple}
             />
         </div>
     );

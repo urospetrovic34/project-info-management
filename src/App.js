@@ -21,6 +21,7 @@ import CreateProjectPage from "./components/createProject/CreateProjectPage";
 import EditAccountPage from "./components/elements/editAccountPage/EditAccountPage";
 import SystemAdminPage from "./components/systemAdminPage/SystemAdminPage";
 import EmployeeFirstTab from "./components/employee/EmployeeFirstTab";
+import { CreateUser } from "./components/createUser/CreateUser";
 
 function App() {
     const [authState, authDispatch] = useAuth();
@@ -69,6 +70,15 @@ function App() {
                         element={
                             <PrivateRoute redirect="/login">
                                 <CreateNoteTab />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/users/create"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <CreateUser />
                             </PrivateRoute>
                         }
                     />
