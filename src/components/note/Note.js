@@ -26,7 +26,7 @@ export const Note = (props) => {
             <div className={NoteCSS.container}>
                 <div className={NoteCSS.row}>
                     <div className={NoteCSS.title_container}>
-                        <p>{props.note.attributes.title}</p>
+                        <h4>{props.note.attributes.title}</h4>
                     </div>
                     <div
                         className={NoteCSS.exit_container}
@@ -37,9 +37,15 @@ export const Note = (props) => {
                 </div>
                 <div className={NoteCSS.row}>
                     <div className={NoteCSS.project_container}>
-                        <p>
+                        <p className={NoteCSS.subheaders}>
                             Project:{" "}
-                            {props.note.attributes.project.data.attributes.name}
+                            <span className={NoteCSS.subheadersInfo}>
+                                {" "}
+                                {
+                                    props.note.attributes.project.data
+                                        .attributes.name
+                                }
+                            </span>
                         </p>
                     </div>
                     <div className={NoteCSS.category_container}>
@@ -81,9 +87,7 @@ export const Note = (props) => {
                                     key={file.id}
                                     onClick={() =>
                                         file.attributes.provider_metadata
-                                            .resource_type === "raw" ||
-                                        file.attributes.provider_metadata
-                                            .resource_type === "text"
+                                            .resource_type === "raw"
                                             ? handleDownload(file)
                                             : handleModal(file)
                                     }
