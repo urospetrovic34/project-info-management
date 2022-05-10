@@ -39,6 +39,8 @@
   display: flex;
   align-items: flex-end;
   margin-top: 10px;
+  gap:10px;
+  width:100%;
 }
 .file {
   cursor: pointer;
@@ -67,6 +69,12 @@
   justify-content: space-between;
   align-items: flex-end;
   height: 100px;
+}
+.buttonWrapperUser {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 30px;
 }
 .contentContainer {
   background-color: white;
@@ -120,6 +128,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.textAreaContainerUser{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.textAreaContainerUser input{
+  width: 100%;
+}
+
+.labelInputWrapperEmail{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+}
+
+.labelInputWrapperEmail input{
+  width:100%;
+}
+
+.fileButtonContainer{
+  width:100%;
+  max-width:150px;
+}
+
+.fileButtonContainer button{
+  width:100%;
 }
 
 @media only screen and (min-width: 1300px) {

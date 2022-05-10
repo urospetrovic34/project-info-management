@@ -65,7 +65,7 @@ const SystemAdminPage = () => {
                         </div>
                     </div>
                     <div className={SystemAdminPageCSS.btn}>
-                        <Link to="/">
+                        <Link to="/users/create">
                             <Button text=" + Add User" />
                         </Link>
                     </div>

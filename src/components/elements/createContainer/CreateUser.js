@@ -2,18 +2,17 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import CreateCSS from "./CreateProject.module.css";
-import CardMembers from "../cards/CardMembers";
 import Photo from "../../../assets/photo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
-import AsyncSearchBar from "../searchBar/AsyncSearchBar";
 import { FileButton } from "../file/FileButton";
 import UploadAPI from "../../../actions/upload";
 import ProjectAPI from "../../../actions/project";
 import { useMutation } from "react-query";
+import { Select } from "../select/Select";
 
-const CreateProject = (props) => {
+const CreateUser = (props) => {
     const btnSaveStyle = {
         backgroundColor: "#319795",
         color: "white",
@@ -24,10 +23,20 @@ const CreateProject = (props) => {
 
     const [credentials, setCredentials] = useState({
         name: "",
+        surname: "",
         description: "",
+        username: "",
+        email: "",
+        role: 34,
+        confirmed: true,
         logo: null,
         image: null,
     });
+    console.log(credentials);
+    const roleOptions = [
+        { value: 34, label: "Employee" },
+        { value: 35, label: "Project Manager" },
+    ];
     const [isLoading, setIsLoading] = useState(false);
     const [members, setMembers] = useState([]);
 
@@ -86,18 +95,6 @@ const CreateProject = (props) => {
             },
         }
     );
-
-    const handleMembersChange = (value) => {
-        console.log(members);
-        setMembers((members) => [...members, value]);
-        setMembers((members) =>
-            members.filter(
-                (value, index, self) =>
-                    index === self.findIndex((member) => member.id === value.id)
-            )
-        );
-    };
-
     const handleFileClick = (event) => {
         event.preventDefault();
         input.current.click();
@@ -144,6 +141,10 @@ const CreateProject = (props) => {
         }
     };
 
+    const handleRoleChange = (event) => {
+        setCredentials({ ...credentials, role: event.value });
+    };
+
     return (
         <div className={CreateCSS.container}>
             <div className={CreateCSS.contentContainer}>
@@ -152,33 +153,40 @@ const CreateProject = (props) => {
                         <div>
                             <div className={CreateCSS.projectInfoHeader}>
                                 <h2 className={CreateCSS.header}>
-                                    Project Info
+                                    Create New User
                                 </h2>
                             </div>
                             <div className={CreateCSS.row}>
                                 <div className={CreateCSS.labelInputWrapper}>
                                     <label
-                                        htmlFor="projectName"
+                                        htmlFor="firstName"
                                         className={CreateCSS.label}
                                     >
-                                        Project Name
+                                        First Name
                                     </label>
                                     <Input
                                         type="text"
                                         name="name"
-                                        placeholder="Project Name"
-                                        id="projectName"
+                                        placeholder="First Name"
+                                        id="firstName"
                                         onChange={handleCredentialsChange}
                                     />
                                 </div>
-                                <FileButton
-                                    multiple={false}
-                                    project={true}
-                                    input={input}
-                                    placeholder="Choose Project Logo"
-                                    onClick={handleFileClick}
-                                    onChange={handleFileChange}
-                                />
+                                <div className={CreateCSS.labelInputWrapper}>
+                                    <label
+                                        htmlFor="lastName"
+                                        className={CreateCSS.label}
+                                    >
+                                        Last Name
+                                    </label>
+                                    <Input
+                                        type="text"
+                                        name="surname"
+                                        placeholder="Last Name"
+                                        id="lastName"
+                                        onChange={handleCredentialsChange}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -196,48 +204,82 @@ const CreateProject = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={CreateCSS.textAreaContainer}>
+                    <div className={CreateCSS.row}>
+                        <div className={CreateCSS.labelInputWrapperEmail}>
+                            <label htmlFor="email" className={CreateCSS.label}>
+                                Email
+                            </label>
+                            <Input
+                                type="text"
+                                name="email"
+                                placeholder="Email"
+                                id="email"
+                                onChange={handleCredentialsChange}
+                            />
+                        </div>
+                        <div className={CreateCSS.fileButtonContainer}>
+                            <FileButton
+                                className={CreateCSS.fileButton}
+                                multiple={false}
+                                project={true}
+                                input={input}
+                                placeholder="Choose User Avatar"
+                                onClick={handleFileClick}
+                                onChange={handleFileChange}
+                            />
+                        </div>
+                    </div>
+                    <div className={CreateCSS.row}>
+                        <div className={CreateCSS.labelInputWrapperEmail}>
+                            <label htmlFor="password" className={CreateCSS.label}>
+                                Password
+                            </label>
+                            <Input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                id="password"
+                                onChange={handleCredentialsChange}
+                            />
+                        </div>
+                    </div>
+                    <div className={CreateCSS.textAreaContainerUser}>
+                        <label
+                            htmlFor="userDescription"
+                            className={CreateCSS.label}
+                        >
+                            Description
+                        </label>
+                        <Input
+                            type="text"
+                            name="description"
+                            placeholder="Description"
+                            id="userDescription"
+                            onChange={handleCredentialsChange}
+                        />
+                    </div>
+                    <div className={CreateCSS.textAreaContainerUser}>
                         <label
                             htmlFor="projectDescription"
                             className={CreateCSS.label}
                         >
-                            Project Description
+                            Role
                         </label>
-                        <textarea
-                            id="projectDescription"
-                            name="description"
-                            rows="4"
-                            cols="50"
-                            placeholder="Description..."
-                            className={CreateCSS.textarea}
-                            onChange={handleCredentialsChange}
-                        ></textarea>
+                        <div className={CreateCSS.select}>
+                            <Select
+                                placeholder={"Choose Role"}
+                                options={roleOptions}
+                                multi={false}
+                                isSearchable={false}
+                                defaultValue={roleOptions[0]}
+                                onChange={handleRoleChange}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={CreateCSS.membersHeader}>
-                    <h2 className={CreateCSS.header}>Members</h2>
                 </div>
                 <div className={CreateCSS.membersInfo}>
-                    <div className={CreateCSS.inputContainer}>
-                        {/* <Button value={"ADD"} text={"ADD"} style={btnAddStyle} /> */}
-                    </div>
-                    <AsyncSearchBar onChange={handleMembersChange} />
-                    <div className={CreateCSS.employee_container}>
-                        {members.length > 0 ? (
-                            members.map((member) => (
-                                <CardMembers
-                                    key={member.id}
-                                    member={member}
-                                    updateMembers={handleUpdateCollabs}
-                                    index={members.indexOf(member)}
-                                />
-                            ))
-                        ) : (
-                            <span>No members added</span>
-                        )}
-                    </div>
-                    <div className={CreateCSS.buttonWrapper}>
-                        <Link to="/">
+                    <div className={CreateCSS.buttonWrapperUser}>
+                        <Link to="/admin">
                             <Button
                                 value={"Back"}
                                 text={"BACK"}
@@ -258,6 +300,6 @@ const CreateProject = (props) => {
     );
 };
 
-export default CreateProject;
+export default CreateUser;
 
 //
