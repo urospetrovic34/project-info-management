@@ -172,7 +172,7 @@ const Tabs = (props) => {
                 </TabContent>
                 <div className={TabsCSS.pagination}>
                     {props.project.status === "success" &&
-                        props.project.data?.data.notes.data && (
+                        props.project.data?.data.notes && (
                             <Pagination
                                 handlePageChange={handlePageChange}
                                 totalCount={totalCount}

@@ -10,9 +10,11 @@ export const Note = (props) => {
     const [modalCheck, setModalCheck] = useState(false);
     const [file, setFile] = useState({});
     const [allFiles, setAllFiles] = useState(
-        props.note.files.filter(
-            (file) => file.provider_metadata.resource_type !== "raw"
-        )
+        props.note.files !== null
+            ? props.note.files.filter(
+                  (file) => file.provider_metadata.resource_type !== "raw"
+              )
+            : []
     );
 
     const handleModal = (data) => {

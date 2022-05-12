@@ -105,6 +105,7 @@
 .description_container_text {
   margin-top: 10px;
   border: 1px solid lightgrey;
+  overflow-x: hidden;
   padding: 15px 10px;
   border-radius: 5px;
 }

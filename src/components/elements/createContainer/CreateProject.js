@@ -80,7 +80,7 @@ const CreateProject = (props) => {
             onMutate: async () => {
                 setIsLoading(true);
             },
-            onSuccess: (response) => {
+            onSuccess: () => {
                 setIsLoading(false);
                 navigate("/");
             },

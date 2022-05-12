@@ -5,7 +5,7 @@ import Avatar2 from "../../../assets/44.jpg";
 import Avatar3 from "../../../assets/32.jpg";
 import { MdOutlineStickyNote2 } from "react-icons/md";
 import { VscFileSubmodule } from "react-icons/vsc";
-const CardProjectManagement = (props) => {
+const CardProjectManagement = (props) => {console.log(props.note)
     return (
         <div onClick={props.onClick} className={CardCSS.cardContainerSecond}>
             <div className={CardCSS.headerPMInfoContainer}>
@@ -27,7 +27,7 @@ const CardProjectManagement = (props) => {
                 </span>
             </div>
             <div className={CardCSS.iconPmInfoContainer}>
-                {!props.note.files.data ? (
+                {!props.note.files && props.note.files !== null ? (
                     <MdOutlineStickyNote2 className={CardCSS.noteIcon} />
                 ) : (
                     <VscFileSubmodule className={CardCSS.noteIcon} />
