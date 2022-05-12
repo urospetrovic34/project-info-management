@@ -51,20 +51,12 @@ export const Note = (props) => {
                             Project:{" "}
                             <span className={NoteCSS.subheadersInfo}>
                                 {" "}
-                                {
-                                    props.note.project
-                                        .name
-                                }
+                                {props.note.project.name}
                             </span>
                         </p>
                     </div>
                     <div className={NoteCSS.category_container}>
-                        <p>
-                            {
-                                props.note.category
-                                    .name
-                            }
-                        </p>
+                        <p>{props.note.category.name}</p>
                     </div>
                 </div>
                 <div className={NoteCSS.row}>
@@ -90,14 +82,12 @@ export const Note = (props) => {
                                     extension={file.ext}
                                     previewUrl={file.previewUrl}
                                     type={file.mime.split("/")[0]}
-                                    thumbnail={
-                                        file.formats?.thumbnail.url
-                                    }
+                                    thumbnail={file.formats?.thumbnail.url}
                                     url={file.url}
                                     key={file.id}
                                     onClick={() =>
-                                        file.provider_metadata
-                                            .resource_type === "raw"
+                                        file.provider_metadata.resource_type ===
+                                        "raw"
                                             ? handleDownload(file)
                                             : handleModal(file)
                                     }

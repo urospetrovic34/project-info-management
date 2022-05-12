@@ -16,11 +16,11 @@
 .image_container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .image_container img {
-  max-height: 100vh;
+  width: 90%;
   padding: 25px;
 }
 
@@ -45,19 +45,29 @@
   display: none;
 }
 
-.button_container {
+.button_header_container {
   position: absolute;
   top: 0;
   right: 0;
   display: flex;
+  align-items: center;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding: 0px 0px 0px 20px;
   background-color: rgb(49, 151, 149);
 }
-
-.arrow{
-    cursor: pointer;
-    color:white;
+.button_container {
+  display: flex;
+}
+.headerContainer {
+  color: white;
+  font-size: 24px;
+}
+.arrow {
+  cursor: pointer;
+  color: white;
+  height: 30px;
+  width: 30px;
 }
 
 .button {
@@ -67,9 +77,7 @@
   cursor: pointer;
   height: 30px;
   width: 30px;
-  border-radius: 100%;
   margin: 20px;
-  /* background-color: purple; */
   color: white;
 }
 
@@ -78,14 +86,23 @@
   font-size: 34px;
 }
 
-.central_container{
-    width: 90%;
-    display: flex;
-    justify-content:center;
+.central_container {
+  width: 90%;
+  display: flex;
+  justify-content: center;
 }
 
-.arrow_container{
-    width: 10%;
-    display: flex;
-    justify-content:center;
+.arrow_container {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  .image_container img {
+    padding: 5px;
+  }
+  .arrow {
+    height: 20px;
+    width: 20px;
+  }
 }
