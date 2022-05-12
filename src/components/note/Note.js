@@ -10,8 +10,8 @@ export const Note = (props) => {
     const [modalCheck, setModalCheck] = useState(false);
     const [file, setFile] = useState({});
     const [allFiles, setAllFiles] = useState(
-        props.note.attributes.files.data.filter(
-            (file) => file.attributes.provider_metadata.resource_type !== "raw"
+        props.note.files.filter(
+            (file) => file.provider_metadata.resource_type !== "raw"
         )
     );
 
@@ -21,7 +21,7 @@ export const Note = (props) => {
     };
 
     const handleDownload = (data) => {
-        saveAs(data.attributes.url, data.attributes.caption);
+        saveAs(data.url, data.caption);
     };
 
     return (
@@ -36,7 +36,7 @@ export const Note = (props) => {
             <div className={NoteCSS.container}>
                 <div className={NoteCSS.row}>
                     <div className={NoteCSS.title_container}>
-                        <h4>{props.note.attributes.title}</h4>
+                        <h4>{props.note.title}</h4>
                     </div>
                     <div
                         className={NoteCSS.exit_container}
@@ -52,8 +52,8 @@ export const Note = (props) => {
                             <span className={NoteCSS.subheadersInfo}>
                                 {" "}
                                 {
-                                    props.note.attributes.project.data
-                                        .attributes.name
+                                    props.note.project
+                                        .name
                                 }
                             </span>
                         </p>
@@ -61,7 +61,7 @@ export const Note = (props) => {
                     <div className={NoteCSS.category_container}>
                         <p>
                             {
-                                props.note.attributes.category.data.attributes
+                                props.note.category
                                     .name
                             }
                         </p>
@@ -74,8 +74,8 @@ export const Note = (props) => {
                         </p>
                         <div className={NoteCSS.description_container_text}>
                             <p>
-                                {props.note.attributes.description
-                                    ? props.note.attributes.description
+                                {props.note.description
+                                    ? props.note.description
                                     : "No description available"}
                             </p>
                         </div>
@@ -83,20 +83,20 @@ export const Note = (props) => {
                 </div>
                 <div className={NoteCSS.row_center}>
                     <div className={NoteCSS.file_container}>
-                        {props.note.attributes.files.data &&
-                            props.note.attributes.files.data.map((file) => (
+                        {props.note.files &&
+                            props.note.files.map((file) => (
                                 <FilePreview
-                                    caption={file.attributes.caption}
-                                    extension={file.attributes.ext}
-                                    previewUrl={file.attributes.previewUrl}
-                                    type={file.attributes.mime.split("/")[0]}
+                                    caption={file.caption}
+                                    extension={file.ext}
+                                    previewUrl={file.previewUrl}
+                                    type={file.mime.split("/")[0]}
                                     thumbnail={
-                                        file.attributes.formats?.thumbnail.url
+                                        file.formats?.thumbnail.url
                                     }
-                                    url={file.attributes.url}
+                                    url={file.url}
                                     key={file.id}
                                     onClick={() =>
-                                        file.attributes.provider_metadata
+                                        file.provider_metadata
                                             .resource_type === "raw"
                                             ? handleDownload(file)
                                             : handleModal(file)

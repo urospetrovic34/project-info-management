@@ -30,7 +30,7 @@ export const FileModal = (props) => {
     };
 
     const handleDownload = () => {
-        saveAs(currentFile.attributes.url, currentFile.attributes.caption);
+        saveAs(currentFile.url, currentFile.caption);
     };
 
     const handleArrowLeft = () => {
@@ -75,13 +75,13 @@ export const FileModal = (props) => {
                 <div className={FileModalCSS.arrow_container}></div>
             )}
             <div className={FileModalCSS.central_container}>
-                {currentFile.attributes.ext === ".pdf" ? (
+                {currentFile.ext === ".pdf" ? (
                     <div
                         className={FileModalCSS.pdf_container}
                         onClick={handleZoom}
                     >
                         <Document
-                            file={currentFile.attributes.url}
+                            file={currentFile.url}
                             options={{ workerSrc: "/pdf.worker.js" }}
                             onLoadSuccess={onDocumentLoadSuccess}
                             className={FileModalCSS.pdf_container}
@@ -95,25 +95,25 @@ export const FileModal = (props) => {
                             ))}
                         </Document>
                     </div>
-                ) : currentFile.attributes.mime.split("/")[0] === "image" ? (
+                ) : currentFile.mime.split("/")[0] === "image" ? (
                     <div className={FileModalCSS.image_container}>
-                        <img src={currentFile.attributes.url} alt="#" />
+                        <img src={currentFile.url} alt="#" />
                     </div>
-                ) : currentFile.attributes.mime.split("/")[0] === "video" ? (
+                ) : currentFile.mime.split("/")[0] === "video" ? (
                     <div className={FileModalCSS.video_contaienr}>
                         <video width="1000" controls>
                             <source
-                                src={currentFile.attributes.url}
-                                type={currentFile.attributes.mime}
+                                src={currentFile.url}
+                                type={currentFile.mime}
                             />
                         </video>
                     </div>
-                ) : currentFile.attributes.mime.split("/")[0] === "audio" ? (
+                ) : currentFile.mime.split("/")[0] === "audio" ? (
                     <div className={FileModalCSS.audio_container}>
                         <audio controls>
                             <source
-                                src={currentFile.attributes.url}
-                                type={currentFile.attributes.mime}
+                                src={currentFile.url}
+                                type={currentFile.mime}
                             />
                         </audio>
                     </div>
