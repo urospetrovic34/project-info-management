@@ -11,6 +11,7 @@
 .attach_container {
   width: 100%;
   border: 1px solid lightgrey;
+  background-color:white;
   border-radius: 5px;
   min-height: 100px;
   height: auto;

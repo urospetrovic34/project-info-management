@@ -53,15 +53,20 @@ export const FileModal = (props) => {
 
     return (
         <div className={FileModalCSS.wrapper}>
-            <div className={FileModalCSS.button_container}>
-                <AiOutlineDownload
-                    className={FileModalCSS.button}
-                    onClick={handleDownload}
-                />
-                <AiOutlineClose
-                    className={FileModalCSS.button}
-                    onClick={props.onClick}
-                />
+            <div className={FileModalCSS.button_header_container}>
+                <h3 className={FileModalCSS.headerContainer}>
+                    {props.note.title}
+                </h3>
+                <div className={FileModalCSS.button_container}>
+                    <AiOutlineDownload
+                        className={FileModalCSS.button}
+                        onClick={handleDownload}
+                    />
+                    <AiOutlineClose
+                        className={FileModalCSS.button}
+                        onClick={props.onClick}
+                    />
+                </div>
             </div>
             {props.allFiles.findIndex((file) => file.id === currentFile.id) >
                 0 && props.allFiles.length > 1 ? (

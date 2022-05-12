@@ -31,6 +31,7 @@ export const Note = (props) => {
                     file={file}
                     allFiles={allFiles}
                     onClick={handleModal}
+                    note={props.note}
                 />
             )}
             <div className={NoteCSS.container}>
