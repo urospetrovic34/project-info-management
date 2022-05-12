@@ -9,14 +9,12 @@ const CardProjectManagement = (props) => {
     return (
         <div onClick={props.onClick} className={CardCSS.cardContainerSecond}>
             <div className={CardCSS.headerPMInfoContainer}>
-                <h1 className={CardCSS.cardHeader}>
-                    {props.note.attributes.title}
-                </h1>
+                <h1 className={CardCSS.cardHeader}>{props.note.title}</h1>
             </div>
             <div className={CardCSS.headerPMInfoContainer}>
                 <span className={CardCSS.PMName}>
-                    {props.note.attributes.description
-                        ? props.note.attributes.description
+                    {props.note.description
+                        ? props.note.description
                               .split("", 25)
                               .reduce(
                                   (o, c) =>
@@ -29,7 +27,7 @@ const CardProjectManagement = (props) => {
                 </span>
             </div>
             <div className={CardCSS.iconPmInfoContainer}>
-                {!props.note.attributes.files.data ? (
+                {!props.note.files.data ? (
                     <MdOutlineStickyNote2 className={CardCSS.noteIcon} />
                 ) : (
                     <VscFileSubmodule className={CardCSS.noteIcon} />
@@ -37,10 +35,8 @@ const CardProjectManagement = (props) => {
                 <div className={CardCSS.PMInfoContainer}>
                     <img
                         src={
-                            props.note.attributes.author.data?.attributes.avatar
-                                .data?.attributes.url
-                                ? props.note.attributes.author.data.attributes
-                                      .avatar.data.attributes.url
+                            props.note.author?.avatar?.url
+                                ? props.note.author.avatar.url
                                 : Avatar3
                         }
                         alt="PM avatar"
@@ -48,11 +44,10 @@ const CardProjectManagement = (props) => {
                     />
                     <div className={CardCSS.PMAdditionalInfo}>
                         <div className={CardCSS.PMNameAdditional}>
-                            {`${props.note.attributes.author.data?.attributes.name} ${props.note.attributes.author.data?.attributes.surname}`}
+                            {`${props.note.author?.name} ${props.note.author?.surname}`}
                         </div>
                         <div className={CardCSS.PMName}>
-                            {props.note.attributes.author.data?.attributes
-                                .description || "Member"}
+                            {props.note.author?.description || "Member"}
                         </div>
                     </div>
                 </div>

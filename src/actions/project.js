@@ -23,7 +23,7 @@ const getOne = async (id, filters, populate, sort, pagination) => {
     let response;
     await axios
         .get(
-            `/api/projects/${id}?populate[notes][populate][author][populate]=*&populate[notes][populate][category][populate]=*&populate[notes][populate][files][populate]=*&populate[notes][populate][project][populate]=*&populate[logo][populate]=*&populate[employees][populate]=*`
+            `/api/projects/${id}`
         )
         .then((res) => {
             response = res.data;

@@ -16,6 +16,7 @@ import UploadAPI from "../../../actions/upload";
 const CreateNoteTab = (props) => {
     const location = useLocation();
     const categories = categoryHooks.useCategories();
+    console.log(categories)
     const options = useMemo(
         () =>
             categories.data?.data.map((category) => {
@@ -27,7 +28,7 @@ const CreateNoteTab = (props) => {
         location.pathname.split("/")[3]
     );
     const projectTitle = useMemo(() => {
-        return project.data?.data.attributes.name;
+        return project.data?.data.name;
     }, [project.data]);
 
     const [data, setData] = useState({
@@ -112,6 +113,7 @@ const CreateNoteTab = (props) => {
         backgroundColor: "#319795",
         color: "white",
         fontWeight: "600",
+        cursor: "pointer",
     };
 
     return (
@@ -168,17 +170,13 @@ const CreateNoteTab = (props) => {
                             </div>
                             <div className={CreateNoteTabCSS.input_label}>
                                 <div className={CreateNoteTabCSS.file_row}>
-                                    <span
-                                        className={CreateNoteTabCSS.input_title}
-                                    >
-                                        Files
-                                    </span>
                                     <FileButton
                                         input={input}
                                         onClick={handleFileClick}
                                         onChange={handleFileChange}
                                         style={btnStyle}
                                         multiple={true}
+                                        placeholder={"Choose files"}
                                     />
                                 </div>
                                 <AttachFiles

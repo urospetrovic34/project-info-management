@@ -6,6 +6,7 @@ import userHooks from "../../hooks/query/user";
 import projectHooks from "../../hooks/query/project";
 import Tabs from "../elements/tabs/Tabs";
 import Placeholder from "../../assets/avatar-placeholder.png";
+import LoadingSpinner from "../elements/loadingSpinner/LoadingSpinner";
 
 export const Project = () => {
     const location = useLocation();
@@ -16,30 +17,23 @@ export const Project = () => {
     //BECAUSE THIS PIECE OF SHIT API DOES NOT
     //RETURN ALL THE FIELDS, EVEN AFTER MULTIPLE POPULATES
     //TO WHOM IT MAY CONCERN, FUCK STRAPI, BETTER CREATE API YOURSELF, BE A REAL LAD
-    const findProjectManager = userHooks.useUsers(
-        location.pathname.split("/")[2],
-        "project_manager"
-    );
+
     console.log(project);
 
     return (
         <div className={ProjectCSS.wrapper}>
-            <SubHeaderEmployee
-                project={project}
-                projectManagerAvatar={
-                    "https://upload.wikimedia.org/wikipedia/commons/a/a0/PEGI_Online_annotated.svg"
-                    // findProjectManager.data?.[0].avatar.url
-                }
-                projectManagerId={
-                    "placeholder"
-                    // findProjectManager.data?.[0].id
-                }
-            />
-            <div className={ProjectCSS.container}>
-                <div className={ProjectCSS.tab_container}>
-                    <Tabs project={project} />
-                </div>
-            </div>
+            {project.status === "success" ? (
+                <>
+                    <SubHeaderEmployee project={project} />
+                    <div className={ProjectCSS.container}>
+                        <div className={ProjectCSS.tab_container}>
+                            <Tabs project={project} />
+                        </div>
+                    </div>
+                </>
+            ) : (<>
+                <LoadingSpinner/>
+                </>)}
         </div>
     );
 };
