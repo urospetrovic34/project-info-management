@@ -1,49 +1,79 @@
 .flex {
-    display: flex;
-    justify-content: space-between;
-    width: 1200px;
-    margin: 0 auto;
-    margin-top: 40px;
-
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
 }
 
 .search_container {
-    display: flex;
-    gap:5px;
-    background: lightgray;
-    padding: 5px;
-    padding-bottom: 0px;
+  display: flex;
+  gap: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
 }
 
 .searchBar {
-    width: 430px;
-    margin-left: 15px;
-    margin-right: -35px;
+  width: 430px;
+  margin-left: 15px;
+  margin-right: -35px;
 }
 
 .searchBar input {
-    height: 34px;
+  height: 34px;
 }
 
 .btn button {
-    margin-top: 7px;
-    height: 50px;
-    width: 150px;
+  background-color: rgb(49, 151, 149);
 }
 
-.pagination{
-    display: flex;
-    justify-content:center;
+.pagination {
+  display: flex;
+  justify-content: center;
 }
 
 .search_container input {
-    height: 45px;
+  height: 45px;
 }
 
-.select{
-    width: 200px;
+.select {
+  width: 200px;
 }
 
-.card_container{
-    min-height:600px;
+.card_container {
+  min-height: 600px;
+  width: 70%;
+}
+@media only screen and (max-width: 1300px) {
+  .flex {
+    width: 100%;
+  }
+  .card_container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 760px) {
+  .container {
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .flex {
+    flex-direction: column;
+  }
+  .search_container {
+    width: 100%;
+    justify-content: space-between;
+    order: 2;
+  }
+  .btn {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
 }
