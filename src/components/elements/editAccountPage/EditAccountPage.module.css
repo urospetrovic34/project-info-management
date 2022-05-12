@@ -1,149 +1,151 @@
 .wrapper {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: flex-start;
-    padding: 15px 30px;
-    width: 100%;
-    max-width: 1100px;
-    background-color:rgb(219, 219, 219);
-    border-radius: 5px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px 30px;
+  width: 100%;
+  max-width: 1100px;
+  background-color: #c7e0d6;
+  border-radius: 5px;
 }
 
-.password_information{
-    /* width: 50%; */
+.password_information {
+  /* width: 50%; */
 }
 
 .acc_informations {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .acc_informations input,
 .acc_informations button {
-    width: 100%;
-    height: 40px;
+  width: 100%;
+  height: 40px;
 }
 
 .acc_informations input {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .row {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
-    text-transform: uppercase;
-    color: #4987f2;
-    margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #4987f2;
+  margin-bottom: 20px;
 }
 
 .gray_title {
-    color: gray;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    margin-top: 15px;
+  color: gray;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
 
 .logo_container:hover {
-    box-shadow: inset 0 0 0 2000px rgba(32, 32, 32, 0.3);
+  box-shadow: inset 0 0 0 2000px rgba(32, 32, 32, 0.3);
 }
 
 .logo_container {
-    position: relative;
-    margin: 15px 0px;
-    height: 200px;
-    width: 200px;
-    border-radius: 100%;
-    cursor: pointer;
-    background-size: cover;
-    z-index: 1;
+  position: relative;
+  margin: 15px 0px;
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  cursor: pointer;
+  background-size: cover;
+  z-index: 1;
 }
 .camera_thumb {
-    position: absolute;
-    color: white;
-    font-size: 60px;
-    inset: 0;
-    z-index: 2;
-    margin: auto;
+  position: absolute;
+  color: white;
+  font-size: 60px;
+  inset: 0;
+  z-index: 2;
+  margin: auto;
 }
 
 .input_label {
-    font-weight: 600;
-    margin: 5px 0px;
+  font-weight: 600;
+  margin: 5px 0px;
 }
 
-.title_label{
-    font-weight: 800;
-    font-size: 30px;
-    margin-bottom: 10px;
+.title_label {
+  font-weight: 800;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
-.password_label{
-    font-weight: 600;
-    font-size: 25px;
-    margin: 10px 0px;
+.password_label {
+  font-weight: 600;
+  font-size: 25px;
+  margin: 10px 0px;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: 30% 70%;
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
 
 .button {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .section_one {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .section_two {
-    width: 100%;
-    margin-left: 40px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 100%;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.user_name{
-    font-weight:800;
-    font-size:25px;
+.user_name {
+  font-weight: 800;
+  font-size: 25px;
 }
 
-.button_section{
-    margin-top: 30px;
-    width: 100%;
+.button_section {
+  margin-top: 30px;
+  width: 100%;
 }
 
 .button_section button {
-    width: 130px;
-    height:40px;
+  width: 130px;
+  height: 40px;
+  background-color: rgb(49, 151, 149);
+  font-weight: 600;
 }
 
 .row_reverse {
-    display: flex;
-    flex-direction: column;
-    align-items:flex-end;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
 }
