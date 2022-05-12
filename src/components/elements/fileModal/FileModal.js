@@ -11,8 +11,6 @@ import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
 
 export const FileModal = (props) => {
-    console.log(props.note);
-
     const [numPages, setNumPages] = useState(null);
     const [zoomValue, setZoomValue] = useState(1);
     const [currentFile, setCurrentFile] = useState(props.file);
@@ -23,9 +21,6 @@ export const FileModal = (props) => {
         setNumPages(numPages);
     }
 
-    const handleDownload = () => {
-        saveAs(currentFile.url, currentFile.caption);
-    };
     const handleZoom = () => {
         if (zoomValue !== 1) {
             setZoomValue(1);
@@ -33,6 +28,11 @@ export const FileModal = (props) => {
             setZoomValue(1.5);
         }
     };
+
+    const handleDownload = () => {
+        saveAs(currentFile.url, currentFile.caption);
+    };
+
     const handleArrowLeft = () => {
         const index = props.allFiles.findIndex(
             (file) => file.id === currentFile.id
