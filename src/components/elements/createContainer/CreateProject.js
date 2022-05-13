@@ -31,8 +31,6 @@ const CreateProject = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [members, setMembers] = useState([]);
 
-    console.log(members);
-
     const input = useRef(null);
     const fileReader = new FileReader();
 
@@ -88,7 +86,6 @@ const CreateProject = (props) => {
     );
 
     const handleMembersChange = (value) => {
-        console.log(members);
         setMembers((members) => [...members, value]);
         setMembers((members) =>
             members.filter(
@@ -128,7 +125,6 @@ const CreateProject = (props) => {
 
     const handleButton = (event) => {
         event.preventDefault();
-        console.log();
         if (credentials.logo) {
             mutationLogo.mutate(credentials.logo);
         } else {

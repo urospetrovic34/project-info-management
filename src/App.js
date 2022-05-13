@@ -25,6 +25,7 @@ import { CreateUser } from "./components/createUser/CreateUser";
 import { EditUser } from "./components/editUser/EditUser";
 import { CategoriesAdminPage } from "./components/systemAdminPage/CategoriesAdminPage";
 import CreateCategory from "./components/elements/createContainer/CreateCategory";
+import EditCategory from './components/editCategory/EditCategory' 
 
 function App() {
     const [authState, authDispatch] = useAuth();
@@ -82,6 +83,15 @@ function App() {
                         element={
                             <PrivateRoute redirect="/login">
                                 <CreateCategory />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/categories/edit/:id"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <EditCategory />
                             </PrivateRoute>
                         }
                     />

@@ -102,7 +102,7 @@ const EditAccountPage = () => {
             return UserAPI.edit(authState.user.id, data);
         },
         {
-            onSuccess: (response) => {
+            onSuccess: () => {
                 AuthAPI.refresh(authDispatch);
             },
         }
@@ -123,6 +123,10 @@ const EditAccountPage = () => {
                     : null),
             });
         }
+        setCredentials({
+            ...credentials,
+            password: "",
+        });
     };
 
     const chooseStyle = {

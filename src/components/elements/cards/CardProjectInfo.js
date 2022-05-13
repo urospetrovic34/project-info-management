@@ -6,7 +6,6 @@ import userHooks from "../../../hooks/query/user";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const CardProjectInfo = (props) => {
-    console.log(props);
     let logoData = props.project.logo;
 
     return (

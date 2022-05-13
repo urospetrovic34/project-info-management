@@ -15,7 +15,7 @@ export const Home = () => {
     const [pageNumber, setPageNumber] = useState(0);
     const [projectName, setProjectName] = useState("");
     const debouncedPageNumber = useDebounce(pageNumber, 250);
-    const debouncedProjectName = useDebounce(projectName, 1000);
+    const debouncedProjectName = useDebounce(projectName, 500);
     const projects = projectHooks.useProjects(
         debouncedProjectName,
         debouncedPageNumber,
@@ -43,13 +43,11 @@ export const Home = () => {
     return (
         <div className={HomeCSS.wrapper}>
             <SubHeader onChange={handleProjectNameFilter} />
-            <div className={HomeCSS.container}>
-                {projects.isLoading && <LoadingSpinner />}
-                {projects.status === "success" && (
+            {projects.status === "success" ? (
+                <div className={HomeCSS.container}>
                     <>
                         {projects.data?.projects.length === 0 && (
                             <div className={HomeCSS.no_projects_container}>
-                                <img src={GIJane2} alt="#" />
                                 <p className={HomeCSS.no_projects_message}>
                                     No projects found
                                 </p>
@@ -89,8 +87,10 @@ export const Home = () => {
                             />
                         </div>
                     </>
-                )}
-            </div>
+                </div>
+            ) : (
+                <LoadingSpinner />
+            )}
         </div>
     );
 };

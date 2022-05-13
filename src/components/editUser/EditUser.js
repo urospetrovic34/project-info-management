@@ -44,16 +44,9 @@ export const EditUser = () => {
         { value: 35, label: "Project Manager" },
     ];
     const [isLoading, setIsLoading] = useState(false);
-    const [members, setMembers] = useState([]);
-
-    console.log(members);
 
     const input = useRef(null);
     const fileReader = new FileReader();
-
-    const handleUpdateCollabs = (id) => {
-        setMembers((members) => members.filter((_, index) => index !== id));
-    };
 
     const handleCredentialsChange = (event) => {
         event.preventDefault();

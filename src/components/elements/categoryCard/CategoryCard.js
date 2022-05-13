@@ -27,7 +27,7 @@ const CategoryCard = (props) => {
     );
 
     const handleNavigate = () => {
-        navigate(`/categories/edit/${props.user.id}`);
+        navigate(`/categories/edit/${props.category.id}`);
     };
 
     return (
