@@ -136,7 +136,7 @@ const EditAccountPage = () => {
           <div className={EditAccountPageCSS.user_name}>
             {authState.user.name} {authState.user.surname}
           </div>
-          <div>{authState.user.role.name}</div>
+          <div className={EditAccountPageCSS.role}>{authState.user.role.name}</div>
           {/* {authState.user.role.name !== "System Administrator" ? } */}
           <div
             className={EditAccountPageCSS.logo_container}
