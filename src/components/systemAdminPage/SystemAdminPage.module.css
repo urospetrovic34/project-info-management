@@ -10,12 +10,13 @@
   gap: 5px;
 }
 
-.row{
-    width: 70%;
-    gap: 5px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: flex-start;
+.row {
+  width: 70%;
+  gap: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .container {
@@ -37,8 +38,14 @@
 
 .btn button {
   background-color: rgb(49, 151, 149);
+  padding: 0px 5px;
+  width: auto;
 }
-
+.row button {
+  background-color: rgb(49, 151, 149);
+  padding: 0px 5px;
+  width: auto;
+}
 .pagination {
   display: flex;
   justify-content: center;
