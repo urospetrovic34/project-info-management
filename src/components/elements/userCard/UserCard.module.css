@@ -12,6 +12,7 @@
 }
 .role {
   grid-area: role;
+  cursor: default;
 }
 .delete {
   grid-area: delete;
