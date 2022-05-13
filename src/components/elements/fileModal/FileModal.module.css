@@ -106,4 +106,9 @@
     height: 20px;
     width: 20px;
   }
+  .arrow_container {
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
 }
