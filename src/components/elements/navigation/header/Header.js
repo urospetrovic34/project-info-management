@@ -30,7 +30,6 @@ const Header = () => {
       </Link>
 
       <div className={HeaderCSS.navigationContainer}>
-        {/* {user.role.name === "System Administrator" && <span className={HeaderCSS.navigationContent}>Dashboard</span>} */}
         {user.role.name === "System Administrator" && (
           <Link to="/admin/users" className={HeaderCSS.navigationContent}>
             <span>Dashboard</span>
@@ -65,3 +64,4 @@ const Header = () => {
 };
 
 export default Header;
+//

@@ -106,6 +106,7 @@
   object-fit: contain;
   background-color: white;
   margin-bottom: 5px;
+  object-fit: cover;
 }
 .userInfoContainer {
   margin: 0px 25px;
@@ -121,6 +122,9 @@
 }
 .userNameHeader {
   font-size: 13px;
+}
+.mobileLogout {
+  color: white;
 }
 @media only screen and (max-width: 820px) {
   .hamburgerIcon {

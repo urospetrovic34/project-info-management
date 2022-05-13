@@ -10,47 +10,44 @@ import useDebounce from "../../hooks/custom/useDebounce";
 import CategoryCard from "../elements/categoryCard/CategoryCard";
 
 export const CategoriesAdminPage = () => {
-    const categories = categoryHooks.useCategories();
-    console.log(categories);
+  const categories = categoryHooks.useCategories();
+  console.log(categories);
 
-    const handleCategoryFilter = () => {};
+  const handleCategoryFilter = () => {};
 
-    const sortCategoryOptions = () => {};
+  const sortCategoryOptions = () => {};
 
-    return (
-        <div className={SystemAdminPageCSS.container}>
-        <div className={SystemAdminPageCSS.row}>
-            <Link to="/admin/users">Users</Link>
-            <Link to="/admin/categories">Categories</Link>
+  return (
+    <div className={SystemAdminPageCSS.container}>
+      <div className={SystemAdminPageCSS.row}>
+        <Link to="/admin/users">
+          <Button text=" Users" />
+        </Link>
+        <Link to="/admin/categories">
+          <Button text=" Categories" />
+        </Link>
+      </div>
+      <div className={SystemAdminPageCSS.flex}>
+        <div className={SystemAdminPageCSS.search_container}>
+          <div>
+            <Input placeholder={"Search categories..."} onChange={handleCategoryFilter} />
+          </div>
+          <div className={SystemAdminPageCSS.select}>
+            <Select placeholder={"Sort by..."} options={sortCategoryOptions} multi={false} isSearchable={false} />
+          </div>
         </div>
-            <div className={SystemAdminPageCSS.flex}>
-                <div className={SystemAdminPageCSS.search_container}>
-                    <div>
-                        <Input
-                            placeholder={"Search categories..."}
-                            onChange={handleCategoryFilter}
-                        />
-                    </div>
-                    <div className={SystemAdminPageCSS.select}>
-                        <Select
-                            placeholder={"Sort by..."}
-                            options={sortCategoryOptions}
-                            multi={false}
-                            isSearchable={false}
-                        />
-                    </div>
-                </div>
-                <div className={SystemAdminPageCSS.btn}>
-                    <Link to="/categories/create">
-                        <Button text=" + Add Category" />
-                    </Link>
-                </div>
-            </div>
-            <div className={SystemAdminPageCSS.card_container}>
-                {categories.status === "success" && categories.data?.data?.map((category) => <CategoryCard key={category.id} category={category} />)}
-            </div>
-            <div className={SystemAdminPageCSS.pagination}>
-                {/* {users.status === "success" && (
+        <div className={SystemAdminPageCSS.btn}>
+          <Link to="/categories/create">
+            <Button text=" + Add Category" />
+          </Link>
+        </div>
+      </div>
+      <div className={SystemAdminPageCSS.card_container}>
+        {categories.status === "success" &&
+          categories.data?.data?.map((category) => <CategoryCard key={category.id} category={category} />)}
+      </div>
+      <div className={SystemAdminPageCSS.pagination}>
+        {/* {users.status === "success" && (
           <Pagination
             currentPage={users.data?.meta?.pagination.page}
             totalCount={users.data?.meta?.pagination.total}
@@ -60,7 +57,7 @@ export const CategoriesAdminPage = () => {
             handlePreviousPageChange={handlePreviousPageChange}
           />
         )} */}
-            </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
