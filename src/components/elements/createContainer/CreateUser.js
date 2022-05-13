@@ -294,7 +294,7 @@ const CreateUser = (props) => {
                 </div>
                 <div className={CreateCSS.membersInfo}>
                     <div className={CreateCSS.buttonWrapperUser}>
-                        <Link to="/admin">
+                        <Link to="/admin/users">
                             <Button
                                 value={"Back"}
                                 text={"BACK"}

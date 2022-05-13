@@ -63,7 +63,7 @@ const getV2 = async (sort, name, start) => {
 const getOne = async (id, filters, populate, sort, start, limit) => {
     let response;
     await axios
-        .get(`/api/users/${id}`)
+        .get(`/api/users/${id}?populate=*`)
         .then((res) => {
             response = res.data;
         })

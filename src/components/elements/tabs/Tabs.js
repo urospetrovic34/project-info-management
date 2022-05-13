@@ -56,9 +56,10 @@ const Tabs = (props) => {
     };
 
     useEffect(() => {
-        let array = props.project.data?.data.notes?.map((note) => {
-            return note.category?.name;
-        });
+        let array = props.project.data?.data.notes
+            ?.map((note) => {
+                return note.category?.name;
+            })
         setCategories(() => [...new Set(array)]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.project.status]);
@@ -96,36 +97,37 @@ const Tabs = (props) => {
                     </div>
                 )}
             </ul>
-                
-                {props.project.status === "success" &&
-                        categories.length === 0 && (
-                            <div className={TabsCSS.message}>This project does not have any notes added yet</div>
-                        )}
-            {props.project.status === "success" &&
-                        categories.length !== 0 && 
-            <div className={TabsCSS.option_row}>
-                <div>
-                    <Input
-                        placeholder="Search notes..."
-                        onChange={handleProjectNameFilter}
-                    />
+
+            {props.project.status === "success" && categories.length === 0 && (
+                <div className={TabsCSS.message}>
+                    This project does not have any notes added yet
                 </div>
-                <div className={TabsCSS.sort_col}>
-                    <Select
-                        options={sortOptions}
-                        isSearchable={false}
-                        defaultValue={sortOptions[0]}
-                        onChange={handleSortChange}
-                    />
+            )}
+            {props.project.status === "success" && categories.length !== 0 && (
+                <div className={TabsCSS.option_row}>
+                    <div>
+                        <Input
+                            placeholder="Search notes..."
+                            onChange={handleProjectNameFilter}
+                        />
+                    </div>
+                    <div className={TabsCSS.sort_col}>
+                        <Select
+                            options={sortOptions}
+                            isSearchable={false}
+                            defaultValue={sortOptions[0]}
+                            onChange={handleSortChange}
+                        />
+                    </div>
                 </div>
-            </div>
-            }
+            )}
             <div className={TabsCSS.outlet}>
                 <TabContent id={activeTab} activeTab={activeTab}>
                     {props.project.status === "success" &&
                         props.project.data?.data.notes
                             .filter(
                                 (note) =>
+                                    note.category.name !== null &&
                                     note.category.name === activeTab &&
                                     note.title
                                         .toLowerCase()

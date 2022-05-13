@@ -23,6 +23,8 @@ import SystemAdminPage from "./components/systemAdminPage/SystemAdminPage";
 import EmployeeFirstTab from "./components/employee/EmployeeFirstTab";
 import { CreateUser } from "./components/createUser/CreateUser";
 import { EditUser } from "./components/editUser/EditUser";
+import { CategoriesAdminPage } from "./components/systemAdminPage/CategoriesAdminPage";
+import CreateCategory from "./components/elements/createContainer/CreateCategory";
 
 function App() {
     const [authState, authDispatch] = useAuth();
@@ -76,6 +78,15 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/categories/create"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <CreateCategory />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
                         path="/users/create"
                         element={
                             <PrivateRoute redirect="/login">
@@ -103,10 +114,19 @@ function App() {
                     />
                     <Route
                         exact
-                        path="/admin"
+                        path="/admin/users"
                         element={
                             <PrivateRoute redirect="/login">
-                                <SystemAdminPage/>
+                                <SystemAdminPage />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/admin/categories"
+                        element={
+                            <PrivateRoute redirect="/login">
+                                <CategoriesAdminPage />
                             </PrivateRoute>
                         }
                     />

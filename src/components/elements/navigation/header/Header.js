@@ -22,7 +22,7 @@ const Header = () => {
   console.log(user);
   return (
     <div className={HeaderCSS.header}>
-      <Link to={user.role.name !== "System Administrator" ? "/" : "/admin"}>
+      <Link to={user.role.name !== "System Administrator" ? "/" : "/admin/users"}>
         <div className={HeaderCSS.logoHeaderContainer}>
           <img src={logo} alt="logo" className={HeaderCSS.logo} />
           <h1 className={HeaderCSS.platformName}>Q Project Info</h1>
@@ -32,7 +32,7 @@ const Header = () => {
       <div className={HeaderCSS.navigationContainer}>
         {/* {user.role.name === "System Administrator" && <span className={HeaderCSS.navigationContent}>Dashboard</span>} */}
         {user.role.name === "System Administrator" && (
-          <Link to="/admin" className={HeaderCSS.navigationContent}>
+          <Link to="/admin/users" className={HeaderCSS.navigationContent}>
             <span>Dashboard</span>
           </Link>
         )}

@@ -7,11 +7,8 @@ export const PrivateRoute = ({ children, redirect }) => {
     const location = useLocation();
     console.log(location);
 
-    if (!user && !token) {
+    if (!user && !token && user.role.name !== "System Administrator") {
         return <Navigate to={redirect} replace />;
-    }
-    else if(user && token && user.role.name === "System Administrator" && location.pathname === "/"){
-        return <Navigate to="/admin/users" replace />;
     }
 
     return children;
